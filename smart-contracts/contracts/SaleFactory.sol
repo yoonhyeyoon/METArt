@@ -2,26 +2,24 @@
 pragma solidity ^0.8.4;
 
 import "./access/Ownable.sol";
-import "./token/ERC20/ERC20.sol";
-import "./NFTIslandBadge.sol";
+import "./MetartNFT.sol";
 
 contract SaleFactory is Ownable {
     address public admin;
     address[] public sales;
 
-    NFTIslandBadge public erc721Contract;
+    MetartNFT public erc721Contract;
     
     event CreatedSaleAddress(address saleAddress);
 
     event NewSale(
         address indexed _saleContract,
-        address indexed _owner,
-        uint256 _workId
+        address indexed _owner
     );
 
     constructor(address _nftAddress) {
         admin = msg.sender;
-        erc721Contract = NFTIslandBadge(_nftAddress);
+        erc721Contract = MetartNFT(_nftAddress);
     }
 
     function createSale(
@@ -31,7 +29,6 @@ contract SaleFactory is Ownable {
     ) public returns (address) {
         address seller = msg.sender;
         require(erc721Contract.ownerOf(itemId) == seller, "SaleFactory: seller is not owner of this item");
-        require(erc721Contract.isPublic(itemId), "SaleFactory: this token can't be sold");
 
         if (!erc721Contract.isApprovedForAll(seller, address(this))) {
             erc721Contract.approveSaleFactory(seller);
@@ -51,11 +48,7 @@ contract SaleFactory is Ownable {
     }
 }
 
-/**
- *  PJT Ⅲ - Req.1-SC2) Sale 구현
- */
 contract Sale {
-    // 생성자에 의해 정해지는 값
     address public seller;
     address public buyer;
     address admin;
@@ -64,7 +57,7 @@ contract Sale {
     address public nftAddress;
     bool public ended;
 
-    NFTIslandBadge public erc721Contract;
+    MetartNFT public erc721Contract;
 
     event SaleEnded(address winner, uint256 amount);
 
@@ -81,7 +74,7 @@ contract Sale {
         admin = _admin;
         nftAddress = _nftAddress;
         ended = false;
-        erc721Contract = NFTIslandBadge(_nftAddress);
+        erc721Contract = MetartNFT(_nftAddress);
     }
 
     function purchase() public payable {   
@@ -98,8 +91,8 @@ contract Sale {
     }
     
     function cancelSale() public {
-        require(!ended, "Sale: This sale is ended");
         require(msg.sender == seller || msg.sender == admin, "Sale: Cancel caller is not seller nor admin");
+        require(!ended, "Sale: This sale is ended");
 
         erc721Contract.transferFrom(address(this), seller, tokenId);
 
@@ -122,13 +115,7 @@ contract Sale {
         );
     }
 
-    // internal 혹은 private 함수 선언시 아래와 같이 _로 시작하도록 네이밍합니다.
     function _end() internal {
         ended = true;
-    }
-
-    modifier onlySeller() {
-        require(msg.sender == seller, "Sale: You are not seller.");
-        _;
     }
 }

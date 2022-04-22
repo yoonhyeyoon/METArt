@@ -10,11 +10,6 @@ import "../../utils/Context.sol";
 import "../../utils/Strings.sol";
 import "../../utils/introspection/ERC165.sol";
 
-/**
- * PJT Ⅰ - 과제 1 ERC-721 구현
- * @dev EIP-721을 준수하여 ERC721을 작성합니다. 
- * https://eips.ethereum.org/EIPS/eip-721[ERC721] Non-Fungible Token Standard
- */
 contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     using Address for address;
     using Strings for uint256;
