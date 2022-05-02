@@ -3,8 +3,8 @@ import { css } from '@emotion/react';
 export const profileBox = css`
   padding-top: 5%;
   width: 100%;
-  padding-right: 10%;
-  padding-left: 10%;
+  /* padding-right: 10%; */
+  /* padding-left: 10%; */
   /* margin-right: auto;
   margin-left: auto; */
 `;
@@ -44,6 +44,7 @@ export const profileDescription = css`
 export const profileName = css`
   font-size: 4rem;
   margin-top: 1.5rem;
+  margin-bottom: 4rem;
 `;
 
 export const profileInfo = css`
