@@ -25,6 +25,7 @@ export const profileImgDiv = css`
   margin: auto;
   overflow: hidden;
   width: 400px;
+  border-radius: 10%;
 `;
 
 export const profileImg = css`
@@ -33,6 +34,7 @@ export const profileImg = css`
   &:hover {
     transform: scale(1.4);
   }
+  border-radius: 10%;
 `;
 
 export const profileDescription = css`
@@ -41,7 +43,7 @@ export const profileDescription = css`
 
 export const profileName = css`
   font-size: 4rem;
-  margin-top: 0;
+  margin-top: 1.5rem;
 `;
 
 export const profileInfo = css`

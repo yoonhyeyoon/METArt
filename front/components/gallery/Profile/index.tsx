@@ -13,7 +13,7 @@ import {
 
 function Profile() {
   return (
-    <div css={profileBox}>
+    <div>
       <section>
         <div css={profileContainer}>
           <div css={profileDiv}>
