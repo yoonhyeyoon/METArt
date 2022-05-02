@@ -8,9 +8,9 @@ contract MetartNFT is ERC721, Ownable {
 
     uint256 private _tokenIdSeq;
     mapping(uint256 => string) private _tokenURIs;
-    address private _saleFactoryAddress;
+    address private _auctionAddress;
     
-    event CreatedTokenId(uint256 tokenId);
+    event CreateToken(uint256 indexed tokenId, address indexed owner);
 
     constructor(string memory name, string memory symbol) ERC721(name, symbol) {
         _tokenIdSeq = 0;
@@ -24,26 +24,22 @@ contract MetartNFT is ERC721, Ownable {
         return _tokenURIs[tokenId];
     }
 
-    function setSaleFactoryAddress(address saleFactoryAddress) public onlyOwner {
-        _saleFactoryAddress = saleFactoryAddress;
+    function setAuctionAddress(address auctionAddress) public onlyOwner {
+        _auctionAddress = auctionAddress;
     }
 
-    function approveSaleFactory(address owner) public {
-        _setApprovalForAll(owner, _saleFactoryAddress, true);
+    function approveAuction(address owner) public {
+        _setApprovalForAll(owner, _auctionAddress, true);
     }
 
     function create(address to, string memory _tokenURI) public virtual returns (uint256) {
-        if (!isApprovedForAll(to, _saleFactoryAddress)) {
-            _setApprovalForAll(to, _saleFactoryAddress, true);
-        }
-
         uint256 tokenId = _tokenIdSeq;
         _mint(to, tokenId);
         _tokenURIs[tokenId] = _tokenURI;
         
         _tokenIdSeq += 1;
 
-        emit CreatedTokenId(tokenId);
+        emit CreateToken(tokenId, to);
 
         return tokenId;
     }

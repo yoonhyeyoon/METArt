@@ -5,10 +5,10 @@ contract("MetartNFT", (accounts) => {
   const symbol = "METART";
   const contractOwner = accounts[0];
 
-  let metartNFTInstance;
+  let metartNft;
 
   before(async function () {
-    metartNFTInstance = await MetartNFT.new(name, symbol, {
+    metartNft = await MetartNFT.new(name, symbol, {
       from: contractOwner,
     });
   });
@@ -18,22 +18,22 @@ contract("MetartNFT", (accounts) => {
     const receiver = accounts[2];
     const tokenURI = "myuri://testtest";
 
-    var tx = await metartNFTInstance.create(sender, tokenURI, {
+    var tx = await metartNft.create(sender, tokenURI, {
       from: sender,
     });
 
-    var tokenId = tx.receipt.logs[2].args["tokenId"].toNumber();
+    var tokenId = tx.receipt.logs[1].args["tokenId"].toNumber();
 
-    var owner = await metartNFTInstance.ownerOf(tokenId);
+    var owner = await metartNft.ownerOf(tokenId);
     assert.equal(sender, owner, "NFT Mint Failed");
 
-    var tokenURIFetched = await metartNFTInstance.tokenURI(tokenId);
+    var tokenURIFetched = await metartNft.tokenURI(tokenId);
     assert.equal(tokenURI, tokenURIFetched, "Wrong Token Id or URI.");
 
-    await metartNFTInstance.transferFrom(sender, receiver, tokenId, {
+    await metartNft.transferFrom(sender, receiver, tokenId, {
       from: sender,
     });
-    owner = await metartNFTInstance.ownerOf(tokenId);
+    owner = await metartNft.ownerOf(tokenId);
 
     assert.equal(receiver, owner, "NFT Transfer Failed.");
   });
