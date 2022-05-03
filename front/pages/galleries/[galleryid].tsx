@@ -7,10 +7,8 @@ import Page from '../../Layouts/Page';
 function Gallery() {
   return (
     <Page>
-      <div css={profileBox}>
-        <Profile />
-        <GalleryArtList />
-      </div>
+      <Profile />
+      <GalleryArtList />
     </Page>
   );
 }

@@ -5,6 +5,8 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { galleryArtBox, galleryArtContent } from './styles';
 import { textAlign } from '@mui/system';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 type imgType = string[];
 
@@ -35,6 +37,15 @@ function GalleryArtList() {
             paddingBottom: 13,
           }}
         >
+          <ToggleButtonGroup
+            color="primary"
+            // value={alignment}
+            exclusive
+            // onChange={handleChange}
+          >
+            <ToggleButton value="web">For Sale</ToggleButton>
+            <ToggleButton value="android">All</ToggleButton>
+          </ToggleButtonGroup>
           <ImageList variant="masonry" cols={4} gap={40}>
             {imgs.map((img) => (
               <ImageListItem>

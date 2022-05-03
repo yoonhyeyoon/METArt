@@ -10,7 +10,9 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <Navbar />
-      <Container maxWidth="xl">{children}</Container>
+      <Container maxWidth="xl" sx={{ paddingTop: 5 }}>
+        {children}
+      </Container>
     </>
   );
 }

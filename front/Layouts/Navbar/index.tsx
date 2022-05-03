@@ -14,9 +14,9 @@ import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/router';
 
 const pages = [
-  { name: 'Arts', url: 'arts' },
-  { name: 'Galleries', url: 'galleries' },
-  { name: 'My art', url: '' },
+  { name: 'Arts', url: '/arts' },
+  { name: 'Gallery', url: '/galleries' },
+  { name: 'My art', url: '/galleries/a' },
   { name: 'Add art', url: '' },
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -130,7 +130,10 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  alt="Kemy Sharp"
+                  src="https://img.sbs.co.kr/newsnet/etv/upload/2019/01/31/30000622371_700.jpg"
+                />
               </IconButton>
             </Tooltip>
             <Menu

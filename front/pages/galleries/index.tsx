@@ -1,7 +1,8 @@
 import React from 'react';
+import Page from '../../Layouts/Page';
 
 function GalleryIndex() {
-  return <div></div>;
+  return <Page>d</Page>;
 }
 
 export default GalleryIndex;
