@@ -19,7 +19,7 @@ function Profile() {
           <div css={profileDiv}>
             <div css={profileImgDiv}>
               <img
-                src="https://ww.namu.la/s/c76d184f9514b642b065bdb4b85c1caed6ef1b196a816cf5371f24a5c2500c6260b3959789a4a7aed14ab316112428f5252e07400610b7664e75dc2dc96efe47a3de4704d4171a62dffe2ec7d9d377f5"
+                src="https://img.sbs.co.kr/newsnet/etv/upload/2019/01/31/30000622371_700.jpg"
                 alt="image"
                 css={profileImg}
               />
@@ -27,7 +27,7 @@ function Profile() {
           </div>
           <div css={profileDiv}>
             <div css={profileDescription}>
-              <h1 css={profileName}>Lee Junho</h1>
+              <h1 css={profileName}>Kim Seo-hyung</h1>
               <h3>Info.</h3>
               <p css={profileInfo}>
                 작가의 시간쌓기 작업은 인간의 경험에서 얻은 기억을 하나의 단위인

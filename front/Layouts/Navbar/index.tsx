@@ -11,11 +11,18 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useRouter } from 'next/router';
 
-const pages = ['Arts', 'Galleries', 'My art', 'Add art'];
+const pages = [
+  { name: 'Arts', url: '/arts' },
+  { name: 'Gallery', url: '/galleries' },
+  { name: 'My art', url: '/galleries/a' },
+  { name: 'Add art', url: '' },
+];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
+  const router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -36,6 +43,10 @@ const ResponsiveAppBar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleRoutePage = (url: string) => {
+    router.push(url);
   };
 
   return (
@@ -81,8 +92,14 @@ const ResponsiveAppBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem
+                  key={page.name}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    handleRoutePage(page.url);
+                  }}
+                >
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -98,11 +115,14 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.name}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  handleRoutePage(page.url);
+                }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
@@ -110,7 +130,10 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  alt="Kemy Sharp"
+                  src="https://img.sbs.co.kr/newsnet/etv/upload/2019/01/31/30000622371_700.jpg"
+                />
               </IconButton>
             </Tooltip>
             <Menu

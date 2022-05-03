@@ -8,8 +8,6 @@ export const galleryArtContent = css`
 export const galleryArtBox = css`
   display: flex;
   flex-wrap: wrap;
-
-  // Use Grid if browser supports it
   display: grid;
   grid-gap: 0.2rem;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

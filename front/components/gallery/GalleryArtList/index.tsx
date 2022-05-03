@@ -1,6 +1,12 @@
 import React from 'react';
 import GalleryArt from '../GalleryArt';
+import { Box, Container } from '@mui/material';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 import { galleryArtBox, galleryArtContent } from './styles';
+import { textAlign } from '@mui/system';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 type imgType = string[];
 
@@ -16,13 +22,43 @@ function GalleryArtList() {
   ];
   return (
     <div>
-      <section css={galleryArtContent}>
-        <div css={galleryArtBox}>
-          {imgs.map((img) => (
-            <GalleryArt img={img} />
-          ))}
-        </div>
-      </section>
+      <Container
+        sx={{
+          paddingTop: 9,
+          paddingBottom: 6,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Box
+          sx={{
+            width: '80vw',
+            paddingBottom: 13,
+          }}
+        >
+          <ToggleButtonGroup
+            color="primary"
+            // value={alignment}
+            exclusive
+            // onChange={handleChange}
+          >
+            <ToggleButton value="web">For Sale</ToggleButton>
+            <ToggleButton value="android">All</ToggleButton>
+          </ToggleButtonGroup>
+          <ImageList variant="masonry" cols={4} gap={40}>
+            {imgs.map((img) => (
+              <ImageListItem>
+                <img
+                  src={`${img}?w=248&fit=crop&auto=format`}
+                  srcSet={`${img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                  loading="lazy"
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </Box>
+      </Container>
     </div>
   );
 }
