@@ -9,7 +9,7 @@ import Avatar from '@mui/material/Avatar';
 
 export default function ArtCard() {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <CardHeader
         avatar={<Avatar src="/images/sample2.jpg" aria-label="" />}
         title="Shrimp and Chorizo Paella"
