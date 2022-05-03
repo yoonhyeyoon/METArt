@@ -10,10 +10,11 @@ import {
   profileInfo,
   profileName,
 } from './styles';
+import Container from '@mui/material/Container';
 
 function Profile() {
   return (
-    <div>
+    <Container maxWidth="lg">
       <section>
         <div css={profileContainer}>
           <div css={profileDiv}>
@@ -38,7 +39,7 @@ function Profile() {
           </div>
         </div>
       </section>
-    </div>
+    </Container>
   );
 }
 

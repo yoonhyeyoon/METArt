@@ -48,7 +48,15 @@ function GalleryArtList() {
           </ToggleButtonGroup>
           <ImageList variant="masonry" cols={4} gap={40}>
             {imgs.map((img) => (
-              <ImageListItem>
+              <ImageListItem
+                sx={{
+                  backgroundColor: 'primary.dark',
+                  '&:hover': {
+                    backgroundColor: 'primary.main',
+                    opacity: [0.9, 0.8, 0.7],
+                  },
+                }}
+              >
                 <img
                   src={`${img}?w=248&fit=crop&auto=format`}
                   srcSet={`${img}?w=248&fit=crop&auto=format&dpr=2 2x`}
