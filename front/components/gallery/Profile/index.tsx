@@ -11,6 +11,7 @@ import {
   profileName,
 } from './styles';
 import Container from '@mui/material/Container';
+import ProfileSettingModal from '../ProfileSettingModal';
 
 function Profile() {
   return (
@@ -35,6 +36,7 @@ function Profile() {
                 선과 면으로 기호화하고 이를 쌓거나 나열하여 시간의 집적을
                 이야기하고 작품을 통해 삶을 사색한다.
               </p>
+              <ProfileSettingModal />
             </div>
           </div>
         </div>

@@ -49,8 +49,8 @@ function GalleryArtList() {
             exclusive
             // onChange={handleChange}
           >
-            <ToggleButton value="web">For Sale</ToggleButton>
-            <ToggleButton value="android">All</ToggleButton>
+            <ToggleButton value="sale">For Sale</ToggleButton>
+            <ToggleButton value="all">All</ToggleButton>
           </ToggleButtonGroup>
           <ImageList variant="masonry" cols={4} gap={40}>
             {imgs.map((img) => (
