@@ -3,7 +3,13 @@ import GalleryArt from '../GalleryArt';
 import { Box, Container } from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { galleryArtBox, galleryArtContent } from './styles';
+import {
+  artPrice,
+  caption,
+  galleryArtBox,
+  galleryArtContent,
+  transParentBox,
+} from './styles';
 import { textAlign } from '@mui/system';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
@@ -50,10 +56,28 @@ function GalleryArtList() {
             {imgs.map((img) => (
               <ImageListItem
                 sx={{
-                  backgroundColor: 'primary.dark',
+                  // position: 'relative',
+                  backgroundColor: 'white',
+                  overflow: 'hidden',
+                  color: 'white',
+                  '& .img': {
+                    transform: 'scale(1.0)',
+                    transition: 'transform 0.4s ease',
+                  },
                   '&:hover': {
-                    backgroundColor: 'primary.main',
-                    opacity: [0.9, 0.8, 0.7],
+                    // backgroundColor: 'primary.main',
+                    // opacity: [0.9, 0.8, 0.7],
+                    cursor: 'pointer',
+                    '& .caption': {
+                      opacity: 1,
+                      transform: 'translateY(-20px)',
+                    },
+                    '& .transparent-box': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    },
+                    '& .img': {
+                      transform: 'scale(1.1)',
+                    },
                   },
                 }}
               >
@@ -61,7 +85,14 @@ function GalleryArtList() {
                   src={`${img}?w=248&fit=crop&auto=format`}
                   srcSet={`${img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                   loading="lazy"
+                  className="img"
                 />
+                <div css={transParentBox} className="transparent-box">
+                  <div css={caption} className="caption">
+                    <p>1.5 ETH</p>
+                    <p css={artPrice}>Kim Seo-hyung Design</p>
+                  </div>
+                </div>
               </ImageListItem>
             ))}
           </ImageList>

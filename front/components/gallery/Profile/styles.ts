@@ -30,10 +30,10 @@ export const profileImgDiv = css`
 
 export const profileImg = css`
   max-width: 100%;
-  transition: all 0.3s ease-in-out;
+  /* transition: all 0.3s ease-in-out;
   &:hover {
     transform: scale(1.4);
-  }
+  } */
   border-radius: 10%;
 `;
 
@@ -42,7 +42,7 @@ export const profileDescription = css`
 `;
 
 export const profileName = css`
-  font-size: 4rem;
+  font-size: 4.2rem;
   margin-top: 1.5rem;
   margin-bottom: 4rem;
 `;
