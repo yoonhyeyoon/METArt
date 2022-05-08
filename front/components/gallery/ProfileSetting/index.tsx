@@ -6,6 +6,7 @@ function ProfileSetting() {
   const [fileImg, setFileImg] = useState('');
 
   const saveFileImg = (e: React.ChangeEvent<HTMLInputElement> | null) => {
+    if (!e?.target.files) return;
     if (e?.target.files[0]) {
       setFileImg(URL.createObjectURL(e?.target.files[0]));
       console.log(URL.createObjectURL(e?.target.files[0]));
