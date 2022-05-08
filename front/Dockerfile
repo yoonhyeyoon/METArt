@@ -2,7 +2,7 @@ FROM node
 
 WORKDIR /home/ubuntu/deploy/front
 
-COPY *.* /home/ubuntu/deploy/front
+COPY *.* /home/ubuntu/deploy/front/
 
 RUN npm install
 
