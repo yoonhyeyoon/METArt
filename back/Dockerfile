@@ -4,7 +4,8 @@ WORKDIR /home/deploy/back
 
 COPY *.* /home/deploy/back/
 
-CMD ["./mvnw", "clean", "package -Dspring.profiles.active=release -P release"]
+#CMD ["./mvnw", "clean", "package -Dspring.profiles.active=release -P release"]
+CMD ["./mvnw", "clean", "package"]
 
 ARG JAR_FILE=target/*.jar
 
