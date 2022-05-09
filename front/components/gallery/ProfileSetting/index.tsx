@@ -1,9 +1,26 @@
 import React, { useState } from 'react';
-import { deleteButton, stypedInput } from './styled';
+import { pictureButton, styledInput, styledInputBio } from './styled';
 import Grid from '@mui/material/Grid';
+import ToggleButton from '@mui/material/ToggleButton';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 function ProfileSetting() {
-  const [fileImg, setFileImg] = useState('');
+  const [fileImg, setFileImg] = useState(
+    'https://img.sbs.co.kr/newsnet/etv/upload/2019/01/31/30000622371_700.jpg',
+  );
+
+  const hiddenFileInput = React.useRef<HTMLInputElement>(null);
+  const clickFileImg = () => {
+    hiddenFileInput.current?.click();
+  };
 
   const saveFileImg = (e: React.ChangeEvent<HTMLInputElement> | null) => {
     if (!e?.target.files) return;
@@ -19,46 +36,79 @@ function ProfileSetting() {
   };
 
   return (
-    <main>
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={3}
-      >
-        <Grid item>
-          <h1>사진 미리보기</h1>
-          <div>
-            {fileImg && (
-              <img
-                src={fileImg}
-                alt="sample"
-                width={300}
-                style={{ borderRadius: '40px' }}
-              />
-            )}
-            <div>
-              <input
-                name="imgUpload"
-                type="file"
-                accept="image/*"
-                onChange={saveFileImg}
-              />
-              <button onClick={() => deleteFileImg()} css={deleteButton}>
-                삭제
-              </button>
-            </div>
-          </div>
-        </Grid>
-        <Grid item>
-          <input type="text" placeholder="Name" css={stypedInput} />
-        </Grid>
-        <Grid item>
-          <textarea placeholder="Description" css={stypedInput} />
-        </Grid>
-      </Grid>
-    </main>
+    <>
+      <TableContainer>
+        <Table>
+          <TableRow>
+            <TableCell>Picture</TableCell>
+            <TableCell>
+              {fileImg && (
+                <img
+                  src={fileImg}
+                  alt="sample"
+                  width={100}
+                  style={{ borderRadius: '20px' }}
+                />
+              )}
+            </TableCell>
+            <TableCell>
+              <Grid container spacing={1}>
+                <Grid item>
+                  <ToggleButton value="imgUpload" onClick={clickFileImg}>
+                    찾아보기
+                  </ToggleButton>
+                </Grid>
+                <input
+                  ref={hiddenFileInput}
+                  id="imgUpload"
+                  name="imgUpload"
+                  type="file"
+                  accept="image/*"
+                  onChange={saveFileImg}
+                  hidden
+                />
+                <Grid item>
+                  <ToggleButton value="삭제" onClick={() => deleteFileImg()}>
+                    삭제
+                  </ToggleButton>
+                </Grid>
+              </Grid>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <label htmlFor="name">Name</label>
+            </TableCell>
+            <TableCell colSpan={2}>
+              <input id="name" type="text" css={styledInput} />
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <label htmlFor="bio">Bio</label>
+            </TableCell>
+            <TableCell colSpan={2}>
+              <textarea id="bio" css={styledInput} />
+            </TableCell>
+          </TableRow>
+        </Table>
+      </TableContainer>
+      <Container>
+        <Box
+          component="span"
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            paddingTop: 3,
+          }}
+        >
+          <Button variant="contained" size="large">
+            Save
+          </Button>
+        </Box>
+      </Container>
+    </>
   );
 }
 
