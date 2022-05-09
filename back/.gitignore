@@ -34,6 +34,7 @@ build/
 
 # logs
 *.log
+*.log.*
 
 # secret properties
-/src/main/resources/secrets/*
+/src/main/resources/application-*.properties
