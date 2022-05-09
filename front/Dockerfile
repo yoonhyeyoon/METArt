@@ -1,12 +1,12 @@
 FROM node
 
-# WORKDIR /home/ubuntu/deploy/front
+WORKDIR /usr/app
 
-# COPY *.* /home/ubuntu/deploy/front/
+COPY *.* /usr/app
 
 RUN npm install
 
-# COPY . /home/ubuntu/deploy/front/
+COPY . /usr/app
 
 RUN npm run build
 
