@@ -1,22 +1,28 @@
+import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-export const stypedInput = css`
+export const styledInput = css`
   width: 400px;
-  /* height: 32px; */
+  /* height: 46px; */
   font-size: 1.2rem;
   border: 0;
-  border-radius: 15px;
+  border-radius: 5px;
   outline: none;
-  padding-left: 10px;
-  background-color: rgb(233, 233, 233);
+  padding: 13px 18px;
+  border: 1px solid #e3e7eb;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 `;
 
-export const deleteButton = css`
-  background-color: gray;
-  color: white;
-  width: 55px;
-  height: 40px;
-  cursor: pointer;
-  border-radius: 15px;
-  border: none;
+export const styledInputBio = css`
+  /* ${styledInput} {
+    height: 100px;
+    color: red;
+  } */
+  height: 200px;
+`;
+
+export const pictureButton = css`
+  display: inline;
+  padding-left: 33px;
+  padding-bottom: 33px;
 `;
