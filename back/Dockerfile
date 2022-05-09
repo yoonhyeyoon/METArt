@@ -2,7 +2,8 @@ FROM openjdk:11
 
 WORKDIR /home/deploy/back
 
-CMD ["./mvn", "clean", "package -Dspring.profiles.active=release -P release"]
+RUN mvn clean package -Dspring.profiles.active=release -P release
+#CMD ["./mvn", "clean", "package -Dspring.profiles.active=release -P release"]
 
 ARG JAR_FILE=target/*.jar
 
