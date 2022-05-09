@@ -2,8 +2,6 @@ FROM openjdk:11
 
 WORKDIR /home/deploy/back
 
-COPY . /home/deploy/back/
-
 ARG JAR_FILE=target/*.jar
 
 COPY ${JAR_FILE} app.jar
