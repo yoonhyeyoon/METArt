@@ -2,7 +2,10 @@ FROM openjdk:11
 
 WORKDIR /home/deploy/back
 
-COPY *.* /home/deploy/back/
+COPY . /home/deploy/back/
 
-#CMD ["java", "-jar",  "-Dspring.profiles.active=release", "target/metart-0.0.1-SNAPSHOT.jar"]
-CMD ["ls"]
+ARG JAR_FILE=target/*.jar
+
+COPY ${JAR_FILE} app.jar
+
+ENTRYPOINT ["java", "-jar",  "-Dspring.profiles.active=release", "app.jar"]
