@@ -151,4 +151,18 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>local</id>
+			<properties>
+				<environment>local</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>release</id>
+			<properties>
+				<environment>release</environment>
+			</properties>
+		</profile>
+	</profiles>
 </project>

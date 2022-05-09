@@ -1,6 +1,4 @@
 import { css } from '@emotion/react';
-import { styled } from '@mui/system';
-import ImageListItem from '@mui/material/ImageListItem';
 
 export const galleryArtContent = css`
   max-width: 100%;

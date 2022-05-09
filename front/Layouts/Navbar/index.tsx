@@ -17,7 +17,7 @@ const pages = [
   { name: 'Arts', url: '/arts' },
   { name: 'Gallery', url: '/galleries' },
   { name: 'My art', url: '/galleries/a' },
-  { name: 'Add art', url: '' },
+  { name: 'Add art', url: '/createart' },
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
