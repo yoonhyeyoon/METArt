@@ -23,10 +23,9 @@ public class Player : MonoBehaviourPun
     Animator animator;
 
     void Awake() {
-        transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         animator = GetComponentInChildren<Animator>();
-        // NickNameText.text = PV.IsMine ? PhotonNetwork.NickName : PV.Owner.NickName;
-        NickNameText.text = "Guest";
+        NickNameText.text = PV.IsMine ? PhotonNetwork.NickName : PV.Owner.NickName;
         if (PV.IsMine) {
             PlayerManager.Instance.DeactivatePlayer();
             PlayerManager.Instance.Player = gameObject;

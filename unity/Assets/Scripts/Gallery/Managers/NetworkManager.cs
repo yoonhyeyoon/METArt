@@ -27,7 +27,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom() {
         string CharacterNamePath = "Character/Prefabs/" + this.CharacterName;
-        PhotonNetwork.Instantiate(CharacterNamePath, new Vector3(-17, 2, -60), Quaternion.identity);
+        PhotonNetwork.Instantiate(CharacterNamePath, new Vector3(-47, -38, -48), Quaternion.identity);
         PlayerManager.Instance.guid = Guid.NewGuid();
 
         #if !UNITY_EDITOR && UNITY_WEBGL
