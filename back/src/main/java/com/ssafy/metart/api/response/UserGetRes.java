@@ -1,0 +1,29 @@
+package com.ssafy.metart.api.response;
+
+import com.ssafy.metart.db.entity.User;
+import java.time.LocalDateTime;
+import lombok.Getter;
+
+@Getter
+public class UserGetRes {
+
+    private String address;
+    private String name;
+    private String biography;
+    private String profileUrl;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    public static UserGetRes of(User user) {
+        UserGetRes res = new UserGetRes();
+
+        res.address = user.getAddress();
+        res.name = user.getName();
+        res.biography = user.getBiography();
+        res.profileUrl = user.getProfileUrl();
+        res.createdAt = user.getCreatedAt();
+        res.updatedAt = user.getUpdatedAt();
+
+        return res;
+    }
+}

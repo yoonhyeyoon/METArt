@@ -67,6 +67,18 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- aws s3 -->
+		<dependency>
+			<groupId>io.awspring.cloud</groupId>
+			<artifactId>spring-cloud-aws-context</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.awspring.cloud</groupId>
+			<artifactId>spring-cloud-aws-autoconfigure</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
 		<!-- querydsl -->
 		<dependency>
 			<groupId>com.querydsl</groupId>
