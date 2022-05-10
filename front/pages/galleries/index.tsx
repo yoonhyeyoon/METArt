@@ -3,6 +3,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import Page from '../../Layouts/Page';
 import GalleryCard from 'components/common/GalleryCard';
 import SearchBarGallery from 'components/common/SearchBarGallery';
+import GalleryList from 'components/galleries/GalleryList';
 
 function GalleryIndex() {
   const [search, setSearch] = useState<String>('');
@@ -19,7 +20,7 @@ function GalleryIndex() {
   return (
     <Page>
       <Typography variant="h2" mt={5}>
-        Gallery List
+        Gallery
       </Typography>
       <Box width="500px" mt={2} mb={5}>
         <SearchBarGallery
@@ -27,7 +28,8 @@ function GalleryIndex() {
           handleSearchClick={handleSearchClick}
         />
       </Box>
-      <Grid container spacing={6}>
+      <GalleryList />
+      {/* <Grid container spacing={6}>
         <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
           <GalleryCard />
         </Grid>
@@ -64,7 +66,7 @@ function GalleryIndex() {
         <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
           <GalleryCard />
         </Grid>
-      </Grid>
+      </Grid> */}
     </Page>
   );
 }

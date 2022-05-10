@@ -55,6 +55,7 @@ function GalleryArtList() {
           <ImageList variant="masonry" cols={4} gap={40}>
             {imgs.map((img) => (
               <ImageListItem
+                key={img}
                 sx={{
                   // position: 'relative',
                   backgroundColor: 'white',
