@@ -22,7 +22,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void Awake() {
         #if UNITY_EDITOR 
-            NickNameInputField.text = "d106";
+            NickNameInputField.text = "Guest";
         #endif
 
         if (Instance != null) {
@@ -56,7 +56,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             return;
         }
         NickName = NickNameInputField.text;
-        this.CharacterName = PlayerManager.Instance.GetCharacterName();
+        this.CharacterName = CharacterManager.Instance.GetCharacterName();
         SceneManager.LoadScene("Gallery");
     }
 
