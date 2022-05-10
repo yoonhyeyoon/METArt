@@ -1,5 +1,6 @@
 package com.ssafy.metart.api.service;
 
+import com.ssafy.metart.api.request.UserSaveReq;
 import com.ssafy.metart.api.request.UserUpdateReq;
 import com.ssafy.metart.common.exception.ApiException;
 import com.ssafy.metart.common.exception.enums.ExceptionEnum;
@@ -27,13 +28,13 @@ public class UserService {
     }
 
     @Transactional
-    public User saveUser(String address) {
-        Optional<User> byAddress = userRepository.findByAddress(address);
+    public User saveUser(UserSaveReq req) {
+        Optional<User> byAddress = userRepository.findByAddress(req.getAddress());
         if (!byAddress.isEmpty()) {
             throw new ApiException(ExceptionEnum.USER_CONFLICT);
         }
 
-        User user = new User(address);
+        User user = new User(req.getAddress());
         return userRepository.save(user);
     }
 
@@ -42,7 +43,10 @@ public class UserService {
         User user = userRepository.findByAddress(address)
             .orElseThrow(() -> new ApiException(ExceptionEnum.USER_NOT_FOUND));
 
-        String profileUrl = amazonS3Service.uploadFile(req.getProfileImgFile());
+        String profileUrl = "";
+        if (req.getProfileImgFile() != null) {
+            profileUrl = amazonS3Service.uploadFile(req.getProfileImgFile());
+        }
 
         user.updateUser(req.getName(), req.getBiography(), profileUrl);
         return userRepository.save(user);

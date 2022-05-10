@@ -4,8 +4,10 @@ import com.ssafy.metart.common.exception.ApiException;
 import com.ssafy.metart.common.exception.enums.ExceptionEnum;
 import com.ssafy.metart.common.exception.entity.ApiExceptionEntity;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -18,6 +20,16 @@ public class ApiExceptionAdvice {
             .body(ApiExceptionEntity.builder()
                 .errorCode(e.getError().getCode())
                 .errorMessage(e.getError().getMessage())
+                .build());
+    }
+
+    @ExceptionHandler({MethodArgumentNotValidException.class})
+    public ResponseEntity<ApiExceptionEntity> exceptionHandler(HttpServletRequest request, final MethodArgumentNotValidException e) {
+        return ResponseEntity
+            .status(ExceptionEnum.BAD_REQUEST_EXCEPTION.getStatus())
+            .body(ApiExceptionEntity.builder()
+                .errorCode(ExceptionEnum.BAD_REQUEST_EXCEPTION.getCode())
+                .errorMessage(e.getFieldErrors().get(0).getDefaultMessage())
                 .build());
     }
 
