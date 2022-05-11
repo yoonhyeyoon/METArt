@@ -3,6 +3,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import Page from 'Layouts/Page';
 import ArtCard from 'components/common/ArtCard';
 import SearchBar from 'components/common/SearchBar';
+import ScrollToTop from 'components/common/ScrollToTop';
 
 function ArtList() {
   const [search, setSearch] = useState<String>('');
@@ -65,6 +66,7 @@ function ArtList() {
           <ArtCard />
         </Grid>
       </Grid>
+      <ScrollToTop />
     </Page>
   );
 }

@@ -4,6 +4,7 @@ import Page from '../../Layouts/Page';
 import GalleryCard from 'components/common/GalleryCard';
 import SearchBarGallery from 'components/common/SearchBarGallery';
 import GalleryList from 'components/galleries/GalleryList';
+import ScrollToTop from 'components/common/ScrollToTop';
 
 function GalleryIndex() {
   const [search, setSearch] = useState<String>('');
@@ -29,44 +30,7 @@ function GalleryIndex() {
         />
       </Box>
       <GalleryList />
-      {/* <Grid container spacing={6}>
-        <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
-          <GalleryCard />
-        </Grid>
-        <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
-          <GalleryCard />
-        </Grid>
-        <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
-          <GalleryCard />
-        </Grid>
-        <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
-          <GalleryCard />
-        </Grid>
-        <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
-          <GalleryCard />
-        </Grid>
-        <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
-          <GalleryCard />
-        </Grid>
-        <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
-          <GalleryCard />
-        </Grid>
-        <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
-          <GalleryCard />
-        </Grid>
-        <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
-          <GalleryCard />
-        </Grid>
-        <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
-          <GalleryCard />
-        </Grid>
-        <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
-          <GalleryCard />
-        </Grid>
-        <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3}>
-          <GalleryCard />
-        </Grid>
-      </Grid> */}
+      <ScrollToTop />
     </Page>
   );
 }
