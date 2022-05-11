@@ -30,10 +30,14 @@ const Home: NextPage = () => {
   };
 
   useEffect(() => {
-    window.ethereum.on('accountsChanged', async () => {
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', async () => {
+        getUserInfo();
+      });
       getUserInfo();
-    });
-    getUserInfo();
+    } else {
+      alert('Install Metamask! https://metamask.io/download/');
+    }
   }, []);
 
   return (
