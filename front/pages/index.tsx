@@ -5,6 +5,7 @@ import { userAccountState } from 'recoil/userAccount';
 import Page from 'Layouts/Page';
 import LandingVideo from 'components/landing/LandingVideo';
 import LandingSummary from 'components/landing/LandingSummary';
+import { getUserInfoAPI, createUserAPI } from 'api/user';
 
 declare global {
   interface Window {
@@ -23,6 +24,19 @@ const Home: NextPage = () => {
       });
       if (account) {
         setUserAccount(account[0]);
+
+        getUserInfoAPI(account[0])
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.dir(err);
+            if (err.response.status === 404) {
+              createUserAPI(account[0]).then((res) => {
+                console.log(res);
+              });
+            }
+          });
       }
     } catch (error) {
       console.dir(error);
