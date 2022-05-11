@@ -91,7 +91,14 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      sx={
+        router.pathname == '/'
+          ? { bgcolor: 'rgba(0,0,0,0)', boxShadow: 'none' }
+          : null
+      }
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* 웹 로고 */}
