@@ -99,7 +99,13 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 8, display: { xs: 'none', md: 'flex' } }}
+            sx={{
+              mr: 8,
+              display: { xs: 'none', md: 'flex', cursor: 'pointer' },
+            }}
+            onClick={() => {
+              router.push('/');
+            }}
           >
             LOGO
           </Typography>
