@@ -40,7 +40,7 @@ function ProfileSetting() {
       <TableContainer>
         <Table>
           <TableRow>
-            <TableCell>Picture</TableCell>
+            <TableCell sx={{ fontFamily: 'Georgia' }}>Picture</TableCell>
             <TableCell>
               {fileImg && (
                 <img
@@ -54,7 +54,11 @@ function ProfileSetting() {
             <TableCell>
               <Grid container spacing={1}>
                 <Grid item>
-                  <ToggleButton value="imgUpload" onClick={clickFileImg}>
+                  <ToggleButton
+                    value="imgUpload"
+                    onClick={clickFileImg}
+                    sx={{ width: 100 }}
+                  >
                     찾아보기
                   </ToggleButton>
                 </Grid>
@@ -68,7 +72,11 @@ function ProfileSetting() {
                   hidden
                 />
                 <Grid item>
-                  <ToggleButton value="삭제" onClick={() => deleteFileImg()}>
+                  <ToggleButton
+                    value="삭제"
+                    onClick={() => deleteFileImg()}
+                    sx={{ width: 100 }}
+                  >
                     삭제
                   </ToggleButton>
                 </Grid>
@@ -103,9 +111,19 @@ function ProfileSetting() {
             paddingTop: 3,
           }}
         >
-          <Button variant="contained" size="large">
+          <ToggleButton
+            value="save"
+            sx={{
+              bgcolor: 'black',
+              px: 13,
+              color: 'white',
+              '&:hover': {
+                bgcolor: 'black',
+              },
+            }}
+          >
             Save
-          </Button>
+          </ToggleButton>
         </Box>
       </Container>
     </>

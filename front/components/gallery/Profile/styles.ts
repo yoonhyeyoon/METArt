@@ -50,4 +50,5 @@ export const profileName = css`
 export const profileInfo = css`
   font-size: 1.5rem;
   line-height: 2.2rem;
+  padding-bottom: 8rem;
 `;

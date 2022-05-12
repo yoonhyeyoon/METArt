@@ -3,16 +3,14 @@ import GalleryArt from '../GalleryArt';
 import { Box, Container } from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import {
-  artPrice,
-  caption,
-  galleryArtBox,
-  galleryArtContent,
-  transParentBox,
-} from './styles';
 import { textAlign } from '@mui/system';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import {
+  artPrice,
+  caption,
+  transParentBox,
+} from 'components/common/GalleryCard/styled';
 
 type imgType = string[];
 
@@ -66,8 +64,6 @@ function GalleryArtList() {
                     transition: 'transform 0.4s ease',
                   },
                   '&:hover': {
-                    // backgroundColor: 'primary.main',
-                    // opacity: [0.9, 0.8, 0.7],
                     cursor: 'pointer',
                     '& .caption': {
                       opacity: 1,
