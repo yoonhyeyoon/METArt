@@ -19,7 +19,8 @@ import {
 } from '@mui/icons-material';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { userAccountState } from 'recoil/userAccount';
+import { userInfoState } from 'recoil/userInfo';
+import { metamaskLogin } from 'utils/metamaskLogin';
 
 const pages = [
   { name: 'Arts', url: '/arts' },
@@ -31,35 +32,9 @@ const pages = [
 
 const ResponsiveAppBar = () => {
   const router = useRouter();
-  const [userAccount, setUserAccount] = useRecoilState(userAccountState);
+  const [userAccount, setUserAccount] = useRecoilState(userInfoState);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-
-  const connectAccount = async () => {
-    try {
-      if (window.ethereum) {
-        const account = await window.ethereum.request({
-          method: 'eth_accounts',
-        });
-        // 메타마스크에 로그인이 되어있는 경우
-        if (account[0]) {
-          // 유저 데이터 받아오기
-          setUserAccount('test');
-        }
-        // 메타마스크 로그인을 해야하는 경우
-        else {
-          // 지갑 연결 요청
-          await window.ethereum.request({
-            method: 'eth_requestAccounts',
-          });
-        }
-      } else {
-        alert('Install Metamask! https://metamask.io/download/');
-      }
-    } catch (error) {
-      console.dir(error);
-    }
-  };
 
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -81,12 +56,33 @@ const ResponsiveAppBar = () => {
   };
 
   const handleLogin = () => {
-    connectAccount();
+    metamaskLogin().then((data) => {
+      if (data) {
+        setUserAccount({
+          address: data.address,
+          createdAt: data.createdAt,
+          nickname: data.name,
+          profileUrl: data.profileUrl,
+        });
+      } else {
+        setUserAccount({
+          address: '',
+          createdAt: '',
+          nickname: '',
+          profileUrl: '',
+        });
+      }
+    });
     setAnchorElUser(null);
   };
 
   const handleLogout = () => {
-    setUserAccount('');
+    setUserAccount({
+      address: '',
+      createdAt: '',
+      nickname: '',
+      profileUrl: '',
+    });
     setAnchorElUser(null);
   };
 
@@ -213,7 +209,7 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {userAccount ? (
+                {userAccount.address ? (
                   <Avatar
                     alt="Kemy Sharp"
                     src="https://img.sbs.co.kr/newsnet/etv/upload/2019/01/31/30000622371_700.jpg"
@@ -244,7 +240,7 @@ const ResponsiveAppBar = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))} */}
-              {userAccount ? (
+              {userAccount.address ? (
                 <MenuItem onClick={handleLogout}>
                   <LogoutIcon /> 로그아웃
                 </MenuItem>
