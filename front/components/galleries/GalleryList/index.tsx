@@ -69,9 +69,9 @@ function GalleryList() {
           </ImageListItem>
         ))}
       </ImageList>
-      <Stack spacing={2}>
+      {/* <Stack spacing={2}>
         <Pagination count={5} showFirstButton showLastButton />
-      </Stack>
+      </Stack> */}
     </>
   );
 }

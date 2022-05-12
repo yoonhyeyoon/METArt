@@ -1,8 +1,8 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
-import { topBtn, topBtnActive } from './styled';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { MetaArtBtn, MetaArtBtnActive } from './styled';
 
-function ScrollToTop() {
+function GoMetArt() {
   const [ScrollY, setScrollY] = useState(0);
   const [BtnStatus, setBtnStatus] = useState(false);
 
@@ -15,15 +15,6 @@ function ScrollToTop() {
     }
   };
 
-  const handleTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-    setScrollY(0);
-    setBtnStatus(false);
-  };
-
   useEffect(() => {
     const watch = () => {
       window.addEventListener('scroll', handleFollow);
@@ -33,13 +24,12 @@ function ScrollToTop() {
       window.removeEventListener('scroll', handleFollow);
     };
   });
+
   return (
     <div>
-      <button css={BtnStatus ? topBtnActive : topBtn} onClick={handleTop}>
-        <KeyboardArrowUpIcon />
-      </button>
+      <button css={BtnStatus ? MetaArtBtnActive : MetaArtBtn}>M</button>
     </div>
   );
 }
 
-export default ScrollToTop;
+export default GoMetArt;

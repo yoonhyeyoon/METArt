@@ -19,9 +19,9 @@ function ArtList() {
 
   return (
     <Page>
-      <Typography variant="h2" mt={5}>
-        Arts List
-      </Typography>
+      {/* <Typography variant="h2" mt={5}>
+        Art
+      </Typography> */}
       <Box width="500px" mt={2} mb={5}>
         <SearchBar
           handleSearchChange={handleSearchChange}
