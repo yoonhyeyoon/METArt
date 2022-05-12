@@ -67,7 +67,8 @@ function Footer() {
             </Grid>
           </Grid>
           <Box textAlign="center" pt={{ xs: 5, sm: 10 }} pb={{ xs: 5, sm: 0 }}>
-            METArt &reg; {new Date().getFullYear()}
+            Copyright &reg; {new Date().getFullYear()} METArt. 6to0 All rights
+            reserved
           </Box>
         </Container>
       </Box>

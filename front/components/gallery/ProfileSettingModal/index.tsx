@@ -14,7 +14,7 @@ function ProfileSettingModal() {
   const handleClose = () => setOpen(false);
   return (
     <div>
-      <ToggleButton value="setting" onClick={handleOpen}>
+      <ToggleButton value="setting" onClick={handleOpen} sx={{ width: 100 }}>
         Setting
       </ToggleButton>
       <Modal
