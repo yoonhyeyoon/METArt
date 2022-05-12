@@ -21,10 +21,9 @@ public class UserService {
     private final AmazonS3Service amazonS3Service;
 
     @Transactional(readOnly = true)
-    public User getUser(String address) {
-        User user = userRepository.findByAddress(address)
-            .orElseThrow(() -> new ApiException(ExceptionEnum.USER_NOT_FOUND));
-        return user;
+    public List<User> listUser(Pageable pageable, String name) {
+        List<User> userList = userRepository.pageByName(pageable, name);
+        return userList;
     }
 
     @Transactional
@@ -36,6 +35,13 @@ public class UserService {
 
         User user = new User(req.getAddress());
         return userRepository.save(user);
+    }
+
+    @Transactional(readOnly = true)
+    public User getUser(String address) {
+        User user = userRepository.findByAddress(address)
+            .orElseThrow(() -> new ApiException(ExceptionEnum.USER_NOT_FOUND));
+        return user;
     }
 
     @Transactional
@@ -50,11 +56,5 @@ public class UserService {
 
         user.updateUser(req.getName(), req.getBiography(), profileUrl);
         return userRepository.save(user);
-    }
-
-    @Transactional(readOnly = true)
-    public List<User> listUser(Pageable pageable, String name) {
-        List<User> userList = userRepository.pageByName(pageable, name);
-        return userList;
     }
 }
