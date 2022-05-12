@@ -10,7 +10,7 @@ public class ArtGetRes {
     private Long id;
     private String name;
     private String description;
-    private String url;
+    private String tokenURI;
     private Boolean onSaleYn;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -22,7 +22,7 @@ public class ArtGetRes {
         res.id = art.getId();
         res.name = art.getName();
         res.description = art.getDescription();
-        res.url = art.getUrl();
+        res.tokenURI = art.getTokenURI();
         res.onSaleYn = art.getOnSaleYn();
         res.createdAt = art.getCreatedAt();
         res.updatedAt = art.getUpdatedAt();

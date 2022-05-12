@@ -13,4 +13,6 @@ public class ArtSaveReq {
     private String name;
     @NotNull(message = "description 는 필수 값입니다.")
     private String description;
+    @NotNull(message = "url 는 필수 값입니다.")
+    private String tokenURI;
 }

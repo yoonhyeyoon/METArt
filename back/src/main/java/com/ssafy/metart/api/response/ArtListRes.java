@@ -8,7 +8,7 @@ public class ArtListRes {
 
     private Long id;
     private String name;
-    private String url;
+    private String tokenURI;
     private Boolean onSaleYn;
     private UserListRes creator;
     private UserListRes owner;
@@ -18,7 +18,7 @@ public class ArtListRes {
 
         res.id = art.getId();
         res.name = art.getName();
-        res.url = art.getUrl();
+        res.tokenURI = art.getTokenURI();
         res.onSaleYn = art.getOnSaleYn();
         res.creator = UserListRes.of(art.getCreator());
         res.owner = UserListRes.of(art.getOwner());

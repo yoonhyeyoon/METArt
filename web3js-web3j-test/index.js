@@ -25,7 +25,7 @@ const auctionContract = new web3.eth.Contract(auctionAbi, auctionCA);
 var imageFile = document.getElementById("imageFile");
 var saveArt = document.getElementById("saveArt");
 saveArt.addEventListener("click", function () {
-  var tokenUrl;
+  var tokenURI;
   axios({
     url: "http://localhost:8080/v1/image",
     method: "post",
@@ -37,9 +37,9 @@ saveArt.addEventListener("click", function () {
     },
   })
     .then((res) => {
-      tokenUrl = res.data;
+      tokenURI = res.data;
       metartNftContract.methods
-        .create(account, tokenUrl)
+        .create(account, tokenURI)
         .send({ from: account })
         .on("transactionHash", (hash) => {
           console.log(hash);
@@ -50,6 +50,7 @@ saveArt.addEventListener("click", function () {
               tx: hash,
               name: "작품이름",
               description: "작품설명",
+              tokenURI: tokenURI,
             },
           })
             .then((res) => {
