@@ -87,7 +87,14 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="fixed"
+      sx={
+        router.pathname == '/'
+          ? { bgcolor: 'rgba(0,0,0,0)', boxShadow: 'none' }
+          : { bgcolor: 'rgba(0,0,0,0)', boxShadow: 'none', color: 'black' }
+      }
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* 웹 로고 */}
@@ -95,9 +102,21 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 8, display: { xs: 'none', md: 'flex' } }}
+            sx={{
+              mr: 8,
+              display: {
+                xs: 'none',
+                md: 'flex',
+                cursor: 'pointer',
+                fontFamily: 'Georgia',
+                fontWeight: 'bold',
+              },
+            }}
+            onClick={() => {
+              router.push('/');
+            }}
           >
-            LOGO
+            METArt
           </Typography>
 
           {/* 모바일 메뉴 바 */}
@@ -151,7 +170,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            LOGO
+            METArt
           </Typography>
 
           {/* 웹 메뉴 바 */}
@@ -163,7 +182,23 @@ const ResponsiveAppBar = () => {
                   handleCloseNavMenu();
                   handleRoutePage(page.url);
                 }}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={
+                  router.pathname == '/'
+                    ? {
+                        my: 2,
+                        mx: 2,
+                        color: 'white',
+                        display: 'block',
+                        fontFamily: 'Georgia',
+                      }
+                    : {
+                        my: 2,
+                        mx: 2,
+                        color: 'black',
+                        display: 'block',
+                        fontFamily: 'Georgia',
+                      }
+                }
               >
                 {page.name}
               </Button>

@@ -6,6 +6,7 @@ import Page from 'Layouts/Page';
 import LandingVideo from 'components/landing/LandingVideo';
 import LandingSummary from 'components/landing/LandingSummary';
 import { metamaskLogin } from 'utils/metamaskLogin';
+import ScrollToTop from 'components/common/ScrollToTop';
 
 declare global {
   interface Window {
@@ -49,6 +50,7 @@ const Home: NextPage = () => {
       <Page>
         <LandingVideo />
         <LandingSummary />
+        <ScrollToTop />
       </Page>
     </>
   );
