@@ -35,8 +35,8 @@ public class Art {
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "url", nullable = false)
-    private String url;
+    @Column(name = "tokenURI", nullable = false)
+    private String tokenURI;
 
     @Column(name = "on_sale_yn", nullable = false)
     private Boolean onSaleYn;
@@ -58,11 +58,11 @@ public class Art {
     private User owner;
 
     @Builder
-    public Art(Long id, String name, String description, String url, User creator) {
+    public Art(Long id, String name, String description, String tokenURI, User creator) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.url = url;
+        this.tokenURI = tokenURI;
         this.onSaleYn = false;
         this.owner = creator;
         this.creator = creator;

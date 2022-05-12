@@ -36,7 +36,7 @@ public class ArtService {
             .id(event.getTokenId())
             .name(req.getName())
             .description(req.getDescription())
-            .url(event.getTokenUri())
+            .tokenURI(req.getTokenURI())
             .creator(creator)
             .build();
 

@@ -1,4 +1,4 @@
-export const metartNftCA = "0x30f7Fb6d23AC90ac64F3966FD6a684f2Dd6A3F28";
+export const metartNftCA = "0xc83b10991F3A0006B8D260Fa33DFbBdf8CD04816";
 export const metartNftAbi = [
   {
     inputs: [
@@ -74,12 +74,6 @@ export const metartNftAbi = [
         internalType: "uint256",
         name: "tokenId",
         type: "uint256",
-      },
-      {
-        indexed: true,
-        internalType: "string",
-        name: "tokenURI",
-        type: "string",
       },
       {
         indexed: true,
@@ -498,7 +492,7 @@ export const metartNftAbi = [
   },
 ];
 
-export const auctionCA = "0x837f690b29a24066fbA3a7A88982177cc4c87b28";
+export const auctionCA = "0x183459b8c91EE014055B1Fd88CC320941235D6aB";
 export const auctionAbi = [
   {
     inputs: [
