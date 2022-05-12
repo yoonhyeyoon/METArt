@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import type { NextPage } from 'next';
 import { useRecoilState } from 'recoil';
-import { userAccountState } from 'recoil/userAccount';
+import { userInfoState } from 'recoil/userInfo';
 import Page from 'Layouts/Page';
 import LandingVideo from 'components/landing/LandingVideo';
 import LandingSummary from 'components/landing/LandingSummary';
+import { metamaskLogin } from 'utils/metamaskLogin';
 import ScrollToTop from 'components/common/ScrollToTop';
 
 declare global {
@@ -15,26 +16,33 @@ declare global {
 }
 
 const Home: NextPage = () => {
-  const [userAccount, setUserAccount] = useRecoilState(userAccountState);
+  const [userAccount, setUserAccount] = useRecoilState(userInfoState);
 
-  const getUserInfo = async () => {
-    try {
-      const account = await window.ethereum.request({
-        method: 'eth_accounts',
-      });
-      if (account) {
-        setUserAccount(account[0]);
+  const connectedAccount = () => {
+    metamaskLogin().then((data) => {
+      if (data) {
+        setUserAccount({
+          address: data.address,
+          createdAt: data.createdAt,
+          nickname: data.name,
+          profileUrl: data.profileUrl,
+        });
+      } else {
+        setUserAccount({
+          address: '',
+          createdAt: '',
+          nickname: '',
+          profileUrl: '',
+        });
       }
-    } catch (error) {
-      console.dir(error);
-    }
+    });
   };
 
   useEffect(() => {
     window.ethereum.on('accountsChanged', async () => {
-      getUserInfo();
+      connectedAccount();
     });
-    getUserInfo();
+    connectedAccount();
   }, []);
 
   return (
