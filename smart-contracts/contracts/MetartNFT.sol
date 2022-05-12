@@ -10,7 +10,7 @@ contract MetartNFT is ERC721, Ownable {
     mapping(uint256 => string) private _tokenURIs;
     address private _auctionAddress;
     
-    event CreateToken(uint256 indexed tokenId, address indexed owner);
+    event CreateToken(uint256 indexed tokenId, string indexed tokenURI, address indexed owner);
 
     constructor(string memory name, string memory symbol) ERC721(name, symbol) {
         _tokenIdSeq = 0;
@@ -39,7 +39,7 @@ contract MetartNFT is ERC721, Ownable {
         
         _tokenIdSeq += 1;
 
-        emit CreateToken(tokenId, to);
+        emit CreateToken(tokenId, _tokenURI, to);
 
         return tokenId;
     }
