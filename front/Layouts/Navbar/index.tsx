@@ -120,7 +120,7 @@ const ResponsiveAppBar = () => {
               router.push('/');
             }}
           >
-            MetArt
+            METArt
           </Typography>
 
           {/* 모바일 메뉴 바 */}
@@ -174,7 +174,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            LOGO
+            METArt
           </Typography>
 
           {/* 웹 메뉴 바 */}
