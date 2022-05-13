@@ -1,6 +1,7 @@
 package com.ssafy.metart.api.controller;
 
 import com.ssafy.metart.api.request.ArtSaveReq;
+import com.ssafy.metart.api.request.ArtUpdateReq;
 import com.ssafy.metart.api.response.ArtGetRes;
 import com.ssafy.metart.api.response.ArtListRes;
 import com.ssafy.metart.api.service.ArtService;
@@ -17,7 +18,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,6 +63,23 @@ public class ArtController {
         CreateTokenEvent event = CreateTokenEvent.getEvent(receipt.getLogs());
 
         Art art = artService.saveArt(req, event);
+        ArtGetRes res = ArtGetRes.of(art);
+        return ResponseEntity.status(HttpStatus.CREATED).body(res);
+    }
+
+    @GetMapping("/{tokenId}")
+    public ResponseEntity<ArtGetRes> getArt(@PathVariable Long tokenId) {
+        Art art = artService.getArt(tokenId);
+        ArtGetRes res = ArtGetRes.of(art);
+        return ResponseEntity.ok(res);
+    }
+
+    @PutMapping("/{tokenId}")
+    public ResponseEntity<ArtGetRes> updateArt(
+        @PathVariable Long tokenId,
+        @Valid @RequestBody ArtUpdateReq req
+    ) {
+        Art art = artService.updateArt(tokenId, req);
         ArtGetRes res = ArtGetRes.of(art);
         return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
