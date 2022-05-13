@@ -30,6 +30,15 @@ public class ArtCustomRepositoryImpl extends QuerydslRepositorySupport implement
     }
 
     @Override
+    public List<Art> pageByOwner(Pageable pageable, User owner) {
+        JPQLQuery<Art> query = Objects.requireNonNull(getQuerydsl())
+            .applyPagination(pageable, from(art))
+            .where(art.owner.eq(owner));
+
+        return query.fetch();
+    }
+
+    @Override
     public List<Art> pageByCreatorAndOnSaleYnAndOwned(Pageable pageable, User creator,
         Boolean onSaleYn, Boolean owned) {
         JPQLQuery<Art> query = Objects.requireNonNull(getQuerydsl())
