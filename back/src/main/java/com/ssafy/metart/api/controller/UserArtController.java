@@ -26,9 +26,10 @@ public class UserArtController {
     @GetMapping("/{address}/my-arts")
     public ResponseEntity<List<ArtListRes>> listMyArt(
         @PageableDefault(size = 12, sort = "createdAt", direction = Direction.DESC) Pageable pageable,
-        @PathVariable String address
+        @PathVariable String address,
+        @RequestParam(required = false) Boolean onSaleYn
     ) {
-        List<Art> artList = userArtService.listMyArt(pageable, address);
+        List<Art> artList = userArtService.listMyArt(pageable, address, onSaleYn);
         List<ArtListRes> resList = artList.stream().map(
             art -> ArtListRes.of(art)).collect(Collectors.toList());
 
