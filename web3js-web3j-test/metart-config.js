@@ -785,3 +785,6 @@ export const auctionAbi = [
     type: "function",
   },
 ];
+
+export const SERVER_BASE_URL = "https://k6d106.p.ssafy.io/api/v1";
+export const LOCAL_BASE_URL = "http://localhost:8080/v1";
