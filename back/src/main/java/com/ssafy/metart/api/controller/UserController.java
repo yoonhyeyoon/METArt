@@ -51,14 +51,14 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 
-    @GetMapping("/info/{address}")
+    @GetMapping("/{address}")
     public ResponseEntity<UserGetRes> getUser(@PathVariable String address) {
         User user = userService.getUser(address);
         UserGetRes res = UserGetRes.of(user);
         return ResponseEntity.ok(res);
     }
 
-    @PutMapping("/info/{address}")
+    @PutMapping("/{address}")
     public ResponseEntity<UserGetRes> updateUser(
         @PathVariable String address,
         @Valid @ModelAttribute UserUpdateReq req
