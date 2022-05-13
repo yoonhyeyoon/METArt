@@ -5,5 +5,5 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 
 public interface UserCustomRepository {
-    public List<User> pageByName(Pageable pageable, String name);
+    List<User> pageByName(Pageable pageable, String name);
 }
