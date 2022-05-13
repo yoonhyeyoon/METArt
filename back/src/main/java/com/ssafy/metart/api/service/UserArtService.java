@@ -18,11 +18,11 @@ public class UserArtService {
     private final UserRepository userRepository;
     private final ArtRepository artRepository;
 
-    public List<Art> listMyArt(Pageable pageable, String address) {
+    public List<Art> listMyArt(Pageable pageable, String address, Boolean onSaleYn) {
         User owner = userRepository.findByAddress(address).orElseThrow(
             () -> new ApiException(ExceptionEnum.USER_NOT_FOUND));
 
-        List<Art> artList = artRepository.pageByOwner(pageable, owner);
+        List<Art> artList = artRepository.pageByOwner(pageable, owner, onSaleYn);
 
         return artList;
     }
