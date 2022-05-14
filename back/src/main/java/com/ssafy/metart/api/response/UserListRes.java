@@ -1,9 +1,12 @@
 package com.ssafy.metart.api.response;
 
 import com.ssafy.metart.db.entity.User;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserListRes {
 
     private String address;

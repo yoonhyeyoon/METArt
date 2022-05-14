@@ -7,14 +7,42 @@
     <title>Test</title>
   </head>
   <body>
-    <input type="button" id="get-account-btn" value="Get Account" />
-    <input type="file" id="imageFile" />
-    <input type="button" id="saveArt" value="saveArt" />
+    <div>
+      <h3>현재 요청하는 서버(Local, Server) :</h3>
+      <strong id="server">Local</strong>
+      <input type="button" id="local-btn" value="Local 로 변경" />
+      <input type="button" id="server-btn" value="Server 로 변경" />
+    </div>
+    <hr />
+    <div>
+      <h3>Metamask 에서 지갑 주소 가져오기</h3>
+      <input type="button" id="get-account-btn" value="Get Account" />
+      <p id="account">account</p>
+    </div>
+    <hr />
+    <div>
+      <h3>작품 생성하기</h3>
+      <input type="file" id="image-file" />
+      <input type="button" id="create-art" value="create Art" />
+      <p id="create-art-tx">transaction hash value</p>
+      <p id="save-art-res">save art response</p>
+    </div>
+    <hr />
+    <div>
+      <h3>판매 등록하기</h3>
+      <input
+        type="text"
+        id="token-id"
+        placeholder="판매 등록할 토큰 id를 입력하세요"
+      />
+      <input type="button" id="create-sale" value="create Sale" />
+      <p id="create-sale-tx">transaction hash value</p>
+      <p id="save-sale-res">save sale response</p>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module" src="./metart-config.js"></script>
-    <script type="module" src="./functions.js"></script>
     <script type="module" src="./index.js"></script>
   </body>
 </html>

@@ -2,7 +2,9 @@ package com.ssafy.metart.api.event;
 
 import java.util.Arrays;
 import java.util.List;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.web3j.abi.EventEncoder;
 import org.web3j.abi.FunctionReturnDecoder;
 import org.web3j.abi.TypeReference;
@@ -12,6 +14,7 @@ import org.web3j.abi.datatypes.generated.Uint256;
 import org.web3j.protocol.core.methods.response.Log;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CreateTokenEvent {
 
     private Long tokenId;
@@ -23,8 +26,6 @@ public class CreateTokenEvent {
         new TypeReference<Address>(true) {}));
 
     private static final String CREATE_TOKEN_HASH = EventEncoder.encode(CREATE_TOKEN_EVENT);
-
-    private CreateTokenEvent() {};
 
     public static CreateTokenEvent getEvent(List<Log> logs) {
         CreateTokenEvent event = null;
