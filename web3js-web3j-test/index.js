@@ -1,41 +1,53 @@
 // BASE_URL
 import { SERVER_BASE_URL, LOCAL_BASE_URL } from "./metart-config.js";
 
-const BASE_URL = SERVER_BASE_URL;
+var BASE_URL = LOCAL_BASE_URL;
+var server = document.getElementById("server");
+var localBtn = document.getElementById("local-btn");
+var serverBtn = document.getElementById("server-btn");
 
-// get web3 provider & contract
-import {
-  metartNftAbi,
-  metartNftCA,
-  auctionAbi,
-  auctionCA,
-} from "./metart-config.js";
-
-const web3 = new Web3(Web3.givenProvider);
-const metartNftContract = new web3.eth.Contract(metartNftAbi, metartNftCA);
-const auctionContract = new web3.eth.Contract(auctionAbi, auctionCA);
+localBtn.addEventListener("click", function () {
+  BASE_URL = LOCAL_BASE_URL;
+  server.innerText = "Local";
+});
+serverBtn.addEventListener("click", function () {
+  BASE_URL = SERVER_BASE_URL;
+  server.innerText = "Server";
+});
 
 // get account btn
-import { getAccount } from "./functions.js";
-
 var account;
 var getAccountBtn = document.getElementById("get-account-btn");
 getAccountBtn.addEventListener("click", async function () {
-  await getAccount().then((res) => {
-    account = res;
-    console.log(account);
-  });
+  try {
+    if (window.ethereum) {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      account = accounts[0];
+      document.getElementById("account").innerText = account;
+    } else {
+      alert("Install Metamask!");
+    }
+  } catch (error) {
+    console.error(error);
+  }
 });
 
-/* save art
+/* create art
  * 1. POST {BASE_URL}/image 요청을 통해 imageFile을 S3에 올리고 파일 경로(tokenURI)를 받는다.
  * 2. 받아온 tokenURI를 이용하여 metartNFT 컨트랙트를 이용해 create 함수를 호출한다.
  * 3. 트랜잭션이 발생되면 (.on("transactionHash")) 해당 해쉬 값과 함께 POST {BASE_URL}/art 요청을 보낸다.
  * 4. 이제 트랜잭션이 완료되면 서버에서 알아서 결과를 DB에 저장하게 된다.
  */
-var imageFile = document.getElementById("imageFile");
-var saveArt = document.getElementById("saveArt");
-saveArt.addEventListener("click", function () {
+const web3 = new Web3(Web3.givenProvider);
+
+import { metartNftAbi, metartNftCA } from "./metart-config.js";
+const metartNftContract = new web3.eth.Contract(metartNftAbi, metartNftCA);
+
+var imageFile = document.getElementById("image-file");
+var createArt = document.getElementById("create-art");
+createArt.addEventListener("click", function () {
   var tokenURI;
   axios({
     url: `${BASE_URL}/image`,
@@ -54,6 +66,7 @@ saveArt.addEventListener("click", function () {
         .send({ from: account })
         .on("transactionHash", (hash) => {
           console.log(hash);
+          document.getElementById("create-art-tx").innerText = hash;
           axios({
             url: `${BASE_URL}/art`,
             method: "post",
@@ -66,6 +79,8 @@ saveArt.addEventListener("click", function () {
           })
             .then((res) => {
               console.log(res);
+              document.getElementById("save-art-res").innerText =
+                JSON.stringify(res.data);
             })
             .catch((err) => {
               console.log(err);
@@ -78,5 +93,44 @@ saveArt.addEventListener("click", function () {
     })
     .catch((err) => {
       console.log(err);
+    });
+});
+
+/* create sale
+ * 1. Auction 컨트랙트를 이용해 create 함수를 호출한다.
+ * 2. 트랜잭션이 발생되면 (.on("transactionHash")) 해당 해쉬 값과 함께 POST {BASE_URL}/sale 요청을 보낸다.
+ * 3. 이제 트랜잭션이 완료되면 서버에서 알아서 결과를 DB에 저장하게 된다.
+ */
+import { auctionAbi, auctionCA } from "./metart-config.js";
+const auctionContract = new web3.eth.Contract(auctionAbi, auctionCA);
+
+var createSale = document.getElementById("create-sale");
+createSale.addEventListener("click", function () {
+  var tokenId = document.getElementById("token-id").value;
+  var price = 0.001 * Math.pow(10, 18); // 0.001 ETH
+
+  auctionContract.methods
+    .createSale(tokenId, price)
+    .send({ from: account })
+    .on("transactionHash", (hash) => {
+      console.log(hash);
+      document.getElementById("create-sale-tx").innerText = hash;
+      axios({
+        url: `${BASE_URL}/sale`,
+        method: "post",
+        data: {
+          tx: hash,
+          tokenId: tokenId,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          document.getElementById("save-sale-res").innerText = JSON.stringify(
+            res.data
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
 });

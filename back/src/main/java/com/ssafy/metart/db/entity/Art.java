@@ -50,11 +50,11 @@ public class Art {
     private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "creator_address")
+    @JoinColumn(name = "creator_address", nullable = false)
     private User creator;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_address")
+    @JoinColumn(name = "owner_address", nullable = false)
     private User owner;
 
     @Builder

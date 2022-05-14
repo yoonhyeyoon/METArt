@@ -2,9 +2,12 @@ package com.ssafy.metart.api.response;
 
 import com.ssafy.metart.db.entity.Art;
 import java.time.LocalDateTime;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ArtGetRes {
 
     private Long id;
