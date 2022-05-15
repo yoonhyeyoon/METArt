@@ -34,6 +34,9 @@ public class Sale {
     @Column(name = "sale_yn", nullable = false)
     private Boolean saleYn;
 
+    @Column(name = "is_canceled", nullable = false)
+    private Boolean isCanceled;
+
     @CreatedDate
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -60,11 +63,17 @@ public class Sale {
         this.saleYn = false;
         this.art = art;
         this.seller = seller;
+        this.isCanceled = false;
     }
 
     public void completeSale(User buyer) {
         this.saleYn = true;
         this.buyer = buyer;
+        this.completedAt = LocalDateTime.now();
+    }
+
+    public void cancelSale() {
+        this.isCanceled = true;
         this.completedAt = LocalDateTime.now();
     }
 }
