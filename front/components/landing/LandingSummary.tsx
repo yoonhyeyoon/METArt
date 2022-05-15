@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { Box, Typography, Grid } from '@mui/material';
-import ArtCard from 'components/common/ArtCard';
 import PopularGalleryList from './PopularGalleryList';
 import ToggleButton from '@mui/material/ToggleButton';
+import ArtCard from 'components/common/ArtCard';
 
 function LandingSummary() {
   return (
@@ -12,7 +12,7 @@ function LandingSummary() {
           New Art
         </Typography>
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={6} lg={3}>
+          {/* <Grid item xs={12} sm={6} md={6} lg={3}>
             <ArtCard />
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={3}>
@@ -23,7 +23,7 @@ function LandingSummary() {
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={3}>
             <ArtCard />
-          </Grid>
+          </Grid> */}
         </Grid>
         <Box sx={{ textAlign: 'center', mt: 5 }}>
           <Link href="/arts">

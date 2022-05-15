@@ -50,12 +50,13 @@ export default function ArtCard(art: ArtListType) {
       />
 
       <Link href={`/arts/${art.id}`}>
-        {art ? (
+        {art.tokenURI ? (
           <CardMedia
             component="img"
             height="300"
             image={art.tokenURI}
             alt="green iguana"
+            sx={{ cursor: 'pointer' }}
           />
         ) : (
           <Skeleton
@@ -66,7 +67,7 @@ export default function ArtCard(art: ArtListType) {
         )}
       </Link>
       <CardContent>
-        {art ? (
+        {art.name ? (
           // <Typography gutterBottom variant="h5" component="div">
           // </Typography>
           <Typography variant="body2" color="text.secondary">
