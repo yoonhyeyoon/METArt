@@ -23,10 +23,10 @@ import { userInfoState } from 'recoil/userInfo';
 import { metamaskLogin } from 'utils/metamaskLogin';
 
 const pages = [
-  { name: 'Arts', url: '/arts' },
-  { name: 'Gallery', url: '/galleries' },
-  { name: 'My art', url: '/galleries/a' },
-  { name: 'Add art', url: '/createart' },
+  { name: 'Arts', url: '/arts', login: false },
+  { name: 'Gallery', url: '/galleries', login: false },
+  { name: 'My Gallery', url: '/galleries/a', login: true },
+  { name: 'Add art', url: '/createart', login: true },
 ];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -186,21 +186,25 @@ const ResponsiveAppBar = () => {
                   router.pathname == '/'
                     ? {
                         my: 2,
-                        mx: 2,
+                        mx: 4,
                         color: 'white',
                         display: 'block',
                         fontFamily: 'Georgia',
                       }
                     : {
                         my: 2,
-                        mx: 2,
+                        mx: 4,
                         color: 'black',
                         display: 'block',
                         fontFamily: 'Georgia',
                       }
                 }
               >
-                {page.name}
+                {userAccount.address
+                  ? page.name
+                  : page.login
+                  ? null
+                  : page.name}
               </Button>
             ))}
           </Box>

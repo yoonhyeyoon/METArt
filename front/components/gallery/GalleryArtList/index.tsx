@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import GalleryArt from '../GalleryArt';
 import { Box, Container } from '@mui/material';
 import ImageList from '@mui/material/ImageList';
@@ -15,6 +15,15 @@ import {
 type imgType = string[];
 
 function GalleryArtList() {
+  const [artState, setArtState] = useState<string | null>();
+
+  const handleArtState = (
+    event: React.MouseEvent<HTMLElement>,
+    newArtState: string | null,
+  ) => {
+    setArtState(newArtState);
+  };
+
   const imgs: imgType = [
     'https://artdiscoverystatic.s3.amazonaws.com/media/images/20._BOOKANIMA_Andy_Warhol.width-570.jpg',
     'https://artdiscoverystatic.s3.amazonaws.com/media/images/19_BOOKANIMA_Leports.width-570.jpg',
@@ -42,13 +51,12 @@ function GalleryArtList() {
           }}
         >
           <ToggleButtonGroup
-            color="primary"
-            // value={alignment}
+            value={artState}
             exclusive
-            // onChange={handleChange}
+            onChange={handleArtState}
           >
-            <ToggleButton value="sale">For Sale</ToggleButton>
-            <ToggleButton value="all">All</ToggleButton>
+            <ToggleButton value="art">Art</ToggleButton>
+            <ToggleButton value="buy">Buy</ToggleButton>
           </ToggleButtonGroup>
           <ImageList variant="masonry" cols={4} gap={40}>
             {imgs.map((img) => (
