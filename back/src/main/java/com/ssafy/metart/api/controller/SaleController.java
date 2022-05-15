@@ -15,6 +15,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,5 +57,12 @@ public class SaleController {
         Sale sale = saleService.saveSale(req, event);
         SaleGetRes res = SaleGetRes.of(sale);
         return ResponseEntity.status(HttpStatus.CREATED).body(res);
+    }
+
+    @GetMapping("/{saleId}")
+    public ResponseEntity<SaleGetRes> getSale(@PathVariable Long saleId) {
+        Sale sale = saleService.getSale(saleId);
+        SaleGetRes res = SaleGetRes.of(sale);
+        return ResponseEntity.ok(res);
     }
 }

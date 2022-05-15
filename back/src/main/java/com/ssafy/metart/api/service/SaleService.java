@@ -56,4 +56,11 @@ public class SaleService {
 
         return newSale;
     }
+
+    @Transactional(readOnly = true)
+    public Sale getSale(Long saleId) {
+        Sale sale = saleRepository.findById(saleId)
+            .orElseThrow(() -> new ApiException(ExceptionEnum.SALE_NOT_FOUND));
+        return sale;
+    }
 }
