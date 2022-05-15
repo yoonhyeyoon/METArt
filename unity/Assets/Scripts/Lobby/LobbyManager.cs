@@ -14,8 +14,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public GameObject Notice;
     public GameObject EnterRoomButton;
 
-    [DllImport("__Internal")]
-    private static extern void CheckPlayer();
+    // [DllImport("__Internal")]
+    // private static extern void CheckPlayer();
     private int m_joinPlayerCount;
 
     public static LobbyManager Instance;
@@ -36,9 +36,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
 
     public void onClickEnterRoom() {
-        #if !UNITY_EDITOR && UNITY_WEBGL
-            CheckPlayer();
-        #endif
+        // #if !UNITY_EDITOR && UNITY_WEBGL
+        //     CheckPlayer();
+        // #endif
 
         Invoke("JoinRoom", 1f);
     }
