@@ -1,10 +1,13 @@
 package com.ssafy.metart.db.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -19,16 +22,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "address")
 @ToString
 public class User {
 
     @Id
-    @Column(
-        name = "address",
-        nullable = false,
-        unique = true
-    )
     private String address;
 
     @Column(name = "name", nullable = false)
@@ -48,11 +46,19 @@ public class User {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
+    @OneToMany(mappedBy = "creator")
+    private List<Art> artList;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Art> ownedArtList;
+
     public User(String address) {
         this.address = address;
         this.name = address;
         this.profileUrl = "";
         this.biography = "";
+        this.artList = new ArrayList<>();
+        this.ownedArtList = new ArrayList<>();
     }
 
     public void updateUser(String name, String biography, String profileUrl) {

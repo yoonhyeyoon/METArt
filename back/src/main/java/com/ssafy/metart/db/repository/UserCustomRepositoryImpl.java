@@ -1,5 +1,6 @@
 package com.ssafy.metart.db.repository;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQuery;
 import com.ssafy.metart.db.entity.User;
 import java.util.List;
@@ -12,17 +13,23 @@ import static com.ssafy.metart.db.entity.QUser.user;
 
 public class UserCustomRepositoryImpl extends QuerydslRepositorySupport implements UserCustomRepository {
 
-    public UserCustomRepositoryImpl() { super(User.class); }
+    public UserCustomRepositoryImpl() {
+        super(User.class);
+    }
 
     @Override
     public List<User> pageByName(Pageable pageable, String name) {
         JPQLQuery<User> query = Objects.requireNonNull(getQuerydsl())
-            .applyPagination(pageable, from(user));
-
-        if (StringUtils.hasText(name)) {
-            query.where(user.name.contains(name));
-        }
+            .applyPagination(pageable, from(user))
+            .where(containsName(name));
 
         return query.fetch();
+    }
+
+    private BooleanExpression containsName(String name) {
+        if (StringUtils.hasText(name)) {
+            return user.name.contains(name);
+        }
+        return null;
     }
 }
