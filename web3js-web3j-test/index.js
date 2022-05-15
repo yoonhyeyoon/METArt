@@ -134,3 +134,37 @@ createSale.addEventListener("click", function () {
         });
     });
 });
+
+/* cancel Sale
+ * 1. Auction 컨트랙트를 이용해 cancelSale 함수를 호출한다.
+ * 2. 트랜잭션이 발생되면 (.on("transactionHash")) 해당 해쉬 값과 함께 PUT {BASE_URL}/sale/{saleId}/cancel 요청을 보낸다.
+ * 3. 이제 트랜잭션이 완료되면 서버에서 알아서 결과를 DB에 저장하게 된다.
+ */
+var cancelSale = document.getElementById("cancel-sale");
+cancelSale.addEventListener("click", function () {
+  var cancelSaleId = document.getElementById("cancel-sale-id").value;
+
+  auctionContract.methods
+    .cancelSale(cancelSaleId)
+    .send({ from: account })
+    .on("transactionHash", (hash) => {
+      console.log(hash);
+      document.getElementById("cancel-sale-tx").innerText = hash;
+      axios({
+        url: `${BASE_URL}/sale/${cancelSaleId}/cancel`,
+        method: "put",
+        data: {
+          tx: hash,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          document.getElementById("cancel-sale-res").innerText = JSON.stringify(
+            res.data
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+});

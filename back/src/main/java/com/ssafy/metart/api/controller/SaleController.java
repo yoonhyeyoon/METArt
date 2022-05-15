@@ -1,6 +1,8 @@
 package com.ssafy.metart.api.controller;
 
 import com.ssafy.metart.api.event.CreateSaleEvent;
+import com.ssafy.metart.api.event.EndSaleEvent;
+import com.ssafy.metart.api.request.SaleCancelReq;
 import com.ssafy.metart.api.request.SaleSaveReq;
 import com.ssafy.metart.api.response.SaleGetRes;
 import com.ssafy.metart.api.service.SaleService;
@@ -8,6 +10,7 @@ import com.ssafy.metart.db.entity.Sale;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -17,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,7 +50,7 @@ public class SaleController {
     }
 
     @PostMapping
-    public ResponseEntity<SaleGetRes> saveSale(@RequestBody SaleSaveReq req)
+    public ResponseEntity<SaleGetRes> saveSale(@Valid @RequestBody SaleSaveReq req)
         throws TransactionException, IOException {
         TransactionReceiptProcessor receiptProcessor = new PollingTransactionReceiptProcessor(web3j, 1000, 600);
 
@@ -64,5 +68,20 @@ public class SaleController {
         Sale sale = saleService.getSale(saleId);
         SaleGetRes res = SaleGetRes.of(sale);
         return ResponseEntity.ok(res);
+    }
+
+    @PutMapping("/{saleId}/cancel")
+    public ResponseEntity<SaleGetRes> cancelSale(
+        @PathVariable Long saleId, @Valid @RequestBody SaleCancelReq req
+    ) throws TransactionException, IOException {
+        TransactionReceiptProcessor receiptProcessor = new PollingTransactionReceiptProcessor(web3j, 1000, 600);
+
+        TransactionReceipt receipt = receiptProcessor.waitForTransactionReceipt(req.getTx());
+
+        EndSaleEvent event = EndSaleEvent.getEvent(receipt.getLogs());
+
+        Sale sale = saleService.cancelSale(saleId, event);
+        SaleGetRes res = SaleGetRes.of(sale);
+        return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 }

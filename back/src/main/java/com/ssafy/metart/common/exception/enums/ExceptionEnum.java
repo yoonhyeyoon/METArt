@@ -18,6 +18,7 @@ public enum ExceptionEnum {
     ART_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "201", "작품에 대한 권한이 없습니다."),
     ART_NOT_FOUND(HttpStatus.NOT_FOUND, "204", "해당 작품을 찾을 수 없습니다."),
 
+    SALE_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "301", "해당 판매에 대한 권한이 없습니다."),
     SALE_NOT_FOUND(HttpStatus.NOT_FOUND, "304", "해당 판매 정보를 찾을 수 없습니다.");
 
     private final HttpStatus status;

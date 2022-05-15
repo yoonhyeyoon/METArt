@@ -1,6 +1,7 @@
 package com.ssafy.metart.api.service;
 
 import com.ssafy.metart.api.event.CreateSaleEvent;
+import com.ssafy.metart.api.event.EndSaleEvent;
 import com.ssafy.metart.api.request.SaleSaveReq;
 import com.ssafy.metart.common.exception.ApiException;
 import com.ssafy.metart.common.exception.enums.ExceptionEnum;
@@ -62,5 +63,26 @@ public class SaleService {
         Sale sale = saleRepository.findById(saleId)
             .orElseThrow(() -> new ApiException(ExceptionEnum.SALE_NOT_FOUND));
         return sale;
+    }
+
+    @Transactional
+    public Sale cancelSale(Long saleId, EndSaleEvent event) {
+        if (saleId != event.getSaleId()) {
+            throw new ApiException(ExceptionEnum.BAD_REQUEST_EXCEPTION);
+        }
+
+        Sale sale = saleRepository.findById(saleId)
+            .orElseThrow(() -> new ApiException(ExceptionEnum.SALE_NOT_FOUND));
+
+        if (!sale.getSeller().getAddress().equalsIgnoreCase(event.getSellerAddress())) {
+            throw new ApiException(ExceptionEnum.SALE_UNAUTHORIZED);
+        }
+
+        if (sale.getSaleYn() || sale.getIsCanceled()) {
+            throw new ApiException(ExceptionEnum.BAD_REQUEST_EXCEPTION);
+        }
+
+        sale.cancelSale();
+        return saleRepository.save(sale);
     }
 }
