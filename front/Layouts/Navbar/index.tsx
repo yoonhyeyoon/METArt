@@ -23,7 +23,7 @@ import { userInfoState } from 'recoil/userInfo';
 import { metamaskLogin } from 'utils/metamaskLogin';
 
 const pages = [
-  { name: 'Arts', url: '/arts', login: false },
+  { name: 'Art', url: '/arts', login: false },
   { name: 'Gallery', url: '/galleries', login: false },
   { name: 'My Gallery', url: '/galleries/a', login: true },
   { name: 'Add art', url: '/createart', login: true },

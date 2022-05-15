@@ -13,3 +13,14 @@ export type CreatorOwnerType = {
   name: string;
   profileUrl: string;
 };
+
+export type ArtType = {
+  id: number;
+  name: string;
+  description: string;
+  tokenURI: string;
+  onSaleYn: boolean;
+  creator: CreatorOwnerType;
+  createdAt: string;
+  updatedAt: string;
+};
