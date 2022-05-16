@@ -3756,6 +3756,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4192509651821908, guid: 2a67b6f4d303cbe48806073e451cd48f, type: 3}
   m_PrefabInstance: {fileID: 625914244}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &630045252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4207643213099508873, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+  m_PrefabInstance: {fileID: 1761272198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &660881254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5794,7 +5799,7 @@ MonoBehaviour:
   ExhibitInfo: {fileID: 1525996407}
   GuestBook: {fileID: 0}
   CreateGuestBook: {fileID: 0}
-  Canvas: {fileID: 0}
+  Canvas: {fileID: 630045252}
   PrevCommentButton: {fileID: 0}
   NextCommentButton: {fileID: 0}
   CommentInputField: {fileID: 0}
@@ -11441,7 +11446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4207643214722621728, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
       propertyPath: m_text
-      value: "Q\uB97C \uB20C\uB7EC\uC11C \uC804\uC2DC\uBB3C \uC790\uC138\uD788 \uBCF4\uAE30"
+      value: "Q: \uC0C1\uC138\uC815\uBCF4 \uBCF4\uAE30"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
