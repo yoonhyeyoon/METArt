@@ -42,9 +42,10 @@ public class ArtController {
     public ResponseEntity<Page<ArtListRes>> pageArt(
         @PageableDefault(size = 12 ,sort = "createdAt", direction = Direction.DESC) Pageable pageable,
         @RequestParam(defaultValue = "") String name,
-        @RequestParam(defaultValue = "") String creatorName
+        @RequestParam(defaultValue = "") String creatorName,
+        @RequestParam(defaultValue = "true") Boolean onSaleYn
     ) {
-        Page<Art> artList = artService.pageArt(pageable, name, creatorName);
+        Page<Art> artList = artService.pageArt(pageable, name, creatorName, onSaleYn);
         Page<ArtListRes> resList = artList.map(art -> ArtListRes.of(art));
 
         return ResponseEntity.ok(resList);
