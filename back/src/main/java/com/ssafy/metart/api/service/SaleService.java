@@ -13,6 +13,7 @@ import com.ssafy.metart.db.repository.SaleRepository;
 import com.ssafy.metart.db.repository.UserRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,8 +27,8 @@ public class SaleService {
     private final ArtRepository artRepository;
 
     @Transactional(readOnly = true)
-    public List<Sale> listSale(Pageable pageable) {
-        List<Sale> saleList = saleRepository.findAll(pageable).getContent();
+    public Page<Sale> pageSale(Pageable pageable) {
+        Page<Sale> saleList = saleRepository.findAll(pageable);
         return saleList;
     }
 

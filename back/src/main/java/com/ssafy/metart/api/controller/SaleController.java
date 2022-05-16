@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
@@ -39,12 +40,11 @@ public class SaleController {
     private final Web3j web3j;
 
     @GetMapping
-    public ResponseEntity<List<SaleGetRes>> listSale(
+    public ResponseEntity<Page<SaleGetRes>> listSale(
         @PageableDefault(size = 12 ,sort = "createdAt", direction = Direction.DESC) Pageable pageable
     ) {
-        List<Sale> saleList = saleService.listSale(pageable);
-        List<SaleGetRes> resList = saleList.stream().map(
-            sale -> SaleGetRes.of(sale)).collect(Collectors.toList());
+        Page<Sale> saleList = saleService.pageSale(pageable);
+        Page<SaleGetRes> resList = saleList.map(sale -> SaleGetRes.of(sale));
 
         return ResponseEntity.ok(resList);
     }

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
@@ -33,13 +34,12 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<UserListRes>> listUser(
+    public ResponseEntity<Page<UserListRes>> pageUser(
         @PageableDefault(size = 12, sort = "createdAt", direction = Direction.DESC) Pageable pageable,
         @RequestParam(defaultValue = "") String name
     ) {
-        List<User> userList = userService.listUser(pageable, name);
-        List<UserListRes> resList = userList.stream().map(
-            user -> UserListRes.of(user)).collect(Collectors.toList());
+        Page<User> userList = userService.pageUser(pageable, name);
+        Page<UserListRes> resList = userList.map(user -> UserListRes.of(user));
 
         return ResponseEntity.ok(resList);
     }

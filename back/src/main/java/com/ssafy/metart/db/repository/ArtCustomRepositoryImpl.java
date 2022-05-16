@@ -7,8 +7,10 @@ import com.ssafy.metart.db.entity.Art;
 import com.ssafy.metart.db.entity.User;
 import java.util.List;
 import java.util.Objects;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.util.StringUtils;
 
 import static com.ssafy.metart.db.entity.QArt.art;
@@ -20,27 +22,27 @@ public class ArtCustomRepositoryImpl extends QuerydslRepositorySupport implement
     }
 
     @Override
-    public List<Art> pageByNameAndCreatorName(Pageable pageable, String name, String creatorName) {
+    public Page<Art> pageByNameAndCreatorName(Pageable pageable, String name, String creatorName) {
         JPQLQuery<Art> query = Objects.requireNonNull(getQuerydsl())
             .applyPagination(pageable, from(art))
             .where(containsName(name),
                 containsCreatorName(creatorName));
 
-        return query.fetch();
+        return PageableExecutionUtils.getPage(query.fetch(), pageable, query::fetchCount);
     }
 
     @Override
-    public List<Art> pageByOwner(Pageable pageable, User owner, Boolean onSaleYn) {
+    public Page<Art> pageByOwner(Pageable pageable, User owner, Boolean onSaleYn) {
         JPQLQuery<Art> query = Objects.requireNonNull(getQuerydsl())
             .applyPagination(pageable, from(art))
             .where(art.owner.eq(owner),
                 eqOnSaleYn(onSaleYn));
 
-        return query.fetch();
+        return PageableExecutionUtils.getPage(query.fetch(), pageable, query::fetchCount);
     }
 
     @Override
-    public List<Art> pageByCreatorAndOnSaleYnAndOwned(Pageable pageable, User creator,
+    public Page<Art> pageByCreatorAndOnSaleYnAndOwned(Pageable pageable, User creator,
         Boolean onSaleYn, Boolean owned) {
         JPQLQuery<Art> query = Objects.requireNonNull(getQuerydsl())
             .applyPagination(pageable, from(art))
@@ -48,7 +50,7 @@ public class ArtCustomRepositoryImpl extends QuerydslRepositorySupport implement
                 eqOnSaleYn(onSaleYn),
                 checkOwnedArt(creator, owned));
 
-        return query.fetch();
+        return PageableExecutionUtils.getPage(query.fetch(), pageable, query::fetchCount);
     }
 
     private BooleanExpression containsName(String name) {
