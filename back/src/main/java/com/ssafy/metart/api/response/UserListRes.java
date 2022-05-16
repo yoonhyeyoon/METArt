@@ -14,6 +14,9 @@ public class UserListRes {
     private String profileUrl;
 
     public static UserListRes of(User user) {
+        if (user == null) {
+            return null;
+        }
         UserListRes res = new UserListRes();
 
         res.address = user.getAddress();

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class SaleGetRes {
+public class SaleGetResNotArt {
 
     private Long id;
     private Long price;
@@ -16,16 +16,15 @@ public class SaleGetRes {
     private Boolean isCanceled;
     private LocalDateTime createdAt;
     private LocalDateTime completedAt;
-    private ArtListResNotSale art;
     private UserListRes seller;
     private UserListRes buyer;
 
-    public static SaleGetRes of(Sale sale) {
+    public static SaleGetResNotArt of(Sale sale) {
         if (sale == null) {
             return null;
         }
 
-        SaleGetRes res = new SaleGetRes();
+        SaleGetResNotArt res = new SaleGetResNotArt();
 
         res.id = sale.getId();
         res.price = sale.getPrice();
@@ -33,7 +32,6 @@ public class SaleGetRes {
         res.isCanceled = sale.getIsCanceled();
         res.createdAt = sale.getCreatedAt();
         res.completedAt = sale.getCompletedAt();
-        res.art = ArtListResNotSale.of(sale.getArt());
         res.seller = UserListRes.of(sale.getSeller());
         if (sale.getBuyer() != null) {
             res.buyer = UserListRes.of(sale.getBuyer());

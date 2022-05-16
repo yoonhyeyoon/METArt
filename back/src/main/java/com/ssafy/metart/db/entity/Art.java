@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -57,6 +58,10 @@ public class Art {
     @JoinColumn(name = "owner_address", nullable = false)
     private User owner;
 
+    @OneToOne
+    @JoinColumn(name = "sale_id", nullable = true)
+    private Sale sale;
+
     @Builder
     public Art(Long id, String name, String description, String tokenURI, User creator) {
         this.id = id;
@@ -72,12 +77,14 @@ public class Art {
         this.description = description;
     }
 
-    public void startSale() {
+    public void startSale(Sale sale) {
         this.onSaleYn = true;
+        this.sale = sale;
     }
 
     public void stopSale() {
         this.onSaleYn = false;
+        this.sale = null;
     }
 
     public void transferArt(User newOwner) {

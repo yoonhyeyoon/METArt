@@ -50,10 +50,7 @@ public class SaleService {
             .build();
         Sale newSale = saleRepository.save(sale);
 
-        System.out.println(newSale.hashCode());
-        System.out.println(sale.hashCode());
-
-        art.startSale();
+        art.startSale(newSale);
         artRepository.save(art);
 
         return newSale;
@@ -83,6 +80,7 @@ public class SaleService {
             throw new ApiException(ExceptionEnum.BAD_REQUEST_EXCEPTION);
         }
 
+        sale.getArt().stopSale();
         sale.cancelSale();
         return saleRepository.save(sale);
     }

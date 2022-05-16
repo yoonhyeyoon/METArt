@@ -8,8 +8,6 @@ import com.ssafy.metart.api.service.ArtService;
 import com.ssafy.metart.api.event.CreateTokenEvent;
 import com.ssafy.metart.db.entity.Art;
 import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

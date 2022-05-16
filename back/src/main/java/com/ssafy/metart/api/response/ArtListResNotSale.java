@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class ArtListRes {
+public class ArtListResNotSale {
 
     private Long id;
     private String name;
@@ -15,13 +15,12 @@ public class ArtListRes {
     private Boolean onSaleYn;
     private UserListRes creator;
     private UserListRes owner;
-    private SaleGetResNotArt sale;
 
-    public static ArtListRes of(Art art) {
+    public static ArtListResNotSale of(Art art) {
         if (art == null) {
             return null;
         }
-        ArtListRes res = new ArtListRes();
+        ArtListResNotSale res = new ArtListResNotSale();
 
         res.id = art.getId();
         res.name = art.getName();
@@ -29,7 +28,6 @@ public class ArtListRes {
         res.onSaleYn = art.getOnSaleYn();
         res.creator = UserListRes.of(art.getCreator());
         res.owner = UserListRes.of(art.getOwner());
-        res.sale = SaleGetResNotArt.of(art.getSale());
 
         return res;
     }
