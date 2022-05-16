@@ -94,6 +94,11 @@ namespace StarterAssets
 
 		private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
 
+		// ################################################
+		public bool IsInExhibitArea { get; set; }
+		public bool IsOpenExhibitInfo { get; set; }
+		private GameObject exhibitGameObject;
+
 		private void Awake()
 		{
 			// get a reference to our main camera
@@ -119,6 +124,31 @@ namespace StarterAssets
 
 		private void Update()
 		{
+
+			// #########
+
+			if (IsInExhibitArea)
+			{
+				if (Input.GetKeyUp(KeyCode.Q))
+				{
+					if (IsOpenExhibitInfo) 
+					{
+						CanvasManager.Instance.CloseExhibitContentBoard();
+						IsOpenExhibitInfo = false;
+					}
+					else
+					{
+						Exhibit CollisionExhibit = exhibitGameObject.GetComponent<Exhibit>();
+
+						CanvasManager.Instance.SetExhibitInfo(CollisionExhibit);
+						CanvasManager.Instance.OpenExhibitContentBoard();
+						IsOpenExhibitInfo = true;
+					}
+				}
+			}
+
+			// #########
+
 			_hasAnimator = TryGetComponent(out _animator);
 			
 			JumpAndGravity();
@@ -321,5 +351,29 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+
+		// ################################################
+
+
+		private void OnTriggerEnter(Collider other)
+		{
+			CanvasManager.Instance.OpenHelpText();
+			IsInExhibitArea = true;
+			exhibitGameObject = other.gameObject;
+			
+			
+
+		}
+
+		private void OnTriggerExit(Collider other)
+    {
+			string tag = other.gameObject.tag;
+			CanvasManager.Instance.CloseHelpText();
+			CanvasManager.Instance.CloseExhibitContentBoard();
+			IsInExhibitArea = false;
+			IsOpenExhibitInfo = false;
+		}
+
 	}
+
 }
