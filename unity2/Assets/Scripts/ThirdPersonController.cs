@@ -321,5 +321,26 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+
+		// ################################################
+
+		private void OnTriggerEnter(Collider other)
+		{
+			
+			Debug.Log("Hello: " + other);
+			GameObject exhibitGameObject = other.gameObject;
+			string tag = exhibitGameObject.tag;
+			Exhibit CollisionExhibit = exhibitGameObject.GetComponent<Exhibit>();
+			Debug.Log("Hello: " + CollisionExhibit);
+			// exhibitFreeLockCam.Follow = CollisionExhibit.GetCenter();
+			// ExhibitCam.SetExhibitCam(CollisionExhibit);
+			// testCamera.Follow = CollisionExhibit.GetCenter();
+			// testCamera.LookAt = CollisionExhibit.GetCenter();
+
+			CanvasManager.Instance.SetExhibitInfo(CollisionExhibit);
+			CanvasManager.Instance.OpenExhibitContentBoard();
+		}
+
 	}
+
 }
