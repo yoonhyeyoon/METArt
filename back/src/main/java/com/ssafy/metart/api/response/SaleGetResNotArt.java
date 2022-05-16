@@ -12,8 +12,6 @@ public class SaleGetResNotArt {
 
     private Long id;
     private Long price;
-    private Boolean saleYn;
-    private Boolean isCanceled;
     private LocalDateTime createdAt;
     private LocalDateTime completedAt;
     private UserListRes seller;
@@ -28,8 +26,6 @@ public class SaleGetResNotArt {
 
         res.id = sale.getId();
         res.price = sale.getPrice();
-        res.saleYn = sale.getSaleYn();
-        res.isCanceled = sale.getIsCanceled();
         res.createdAt = sale.getCreatedAt();
         res.completedAt = sale.getCompletedAt();
         res.seller = UserListRes.of(sale.getSeller());
