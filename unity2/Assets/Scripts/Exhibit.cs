@@ -41,14 +41,14 @@ public class Exhibit : MonoBehaviour
         {
             m_Color = new Color32(255, 0, 0, 100);
         }
-        if (gameObject.CompareTag("GuestBook"))
-        {
-            m_Color = new Color32(0, 0, 255, 100);
-        }
-        if (gameObject.CompareTag("Game"))
-        {
-            m_Color = new Color32(255, 0, 0, 100);
-        }
+        // if (gameObject.CompareTag("GuestBook"))
+        // {
+        //     m_Color = new Color32(0, 0, 255, 100);
+        // }
+        // if (gameObject.CompareTag("Game"))
+        // {
+        //     m_Color = new Color32(255, 0, 0, 100);
+        // }
         
         m_center = transform.GetChild(transform.childCount - 1);
         

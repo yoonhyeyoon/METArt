@@ -40,7 +40,7 @@ public class CanvasManager : Singleton<CanvasManager>
 
     void Start()
     {
-        // HelpText = Canvas.transform.GetChild(0).gameObject;
+        HelpText = Canvas.transform.GetChild(0).gameObject;
         // ExhibitInfo = Canvas.transform.GetChild(1).gameObject;
         // GuestBook = Canvas.transform.GetChild(2).gameObject;
         // CreateGuestBook= Canvas.transform.GetChild(3).gameObject;
@@ -55,6 +55,7 @@ public class CanvasManager : Singleton<CanvasManager>
     // 도움말 문구 변경
     public void SetHelpText(string Text)
     {
+        Debug.Log(HelpText.GetComponentInChildren<Text>());
         HelpText.GetComponentInChildren<Text>().text = Text;
     }
     // 전시물 정보 설정
@@ -68,6 +69,10 @@ public class CanvasManager : Singleton<CanvasManager>
     public void OpenExhibitContentBoard()
     {
         ExhibitInfo.SetActive(true);
+    }
+    public void CloseExhibitContentBoard()
+    {
+        ExhibitInfo.SetActive(false);
     }
 
     // 게임 정보 설정, 열고 닫기
