@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
@@ -40,14 +41,13 @@ public class ArtController {
     private final Web3j web3j;
 
     @GetMapping
-    public ResponseEntity<List<ArtListRes>> listArt(
+    public ResponseEntity<Page<ArtListRes>> pageArt(
         @PageableDefault(size = 12 ,sort = "createdAt", direction = Direction.DESC) Pageable pageable,
         @RequestParam(defaultValue = "") String name,
         @RequestParam(defaultValue = "") String creatorName
     ) {
-        List<Art> artList = artService.listArt(pageable, name, creatorName);
-        List<ArtListRes> resList = artList.stream().map(
-            art -> ArtListRes.of(art)).collect(Collectors.toList());
+        Page<Art> artList = artService.pageArt(pageable, name, creatorName);
+        Page<ArtListRes> resList = artList.map(art -> ArtListRes.of(art));
 
         return ResponseEntity.ok(resList);
     }

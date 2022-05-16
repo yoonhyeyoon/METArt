@@ -6,6 +6,7 @@ import com.ssafy.metart.db.entity.Art;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
@@ -24,28 +25,26 @@ public class UserArtController {
     private final UserArtService userArtService;
 
     @GetMapping("/{address}/my-arts")
-    public ResponseEntity<List<ArtListRes>> listMyArt(
+    public ResponseEntity<Page<ArtListRes>> pageMyArt(
         @PageableDefault(size = 12, sort = "createdAt", direction = Direction.DESC) Pageable pageable,
         @PathVariable String address,
         @RequestParam(required = false) Boolean onSaleYn
     ) {
-        List<Art> artList = userArtService.listMyArt(pageable, address, onSaleYn);
-        List<ArtListRes> resList = artList.stream().map(
-            art -> ArtListRes.of(art)).collect(Collectors.toList());
+        Page<Art> artList = userArtService.pageMyArt(pageable, address, onSaleYn);
+        Page<ArtListRes> resList = artList.map(art -> ArtListRes.of(art));
 
         return ResponseEntity.ok(resList);
     }
 
     @GetMapping("/{address}/arts")
-    public ResponseEntity<List<ArtListRes>> listMyCreateArt(
+    public ResponseEntity<Page<ArtListRes>> listMyCreateArt(
         @PageableDefault(size = 12, sort = "createdAt", direction = Direction.DESC) Pageable pageable,
         @PathVariable String address,
         @RequestParam(required = false) Boolean onSaleYn,
         @RequestParam(required = false) Boolean owned
     ){
-        List<Art> artList = userArtService.listMyCreateArt(pageable, address, onSaleYn, owned);
-        List<ArtListRes> resList = artList.stream().map(
-            art -> ArtListRes.of(art)).collect(Collectors.toList());
+        Page<Art> artList = userArtService.pageMyCreateArt(pageable, address, onSaleYn, owned);
+        Page<ArtListRes> resList = artList.map(art -> ArtListRes.of(art));
 
         return ResponseEntity.ok(resList);
     }

@@ -11,6 +11,7 @@ import com.ssafy.metart.db.repository.ArtRepository;
 import com.ssafy.metart.db.repository.UserRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +24,8 @@ public class ArtService {
     private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    public List<Art> listArt(Pageable pageable, String name, String creatorName) {
-        List<Art> artList = artRepository.pageByNameAndCreatorName(pageable, name, creatorName);
+    public Page<Art> pageArt(Pageable pageable, String name, String creatorName) {
+        Page<Art> artList = artRepository.pageByNameAndCreatorName(pageable, name, creatorName);
         return artList;
     }
 
