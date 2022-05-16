@@ -4,7 +4,6 @@ import Page from '../../Layouts/Page';
 import GalleryCard from 'components/common/GalleryCard';
 import SearchBarGallery from 'components/common/SearchBarGallery';
 import GalleryList from 'components/galleries/GalleryList';
-import ScrollToTop from 'components/common/ScrollToTop';
 
 function GalleryIndex() {
   const [search, setSearch] = useState<String>('');
@@ -30,7 +29,6 @@ function GalleryIndex() {
         />
       </Box>
       <GalleryList />
-      <ScrollToTop />
     </Page>
   );
 }

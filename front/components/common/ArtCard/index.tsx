@@ -8,10 +8,10 @@ import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
 import Skeleton from '@mui/material/Skeleton';
-import { ArtListType } from 'types/types';
+import { ArtListType, ContentType } from 'types/types';
 import Link from 'next/link';
 
-export default function ArtCard(art: ArtListType) {
+export default function ArtCard(art: ContentType) {
   console.log(art);
   return (
     <Card>
