@@ -18,8 +18,12 @@ public class ArtGetRes {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private UserListRes creator;
+    private SaleGetResNotArt sale;
 
     public static ArtGetRes of(Art art) {
+        if (art == null) {
+            return null;
+        }
         ArtGetRes res = new ArtGetRes();
 
         res.id = art.getId();
@@ -30,6 +34,7 @@ public class ArtGetRes {
         res.createdAt = art.getCreatedAt();
         res.updatedAt = art.getUpdatedAt();
         res.creator = UserListRes.of(art.getCreator());
+        res.sale = SaleGetResNotArt.of(art.getSale());
 
         return res;
     }
