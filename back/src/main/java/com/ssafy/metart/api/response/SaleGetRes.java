@@ -16,11 +16,15 @@ public class SaleGetRes {
     private Boolean isCanceled;
     private LocalDateTime createdAt;
     private LocalDateTime completedAt;
-    private ArtListRes art;
+    private ArtListResNotSale art;
     private UserListRes seller;
     private UserListRes buyer;
 
     public static SaleGetRes of(Sale sale) {
+        if (sale == null) {
+            return null;
+        }
+
         SaleGetRes res = new SaleGetRes();
 
         res.id = sale.getId();
@@ -29,7 +33,7 @@ public class SaleGetRes {
         res.isCanceled = sale.getIsCanceled();
         res.createdAt = sale.getCreatedAt();
         res.completedAt = sale.getCompletedAt();
-        res.art = ArtListRes.of(sale.getArt());
+        res.art = ArtListResNotSale.of(sale.getArt());
         res.seller = UserListRes.of(sale.getSeller());
         if (sale.getBuyer() != null) {
             res.buyer = UserListRes.of(sale.getBuyer());

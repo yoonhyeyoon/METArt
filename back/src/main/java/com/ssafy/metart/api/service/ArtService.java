@@ -24,8 +24,8 @@ public class ArtService {
     private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    public Page<Art> pageArt(Pageable pageable, String name, String creatorName) {
-        Page<Art> artList = artRepository.pageByNameAndCreatorName(pageable, name, creatorName);
+    public Page<Art> pageArt(Pageable pageable, String name, String creatorName, Boolean onSaleYn) {
+        Page<Art> artList = artRepository.pageByNameAndCreatorNameAndOnSaleYn(pageable, name, creatorName, onSaleYn);
         return artList;
     }
 

@@ -18,6 +18,9 @@ public class UserGetRes {
     private LocalDateTime updatedAt;
 
     public static UserGetRes of(User user) {
+        if (user == null) {
+            return null;
+        }
         UserGetRes res = new UserGetRes();
 
         res.address = user.getAddress();

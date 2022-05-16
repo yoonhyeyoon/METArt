@@ -15,8 +15,12 @@ public class ArtListRes {
     private Boolean onSaleYn;
     private UserListRes creator;
     private UserListRes owner;
+    private SaleGetResNotArt sale;
 
     public static ArtListRes of(Art art) {
+        if (art == null) {
+            return null;
+        }
         ArtListRes res = new ArtListRes();
 
         res.id = art.getId();
@@ -25,6 +29,7 @@ public class ArtListRes {
         res.onSaleYn = art.getOnSaleYn();
         res.creator = UserListRes.of(art.getCreator());
         res.owner = UserListRes.of(art.getOwner());
+        res.sale = SaleGetResNotArt.of(art.getSale());
 
         return res;
     }

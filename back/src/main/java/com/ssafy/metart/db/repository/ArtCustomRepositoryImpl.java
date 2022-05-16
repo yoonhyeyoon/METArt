@@ -22,11 +22,12 @@ public class ArtCustomRepositoryImpl extends QuerydslRepositorySupport implement
     }
 
     @Override
-    public Page<Art> pageByNameAndCreatorName(Pageable pageable, String name, String creatorName) {
+    public Page<Art> pageByNameAndCreatorNameAndOnSaleYn(Pageable pageable, String name, String creatorName, Boolean onSaleYn) {
         JPQLQuery<Art> query = Objects.requireNonNull(getQuerydsl())
             .applyPagination(pageable, from(art))
             .where(containsName(name),
-                containsCreatorName(creatorName));
+                containsCreatorName(creatorName),
+                eqOnSaleYn(onSaleYn));
 
         return PageableExecutionUtils.getPage(query.fetch(), pageable, query::fetchCount);
     }
