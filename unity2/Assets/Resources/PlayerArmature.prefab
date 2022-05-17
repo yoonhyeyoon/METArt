@@ -1318,7 +1318,7 @@ MonoBehaviour:
     SynchronizeType: 0
     Name: MotionSpeed
   m_SynchronizeLayers:
-  - SynchronizeType: 2
+  - SynchronizeType: 0
     LayerIndex: 0
 --- !u!1 &4523139366846529165
 GameObject:
