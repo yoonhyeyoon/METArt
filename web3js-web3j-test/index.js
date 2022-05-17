@@ -26,6 +26,7 @@ getAccountBtn.addEventListener("click", async function () {
       });
       account = accounts[0];
       document.getElementById("account").innerText = account;
+      console.log(account);
     } else {
       alert("Install Metamask!");
     }
@@ -46,8 +47,8 @@ import { metartNftAbi, metartNftCA } from "./metart-config.js";
 const metartNftContract = new web3.eth.Contract(metartNftAbi, metartNftCA);
 
 var imageFile = document.getElementById("image-file");
-var createArt = document.getElementById("create-art");
-createArt.addEventListener("click", function () {
+var createArtBtn = document.getElementById("create-art-btn");
+createArtBtn.addEventListener("click", function () {
   var tokenURI;
   axios({
     url: `${BASE_URL}/image`,
@@ -104,10 +105,10 @@ createArt.addEventListener("click", function () {
 import { auctionAbi, auctionCA } from "./metart-config.js";
 const auctionContract = new web3.eth.Contract(auctionAbi, auctionCA);
 
-var createSale = document.getElementById("create-sale");
-createSale.addEventListener("click", function () {
+var price = 0.001 * Math.pow(10, 18); // 0.001 ETH
+var createSaleBtn = document.getElementById("create-sale-btn");
+createSaleBtn.addEventListener("click", function () {
   var tokenId = document.getElementById("token-id").value;
-  var price = 0.001 * Math.pow(10, 18); // 0.001 ETH
 
   auctionContract.methods
     .createSale(tokenId, price)
@@ -140,8 +141,8 @@ createSale.addEventListener("click", function () {
  * 2. 트랜잭션이 발생되면 (.on("transactionHash")) 해당 해쉬 값과 함께 PUT {BASE_URL}/sale/{saleId}/cancel 요청을 보낸다.
  * 3. 이제 트랜잭션이 완료되면 서버에서 알아서 결과를 DB에 저장하게 된다.
  */
-var cancelSale = document.getElementById("cancel-sale");
-cancelSale.addEventListener("click", function () {
+var cancelSaleBtn = document.getElementById("cancel-sale-btn");
+cancelSaleBtn.addEventListener("click", function () {
   var cancelSaleId = document.getElementById("cancel-sale-id").value;
 
   auctionContract.methods
@@ -160,6 +161,40 @@ cancelSale.addEventListener("click", function () {
         .then((res) => {
           console.log(res);
           document.getElementById("cancel-sale-res").innerText = JSON.stringify(
+            res.data
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+});
+
+/* purchase
+ * 1. Auction 컨트랙트를 이용해 purchase 함수를 호출한다.
+ * 2. 트랜잭션이 발생되면 (.on("transactionHash")) 해당 해쉬 값과 함께 PUT {BASE_URL}/sale/{saleId}/purchase 요청을 보낸다.
+ * 3. 이제 트랜잭션이 완료되면 서버에서 알아서 결과를 DB에 저장하게 된다.
+ */
+var purchaseBtn = document.getElementById("purchase-btn");
+purchaseBtn.addEventListener("click", function () {
+  var purchaseId = document.getElementById("purchase-id").value;
+
+  auctionContract.methods
+    .purchase(purchaseId)
+    .send({ from: account, value: price })
+    .on("transactionHash", (hash) => {
+      console.log(hash);
+      document.getElementById("purchase-tx").innerText = hash;
+      axios({
+        url: `${BASE_URL}/sale/${purchaseId}/purchase`,
+        method: "put",
+        data: {
+          tx: hash,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          document.getElementById("purchase-res").innerText = JSON.stringify(
             res.data
           );
         })
