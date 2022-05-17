@@ -1,4 +1,5 @@
 import { useState, ChangeEvent, useRef, FormEvent } from 'react';
+import { useRouter } from 'next/router';
 import { Box, TextField, Button, Stack } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import Page from 'Layouts/Page';
@@ -6,6 +7,8 @@ import { imageUploadAPI, createArtAPI } from 'api/art';
 import { userInfo } from 'recoil/userInfo';
 
 function CreateArt() {
+  const router = useRouter();
+
   const imageSelect = useRef<HTMLInputElement>(null);
   const [userAccount, setUserAccount] = useRecoilState(userInfo);
 
@@ -32,21 +35,19 @@ function CreateArt() {
       formData.append('imageFile', image);
       const { data: imagePath } = await imageUploadAPI(formData);
       // 스마트컨트랙트 요청 (NFT민팅)
-      const {
-        events: {
-          CreateToken: { blockHash },
-        },
-      } = await metartContract.methods
+      await metartContract.methods
         .create(userAccount.address, imagePath)
-        .send({ from: userAccount.address });
-      // 백엔드에 데이터 보내기
-      const { data } = await createArtAPI({
-        tx: blockHash,
-        name,
-        description,
-        tokenURI: imagePath,
-      });
-      console.log(data);
+        .send({ from: userAccount.address })
+        .on('transactionHash', async (hash: String) => {
+          // 백엔드에 데이터 보내기
+          const { data } = await createArtAPI({
+            tx: hash,
+            name,
+            description,
+            tokenURI: imagePath,
+          });
+          router.push(`/arts/${data.id}`);
+        });
     } catch (err) {
       console.dir(err);
     }
