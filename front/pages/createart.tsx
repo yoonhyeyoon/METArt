@@ -11,7 +11,6 @@ import {
 import { useRecoilState } from 'recoil';
 import Page from 'Layouts/Page';
 import { imageUploadAPI, createArtAPI } from 'api/art';
-import { metartContract } from 'contract/web3Config';
 import { userInfoState } from 'recoil/userInfo';
 
 function CreateArt() {
@@ -34,6 +33,8 @@ function CreateArt() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      const { metartContract } = await import('contract/web3Config');
+
       // S3에 이미지 업로드
       const formData = new FormData();
       formData.append('imageFile', image);
