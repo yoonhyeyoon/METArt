@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SaleCancelReq {
+public class TxHashReq {
     @NotNull(message = "tx 는 필수 값입니다.")
     private String tx;
 }

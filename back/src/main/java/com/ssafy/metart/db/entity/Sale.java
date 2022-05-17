@@ -66,7 +66,7 @@ public class Sale {
         this.isCanceled = false;
     }
 
-    public void completeSale(User buyer) {
+    public void purchase(User buyer) {
         this.saleYn = true;
         this.buyer = buyer;
         this.completedAt = LocalDateTime.now();
