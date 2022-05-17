@@ -53,55 +53,20 @@ export default function ArtCard(art: ContentType) {
         }
       />
 
-      <ImageListItem
-        onClick={() => router.push(`/arts/${art.id}`)}
-        sx={{
-          overflow: 'hidden',
-          color: 'white',
-          '& .img': {
-            transform: 'scale(1.0)',
-            transition: 'transform 0.4s ease',
-          },
-          '&:hover': {
-            cursor: 'pointer',
-            '& .caption': {
-              opacity: 1,
-              transform: 'translateY(-20px)',
-            },
-            '& .transparent-box': {
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            },
-            '& .img': {
-              transform: 'scale(1.1)',
-            },
-          },
-        }}
-      >
-        {art.tokenURI ? (
-          <>
-            <img
-              src={art.tokenURI}
-              alt=""
-              height={300}
-              width={350}
-              style={{ objectFit: 'cover' }}
-            />
-          </>
-        ) : (
-          <Skeleton
-            sx={{ height: 190 }}
-            animation="wave"
-            variant="rectangular"
+      {art.tokenURI ? (
+        <div onClick={() => router.push(`/arts/${art.id}`)}>
+          <img
+            src={art.tokenURI}
+            alt=""
+            height={300}
+            width={350}
+            style={{ objectFit: 'cover', cursor: 'pointer' }}
           />
-        )}
-
-        <div css={transParentBox} className="transparent-box">
-          <div css={caption} className="caption">
-            {/* <p>1.5 ETH</p> */}
-            <p css={artPrice}>{art.name}</p>
-          </div>
         </div>
-      </ImageListItem>
+      ) : (
+        <Skeleton sx={{ height: 190 }} animation="wave" variant="rectangular" />
+      )}
+
       <CardContent>
         {art.name ? (
           <span style={{ textAlign: 'center' }}>{art.sale.price} ETH</span>
