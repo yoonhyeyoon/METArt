@@ -12,8 +12,10 @@ import { ArtListType, ContentType } from 'types/types';
 import Link from 'next/link';
 import { artPrice, caption, transParentBox } from '../GalleryCard/styled';
 import ImageListItem from '@mui/material/ImageListItem';
+import { useRouter } from 'next/router';
 
 export default function ArtCard(art: ContentType) {
+  const router = useRouter();
   console.log(art);
   return (
     <Card sx={{ boxShadow: 'rgb(0 0 0 / 5%) 2px 2px 20px' }}>
@@ -52,6 +54,7 @@ export default function ArtCard(art: ContentType) {
       />
 
       <ImageListItem
+        onClick={() => router.push(`/arts/${art.id}`)}
         sx={{
           overflow: 'hidden',
           color: 'white',
@@ -75,15 +78,13 @@ export default function ArtCard(art: ContentType) {
         }}
       >
         {art.tokenURI ? (
-          <Link href={`/arts/${art.id}`}>
-            <img
-              src={art.tokenURI}
-              alt=""
-              height={300}
-              width={350}
-              style={{ objectFit: 'cover' }}
-            />
-          </Link>
+          <img
+            src={art.tokenURI}
+            alt=""
+            height={300}
+            width={350}
+            style={{ objectFit: 'cover' }}
+          />
         ) : (
           <Skeleton
             sx={{ height: 190 }}
