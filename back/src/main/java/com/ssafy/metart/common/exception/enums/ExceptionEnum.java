@@ -20,7 +20,10 @@ public enum ExceptionEnum {
 
     SALE_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "301", "해당 판매에 대한 권한이 없습니다."),
     SALE_NOT_FOUND(HttpStatus.NOT_FOUND, "304", "해당 판매 정보를 찾을 수 없습니다."),
-    SALE_CONFLICT(HttpStatus.CONFLICT, "309", "판매자는 구매할 수 없습니다.");
+    SALE_CONFLICT(HttpStatus.CONFLICT, "309", "판매자는 구매할 수 없습니다."),
+
+    EXHIBITION_NOT_FOUND(HttpStatus.NOT_FOUND, "404", "해당 전시를 찾을 수 없습니다."),
+    EXHIBITION_CONFLICT(HttpStatus.CONFLICT, "409", "이미 있는 전시 id입니다.");
 
     private final HttpStatus status;
     private final String code;
