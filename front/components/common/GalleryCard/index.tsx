@@ -1,10 +1,14 @@
 import ImageListItem from '@mui/material/ImageListItem';
+import { CreatorOwnerType } from 'types/types';
 import { artPrice, caption, transParentBox } from './styled';
+import { useRouter } from 'next/router';
 
-export default function GalleryCard({ img }: any) {
+export default function GalleryCard(user: CreatorOwnerType) {
+  const router = useRouter();
   return (
     <ImageListItem
-      key={img}
+      onClick={() => router.push(`/galleries/${user.name}`)}
+      key={user.address}
       sx={{
         overflow: 'hidden',
         color: 'white',
@@ -28,15 +32,15 @@ export default function GalleryCard({ img }: any) {
       }}
     >
       <img
-        src={`${img}?w=164&h=164&fit=crop&auto=format`}
-        srcSet={`${img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+        src={`${user.profileUrl}?w=164&h=164&fit=crop&auto=format`}
+        srcSet={`${user.profileUrl}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
         // alt={item.title}
         loading="lazy"
       />
       <div css={transParentBox} className="transparent-box">
         <div css={caption} className="caption">
           {/* <p>1.5 ETH</p> */}
-          <p css={artPrice}>Kim Seo-hyung</p>
+          <p css={artPrice}>{user.name}</p>
         </div>
       </div>
     </ImageListItem>

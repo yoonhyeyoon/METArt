@@ -1,4 +1,7 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 
 interface UserInfo {
   address: String;
@@ -6,7 +9,8 @@ interface UserInfo {
   nickname: String;
   profileUrl: String;
 }
-export const userInfoState = atom<UserInfo>({
+
+export const userInfo = atom<UserInfo>({
   key: 'userInfo',
   default: {
     address: '',
@@ -14,4 +18,5 @@ export const userInfoState = atom<UserInfo>({
     nickname: '',
     profileUrl: '',
   },
+  effects_UNSTABLE: [persistAtom],
 });

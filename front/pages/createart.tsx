@@ -1,17 +1,13 @@
 import { useState, ChangeEvent, useRef, FormEvent } from 'react';
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  Input,
-  TextField,
-  Button,
-  Stack,
-} from '@mui/material';
+import { Box, TextField, Button, Stack } from '@mui/material';
+import { useRecoilState } from 'recoil';
 import Page from 'Layouts/Page';
+import { imageUploadAPI, createArtAPI } from 'api/art';
+import { userInfo } from 'recoil/userInfo';
 
 function CreateArt() {
   const imageSelect = useRef<HTMLInputElement>(null);
+  const [userAccount, setUserAccount] = useRecoilState(userInfo);
 
   const [name, setName] = useState<String>('');
   const [description, setDescription] = useState<String>('');
@@ -26,11 +22,34 @@ function CreateArt() {
     setDescription(e.target.value);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(image);
-    console.log(name);
-    console.log(description);
+    try {
+      const { metartContract } = await import('contract/web3Config');
+
+      // S3에 이미지 업로드
+      const formData = new FormData();
+      formData.append('imageFile', image);
+      const { data: imagePath } = await imageUploadAPI(formData);
+      // 스마트컨트랙트 요청 (NFT민팅)
+      const {
+        events: {
+          CreateToken: { blockHash },
+        },
+      } = await metartContract.methods
+        .create(userAccount.address, imagePath)
+        .send({ from: userAccount.address });
+      // 백엔드에 데이터 보내기
+      const { data } = await createArtAPI({
+        tx: blockHash,
+        name,
+        description,
+        tokenURI: imagePath,
+      });
+      console.log(data);
+    } catch (err) {
+      console.dir(err);
+    }
   };
 
   // 찾기 버튼 클릭 핸들링

@@ -14,9 +14,9 @@ function PopularGalleryList() {
   return (
     <>
       <ImageList cols={4} gap={50} rowHeight={350} variant="quilted">
-        {imgs.map((img) => (
+        {/* {imgs.map((img) => (
           <GalleryCard img={img} />
-        ))}
+        ))} */}
       </ImageList>
     </>
   );

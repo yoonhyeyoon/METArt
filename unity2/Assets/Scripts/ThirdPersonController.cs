@@ -359,16 +359,12 @@ namespace StarterAssets
 		private void OnTriggerEnter(Collider other)
 		{
 			CanvasManager.Instance.OpenHelpText();
-			IsInExhibitArea = true;
 			exhibitGameObject = other.gameObject;
-			
-			
-
+			IsInExhibitArea = true;
 		}
 
 		private void OnTriggerExit(Collider other)
     {
-			string tag = other.gameObject.tag;
 			CanvasManager.Instance.CloseHelpText();
 			CanvasManager.Instance.CloseExhibitContentBoard();
 			IsInExhibitArea = false;
