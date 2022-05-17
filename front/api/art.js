@@ -7,7 +7,8 @@ export const getArtList = () => {
   const { data, error } = useSWR(`/art`, fetcher);
 
   return {
-    artList: data,
+    data: data,
+    artList: data && data.content,
     isLoading: !error && !data,
     isError: error,
   };

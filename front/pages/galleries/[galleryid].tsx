@@ -1,4 +1,3 @@
-import ScrollToTop from 'components/common/ScrollToTop';
 import React from 'react';
 import GalleryArtList from '../../components/gallery/GalleryArtList';
 import Profile from '../../components/gallery/Profile';
@@ -10,7 +9,6 @@ function Gallery() {
     <Page>
       <Profile />
       <GalleryArtList />
-      <ScrollToTop />
     </Page>
   );
 }

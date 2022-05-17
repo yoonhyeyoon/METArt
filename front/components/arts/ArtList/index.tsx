@@ -2,11 +2,11 @@ import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import ArtCard from 'components/common/ArtCard';
 import { getArtList } from '../../../api/art';
-import { ArtListType } from 'types/types';
+import { ArtListType, ContentType } from 'types/types';
 import CircularProgress from '@mui/material/CircularProgress';
 
 function ArtList() {
-  const { artList, isLoading, isError } = getArtList();
+  const { data, artList, isLoading, isError } = getArtList();
   console.log(artList);
 
   return (
@@ -14,7 +14,7 @@ function ArtList() {
       {isLoading ? (
         <CircularProgress color="inherit" />
       ) : (
-        artList.map((art: ArtListType) => (
+        artList.map((art: ContentType) => (
           <Grid sx={{ mb: 5 }} item xs={12} sm={6} md={4} lg={3} key={art.id}>
             <ArtCard {...art} />
           </Grid>

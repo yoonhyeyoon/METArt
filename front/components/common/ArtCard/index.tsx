@@ -8,13 +8,17 @@ import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
 import Skeleton from '@mui/material/Skeleton';
-import { ArtListType } from 'types/types';
+import { ArtListType, ContentType } from 'types/types';
 import Link from 'next/link';
+import { artPrice, caption, transParentBox } from '../GalleryCard/styled';
+import ImageListItem from '@mui/material/ImageListItem';
+import { useRouter } from 'next/router';
 
-export default function ArtCard(art: ArtListType) {
+export default function ArtCard(art: ContentType) {
+  const router = useRouter();
   console.log(art);
   return (
-    <Card>
+    <Card sx={{ boxShadow: 'rgb(0 0 0 / 5%) 2px 2px 20px' }}>
       <CardHeader
         avatar={
           art.creator ? (
@@ -41,22 +45,45 @@ export default function ArtCard(art: ArtListType) {
           )
         }
         subheader={
-          art.creator ? (
-            '5 hours ago'
+          art.name ? (
+            art.name
           ) : (
             <Skeleton animation="wave" height={10} width="40%" />
           )
         }
       />
 
-      <Link href={`/arts/${art.id}`}>
+      <ImageListItem
+        onClick={() => router.push(`/arts/${art.id}`)}
+        sx={{
+          overflow: 'hidden',
+          color: 'white',
+          '& .img': {
+            transform: 'scale(1.0)',
+            transition: 'transform 0.4s ease',
+          },
+          '&:hover': {
+            cursor: 'pointer',
+            '& .caption': {
+              opacity: 1,
+              transform: 'translateY(-20px)',
+            },
+            '& .transparent-box': {
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            },
+            '& .img': {
+              transform: 'scale(1.1)',
+            },
+          },
+        }}
+      >
         {art.tokenURI ? (
-          <CardMedia
-            component="img"
-            height="300"
-            image={art.tokenURI}
-            alt="green iguana"
-            sx={{ cursor: 'pointer' }}
+          <img
+            src={art.tokenURI}
+            alt=""
+            height={300}
+            width={350}
+            style={{ objectFit: 'cover' }}
           />
         ) : (
           <Skeleton
@@ -65,14 +92,17 @@ export default function ArtCard(art: ArtListType) {
             variant="rectangular"
           />
         )}
-      </Link>
+
+        <div css={transParentBox} className="transparent-box">
+          <div css={caption} className="caption">
+            {/* <p>1.5 ETH</p> */}
+            <p css={artPrice}>{art.name}</p>
+          </div>
+        </div>
+      </ImageListItem>
       <CardContent>
         {art.name ? (
-          // <Typography gutterBottom variant="h5" component="div">
-          // </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {art.name}
-          </Typography>
+          <span style={{ textAlign: 'center' }}>{art.sale.price} ETH</span>
         ) : (
           <React.Fragment>
             <Skeleton
@@ -84,11 +114,6 @@ export default function ArtCard(art: ArtListType) {
           </React.Fragment>
         )}
       </CardContent>
-
-      {/* <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
     </Card>
   );
 }

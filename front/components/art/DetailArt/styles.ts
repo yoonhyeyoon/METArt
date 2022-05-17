@@ -22,8 +22,9 @@ export const artDiv = css`
 export const artImgDiv = css`
   margin: auto;
   overflow: hidden;
-  width: 400px;
-  border-radius: 10%;
+  /* width: auto; */
+  display: inline-block;
+  /* border-radius: 10%; */
 `;
 
 export const artImg = css`
@@ -32,20 +33,29 @@ export const artImg = css`
   &:hover {
     transform: scale(1.2);
   }
-  border-radius: 10%;
+  /* border-radius: 10%; */
 `;
 
 export const artDescription = css`
+  padding-top: 5%;
   text-align: center;
 `;
 
 export const artName = css`
   font-size: 2.5rem;
   margin-top: 1.5rem;
+  margin-bottom: 2rem;
+`;
+
+export const artPrice = css`
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
   margin-bottom: 3rem;
+  color: #424242;
 `;
 
 export const artInfo = css`
+  padding-top: 10%;
   font-size: 1.3rem;
   line-height: 2rem;
 `;

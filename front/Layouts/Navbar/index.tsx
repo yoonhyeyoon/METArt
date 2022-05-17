@@ -175,38 +175,38 @@ const ResponsiveAppBar = () => {
 
           {/* 웹 메뉴 바 */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page.name}
-                onClick={() => {
-                  handleCloseNavMenu();
-                  handleRoutePage(page.url);
-                }}
-                sx={
-                  router.pathname == '/'
-                    ? {
-                        my: 2,
-                        mx: 4,
-                        color: 'white',
-                        display: 'block',
-                        fontFamily: 'Georgia',
-                      }
-                    : {
-                        my: 2,
-                        mx: 4,
-                        color: 'black',
-                        display: 'block',
-                        fontFamily: 'Georgia',
-                      }
-                }
-              >
-                {userAccount.address
-                  ? page.name
-                  : page.login
-                  ? null
-                  : page.name}
-              </Button>
-            ))}
+            {pages.map((page) => {
+              if (userAccount.address || !page.login) {
+                return (
+                  <Button
+                    key={page.name}
+                    onClick={() => {
+                      handleCloseNavMenu();
+                      handleRoutePage(page.url);
+                    }}
+                    sx={
+                      router.pathname == '/'
+                        ? {
+                            my: 2,
+                            mx: 4,
+                            color: 'white',
+                            display: 'block',
+                            fontFamily: 'Georgia',
+                          }
+                        : {
+                            my: 2,
+                            mx: 4,
+                            color: 'black',
+                            display: 'block',
+                            fontFamily: 'Georgia',
+                          }
+                    }
+                  >
+                    {page.name}
+                  </Button>
+                );
+              }
+            })}
           </Box>
 
           {/* 웹, 모바일 드롭박스 */}
