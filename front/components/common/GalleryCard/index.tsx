@@ -7,7 +7,7 @@ export default function GalleryCard(user: CreatorOwnerType) {
   const router = useRouter();
   return (
     <ImageListItem
-      onClick={() => router.push(`/galleries/${user.name}`)}
+      onClick={() => router.push(`/galleries/${user.address}`)}
       key={user.address}
       sx={{
         overflow: 'hidden',

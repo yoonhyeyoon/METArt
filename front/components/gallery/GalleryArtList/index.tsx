@@ -11,18 +11,32 @@ import {
   caption,
   transParentBox,
 } from 'components/common/GalleryCard/styled';
+import { getGalleryArtAPI, getGalleryBuyAPI } from 'api/gallery';
+import { useRouter } from 'next/router';
+import CircularProgress from '@mui/material/CircularProgress';
 
 type imgType = string[];
 
 function GalleryArtList() {
-  const [artState, setArtState] = useState<string | null>();
+  const [artState, setArtState] = useState('art');
 
   const handleArtState = (
     event: React.MouseEvent<HTMLElement>,
     newArtState: string | null,
   ) => {
-    setArtState(newArtState);
+    if (newArtState !== null) {
+      setArtState(newArtState);
+    }
   };
+
+  const router = useRouter();
+  const { galleryid } = router.query;
+
+  const { data, artList, isLoading, isError } = getGalleryArtAPI(galleryid);
+  // const { data, buyList, isLoading, isError } = getGalleryBuyAPI(galleryid);
+
+  if (isError) return <div>failed to load</div>;
+  if (isLoading) return <CircularProgress sx={{ color: 'grey' }} />;
 
   const imgs: imgType = [
     'https://artdiscoverystatic.s3.amazonaws.com/media/images/20._BOOKANIMA_Andy_Warhol.width-570.jpg',

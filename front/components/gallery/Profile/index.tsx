@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   profileBox,
   profileContainer,
@@ -11,31 +11,34 @@ import {
   profileName,
 } from './styles';
 import Container from '@mui/material/Container';
+import CircularProgress from '@mui/material/CircularProgress';
 import ProfileSettingModal from '../ProfileSettingModal';
+import { getProfileAPI } from 'api/gallery';
+import { useRouter } from 'next/router';
 
 function Profile() {
+  const router = useRouter();
+  const { galleryid } = router.query;
+  const { data, isLoading, isError } = getProfileAPI(galleryid);
+  console.log(data);
+
+  if (isError) return <div>failed to load</div>;
+  if (isLoading) return <CircularProgress sx={{ color: 'grey' }} />;
+
   return (
     <Container maxWidth="lg">
       <section>
         <div css={profileContainer}>
           <div css={profileDiv}>
             <div css={profileImgDiv}>
-              <img
-                src="https://img.sbs.co.kr/newsnet/etv/upload/2019/01/31/30000622371_700.jpg"
-                alt="image"
-                css={profileImg}
-              />
+              <img src={data.profileUrl} alt="image" css={profileImg} />
             </div>
           </div>
           <div css={profileDiv}>
             <div css={profileDescription}>
-              <h1 css={profileName}>Kim Seo-hyung</h1>
+              <h1 css={profileName}>{data.name}</h1>
               <h3>Bio.</h3>
-              <p css={profileInfo}>
-                작가의 시간쌓기 작업은 인간의 경험에서 얻은 기억을 하나의 단위인
-                선과 면으로 기호화하고 이를 쌓거나 나열하여 시간의 집적을
-                이야기하고 작품을 통해 삶을 사색한다.
-              </p>
+              <p css={profileInfo}>{data.biography}</p>
               <ProfileSettingModal />
             </div>
           </div>
