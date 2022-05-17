@@ -78,13 +78,15 @@ export default function ArtCard(art: ContentType) {
         }}
       >
         {art.tokenURI ? (
-          <img
-            src={art.tokenURI}
-            alt=""
-            height={300}
-            width={350}
-            style={{ objectFit: 'cover' }}
-          />
+          <>
+            <img
+              src={art.tokenURI}
+              alt=""
+              height={300}
+              width={350}
+              style={{ objectFit: 'cover' }}
+            />
+          </>
         ) : (
           <Skeleton
             sx={{ height: 190 }}
