@@ -13,6 +13,17 @@ export const getArtList = () => {
   };
 };
 
+export const imageUploadAPI = (data) => http.post('/image', data);
+
+export const createArtAPI = (data) => {
+  console.log(data);
+  return http.post('/art', data, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
 // export const getArt = (artid) => {
 //   const id = String(artid);
 //   const { data, error } = useSWR(`/art/${id}`, fetcher);
