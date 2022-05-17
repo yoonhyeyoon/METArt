@@ -12,11 +12,11 @@ import { useRecoilState } from 'recoil';
 import Page from 'Layouts/Page';
 import { imageUploadAPI, createArtAPI } from 'api/art';
 import { metartContract } from 'contract/web3Config';
-import { userInfoState } from 'recoil/userInfo';
+import { userInfo } from 'recoil/userInfo';
 
 function CreateArt() {
   const imageSelect = useRef<HTMLInputElement>(null);
-  const [userAccount, setUserAccount] = useRecoilState(userInfoState);
+  const [userAccount, setUserAccount] = useRecoilState(userInfo);
 
   const [name, setName] = useState<String>('');
   const [description, setDescription] = useState<String>('');
