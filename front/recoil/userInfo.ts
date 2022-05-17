@@ -6,7 +6,7 @@ interface UserInfo {
   nickname: String;
   profileUrl: String;
 }
-export const userInfoState = atom<UserInfo>({
+export const userInfo = atom<UserInfo>({
   key: 'userInfo',
   default: {
     address: '',

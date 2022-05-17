@@ -19,7 +19,7 @@ import {
 } from '@mui/icons-material';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { userInfoState } from 'recoil/userInfo';
+import { userInfo } from 'recoil/userInfo';
 import { metamaskLogin } from 'utils/metamaskLogin';
 
 const pages = [
@@ -32,7 +32,7 @@ const pages = [
 
 const ResponsiveAppBar = () => {
   const router = useRouter();
-  const [userAccount, setUserAccount] = useRecoilState(userInfoState);
+  const [userAccount, setUserAccount] = useRecoilState(userInfo);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
