@@ -1,17 +1,8 @@
 import { useState, ChangeEvent, useRef, FormEvent } from 'react';
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  Input,
-  TextField,
-  Button,
-  Stack,
-} from '@mui/material';
+import { Box, TextField, Button, Stack } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import Page from 'Layouts/Page';
 import { imageUploadAPI, createArtAPI } from 'api/art';
-import { metartContract } from 'contract/web3Config';
 import { userInfo } from 'recoil/userInfo';
 
 function CreateArt() {
