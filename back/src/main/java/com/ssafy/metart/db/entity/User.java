@@ -17,6 +17,7 @@ import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.apache.commons.lang3.RandomStringUtils;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -54,8 +55,8 @@ public class User {
 
     public User(String address) {
         this.address = address;
-        this.name = address;
-        this.profileUrl = "";
+        this.name = RandomStringUtils.random(15, true, true);
+        this.profileUrl = "https://kgw012-metart-bucket.s3.ap-northeast-2.amazonaws.com/amugeona.png";
         this.biography = "";
         this.artList = new ArrayList<>();
         this.ownedArtList = new ArrayList<>();
