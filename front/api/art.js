@@ -23,6 +23,8 @@ export const createArtAPI = (data) =>
     },
   });
 
+export const createSaleAPI = (data) => http.post('/sale', data);
+
 // export const getArt = (artid) => {
 //   const id = String(artid);
 //   const { data, error } = useSWR(`/art/${id}`, fetcher);
