@@ -39,10 +39,12 @@ const Home: NextPage = () => {
   };
 
   useEffect(() => {
-    window.ethereum.on('accountsChanged', async () => {
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', async () => {
+        connectedAccount();
+      });
       connectedAccount();
-    });
-    connectedAccount();
+    }
   }, []);
 
   return (
