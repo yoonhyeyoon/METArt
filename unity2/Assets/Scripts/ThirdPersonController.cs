@@ -358,17 +358,23 @@ namespace StarterAssets
 
 		private void OnTriggerEnter(Collider other)
 		{
-			CanvasManager.Instance.OpenHelpText();
-			exhibitGameObject = other.gameObject;
-			IsInExhibitArea = true;
+			if (photonView.IsMine)
+			{
+				CanvasManager.Instance.OpenHelpText();
+				exhibitGameObject = other.gameObject;
+				IsInExhibitArea = true;
+			}
 		}
 
 		private void OnTriggerExit(Collider other)
-    {
-			CanvasManager.Instance.CloseHelpText();
-			CanvasManager.Instance.CloseExhibitContentBoard();
-			IsInExhibitArea = false;
-			IsOpenExhibitInfo = false;
+    	{
+			if (photonView.IsMine)
+			{
+				CanvasManager.Instance.CloseHelpText();
+				CanvasManager.Instance.CloseExhibitContentBoard();
+				IsInExhibitArea = false;
+				IsOpenExhibitInfo = false;
+			}
 		}
 
 	}
