@@ -15,6 +15,10 @@ function ArtIndex() {
   // 검색 API 호출
   const handleSearchClick = () => {
     console.log(search);
+
+    if (search === '') {
+      return;
+    }
   };
 
   return (
