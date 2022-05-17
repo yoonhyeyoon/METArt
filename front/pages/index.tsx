@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import type { NextPage } from 'next';
 import { useRecoilState } from 'recoil';
-import { userInfoState } from 'recoil/userInfo';
+import { userInfo } from 'recoil/userInfo';
 import Page from 'Layouts/Page';
 import LandingVideo from 'components/landing/LandingVideo';
 import LandingSummary from 'components/landing/LandingSummary';
@@ -16,7 +16,7 @@ declare global {
 }
 
 const Home: NextPage = () => {
-  const [userAccount, setUserAccount] = useRecoilState(userInfoState);
+  const [userAccount, setUserAccount] = useRecoilState(userInfo);
 
   const connectedAccount = () => {
     metamaskLogin().then((data) => {

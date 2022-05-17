@@ -38,7 +38,7 @@ function LandingSummary() {
         <Typography variant="h3" mb={4} fontFamily="inherit">
           Popular Gallery
         </Typography>
-        <PopularGalleryList />
+        {/* <PopularGalleryList /> */}
         <Box sx={{ textAlign: 'center', mt: 5 }}>
           <Link href="/galleries">
             <ToggleButton value="more" sx={{ px: 15 }}>

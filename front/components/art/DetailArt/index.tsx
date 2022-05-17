@@ -17,11 +17,11 @@ import Box from '@mui/material/Box';
 import ArtInfoTable from '../ArtInfoTable';
 import { SdCardAlert } from '@mui/icons-material';
 import { useRecoilValue } from 'recoil';
-import { userInfoState } from 'recoil/userInfo';
+import { userInfo } from 'recoil/userInfo';
 
 function DetailArt(art: ArtType) {
-  const userInfo = useRecoilValue(userInfoState);
-  console.log(userInfo);
+  const user = useRecoilValue(userInfo);
+  console.log(user);
   return (
     <div>
       <section>
@@ -50,7 +50,7 @@ function DetailArt(art: ArtType) {
                   },
                 }}
               >
-                {art.owner.address == userInfo.address
+                {art.owner.address == user.address
                   ? art.onSaleYn
                     ? '판매 중지하기'
                     : '판매하기'
