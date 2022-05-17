@@ -2,8 +2,8 @@ package com.ssafy.metart.api.controller;
 
 import com.ssafy.metart.api.event.CreateSaleEvent;
 import com.ssafy.metart.api.event.EndSaleEvent;
-import com.ssafy.metart.api.request.SaleCancelReq;
 import com.ssafy.metart.api.request.SaleSaveReq;
+import com.ssafy.metart.api.request.TxHashReq;
 import com.ssafy.metart.api.response.SaleGetRes;
 import com.ssafy.metart.api.service.SaleService;
 import com.ssafy.metart.db.entity.Sale;
@@ -70,7 +70,7 @@ public class SaleController {
 
     @PutMapping("/{saleId}/cancel")
     public ResponseEntity<SaleGetRes> cancelSale(
-        @PathVariable Long saleId, @Valid @RequestBody SaleCancelReq req
+        @PathVariable Long saleId, @Valid @RequestBody TxHashReq req
     ) throws TransactionException, IOException {
         TransactionReceiptProcessor receiptProcessor = new PollingTransactionReceiptProcessor(web3j, 1000, 600);
 
@@ -79,6 +79,21 @@ public class SaleController {
         EndSaleEvent event = EndSaleEvent.getEvent(receipt.getLogs());
 
         Sale sale = saleService.cancelSale(saleId, event);
+        SaleGetRes res = SaleGetRes.of(sale);
+        return ResponseEntity.status(HttpStatus.CREATED).body(res);
+    }
+
+    @PutMapping("/{saleId}/purchase")
+    public ResponseEntity<SaleGetRes> purchase(
+        @PathVariable Long saleId, @Valid @RequestBody TxHashReq req
+    ) throws TransactionException, IOException {
+        TransactionReceiptProcessor receiptProcessor = new PollingTransactionReceiptProcessor(web3j, 1000, 600);
+
+        TransactionReceipt receipt = receiptProcessor.waitForTransactionReceipt(req.getTx());
+
+        EndSaleEvent event = EndSaleEvent.getEvent(receipt.getLogs());
+
+        Sale sale = saleService.purchase(saleId, event);
         SaleGetRes res = SaleGetRes.of(sale);
         return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }

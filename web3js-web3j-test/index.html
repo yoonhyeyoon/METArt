@@ -23,7 +23,7 @@
     <div>
       <h3>작품 생성하기</h3>
       <input type="file" id="image-file" />
-      <input type="button" id="create-art" value="create Art" />
+      <input type="button" id="create-art-btn" value="create Art" />
       <p id="create-art-tx">transaction hash value</p>
       <p id="save-art-res">save art response</p>
     </div>
@@ -35,7 +35,7 @@
         id="token-id"
         placeholder="판매 등록할 토큰 id를 입력하세요"
       />
-      <input type="button" id="create-sale" value="create Sale" />
+      <input type="button" id="create-sale-btn" value="create Sale" />
       <p id="create-sale-tx">transaction hash value</p>
       <p id="save-sale-res">save sale response</p>
     </div>
@@ -47,9 +47,21 @@
         id="cancel-sale-id"
         placeholder="판매 취소할 판매 id를 입력하세요"
       />
-      <input type="button" id="cancel-sale" value="cancel Sale" />
+      <input type="button" id="cancel-sale-btn" value="cancel Sale" />
       <p id="cancel-sale-tx">transaction hash value</p>
       <p id="cancel-sale-res">cancel sale response</p>
+    </div>
+    <hr />
+    <div>
+      <h3>구매하기</h3>
+      <input
+        type="text"
+        id="purchase-id"
+        placeholder="구매할 판매 id를 입력하세요"
+      />
+      <input type="button" id="purchase-btn" value="purchase" />
+      <p id="purchase-tx">transaction hash value</p>
+      <p id="purchase-res">purchase response</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>

@@ -84,4 +84,34 @@ public class SaleService {
         sale.cancelSale();
         return saleRepository.save(sale);
     }
+
+    @Transactional
+    public Sale purchase(Long saleId, EndSaleEvent event) {
+        if (saleId != event.getSaleId()) {
+            throw new ApiException(ExceptionEnum.BAD_REQUEST_EXCEPTION);
+        }
+
+        Sale sale = saleRepository.findById(saleId)
+            .orElseThrow(() -> new ApiException(ExceptionEnum.SALE_NOT_FOUND));
+
+        if (!sale.getSeller().getAddress().equalsIgnoreCase(event.getSellerAddress())) {
+            throw new ApiException(ExceptionEnum.SALE_UNAUTHORIZED);
+        }
+
+        if (sale.getSaleYn() || sale.getIsCanceled()) {
+            throw new ApiException(ExceptionEnum.BAD_REQUEST_EXCEPTION);
+        }
+
+        User buyer = userRepository.findByAddress(event.getBuyerAddress())
+            .orElseThrow(() -> new ApiException(ExceptionEnum.USER_NOT_FOUND));
+
+        if (sale.getSeller() == buyer) {
+            throw new ApiException(ExceptionEnum.SALE_CONFLICT);
+        }
+
+        sale.getArt().transferArt(buyer);
+        sale.getArt().stopSale();
+        sale.purchase(buyer);
+        return saleRepository.save(sale);
+    }
 }
