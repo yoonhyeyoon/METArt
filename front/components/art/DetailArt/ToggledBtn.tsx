@@ -10,18 +10,21 @@ import {
   Typography,
   Button,
 } from '@mui/material';
-import { createSaleAPI } from 'api/art';
+import { createSaleAPI, cancelSaleAPI } from 'api/art';
 
 type Props = {
-  owner: String;
-  address: String;
-  onSaleYn: Boolean;
-  tokenId: Number;
+  owner: string;
+  address: string;
+  onSaleYn: boolean;
+  tokenId: number;
+  saleId: number | null;
 };
 
-function ToggledBtn({ owner, address, onSaleYn, tokenId }: Props) {
+function ToggledBtn({ owner, address, onSaleYn, tokenId, saleId }: Props) {
   const [openSell, setSellOpen] = useState<boolean>(false);
   const [price, setPrice] = useState<number>(0);
+  const [tokenSaleId, setTokenSaleId] = useState<number | null>(saleId);
+  const [isOnSale, setIsOnSale] = useState<boolean>(onSaleYn);
 
   const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(e.target.value));
@@ -38,7 +41,6 @@ function ToggledBtn({ owner, address, onSaleYn, tokenId }: Props) {
 
   // 판매하기
   const onClickSale = async () => {
-    console.log('salse');
     if (price < 0.0001) return alert('0.0001ETH 보다 커야합니다.');
     try {
       // SC 판매 등록하기
@@ -47,29 +49,49 @@ function ToggledBtn({ owner, address, onSaleYn, tokenId }: Props) {
         .createSale(tokenId, String(price * 10 ** 18))
         .send({ from: address })
         .on('transactionHash', (hash: String) => {
+          // 백엔드에 판매정보 등록하기
           createSaleAPI({
             tx: hash,
             tokenId: tokenId,
           })
             .then(({ data }) => {
+              setIsOnSale(true);
+              setTokenSaleId(data.id);
               handleSellClose();
             })
             .catch((err) => {
               console.log(err);
             });
         });
-      // 백엔드에 판매정보 등록하기
-
-      // 판매 상세 페이지로 이동시키기
     } catch (error) {
       console.dir(error);
     }
   };
 
+  // 판매 중지 하기
+  const onClickCancelSale = async () => {
+    const { auctionContract } = await import('contract/web3Config');
+    // SC 판매 중지
+    auctionContract.methods
+      .cancelSale(tokenSaleId)
+      .send({ from: address })
+      .on('transactionHash', (hash: String) => {
+        // 백엔드에 판매 중지 정보 등록하기
+        cancelSaleAPI({ tx: hash }, tokenSaleId)
+          .then((res) => {
+            console.log(res);
+            setIsOnSale(false);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+  };
+
   if (owner === address) {
-    return onSaleYn ? (
+    return isOnSale ? (
       <ToggleButton
-        onClick={() => {}}
+        onClick={onClickCancelSale}
         value="stopSale"
         sx={{
           px: 15,
@@ -121,7 +143,7 @@ function ToggledBtn({ owner, address, onSaleYn, tokenId }: Props) {
       </>
     );
   } else {
-    return onSaleYn ? (
+    return isOnSale ? (
       <ToggleButton
         value="buy"
         onClick={() => {}}

@@ -24,6 +24,8 @@ export const createArtAPI = (data) =>
   });
 
 export const createSaleAPI = (data) => http.post('/sale', data);
+export const cancelSaleAPI = (data, tokenId) =>
+  http.put(`/sale/${tokenId}/cancel`, data);
 
 // export const getArt = (artid) => {
 //   const id = String(artid);
