@@ -26,6 +26,7 @@ const Home: NextPage = () => {
           createdAt: data.createdAt,
           nickname: data.name,
           profileUrl: data.profileUrl,
+          biography: data.biography,
         });
       } else {
         setUserAccount({
@@ -33,6 +34,7 @@ const Home: NextPage = () => {
           createdAt: '',
           nickname: '',
           profileUrl: '',
+          biography: '',
         });
       }
     });

@@ -27,17 +27,17 @@ export default function Layout({ title = '', children }: Props) {
             ml="20%"
             mr="20%"
             minHeight="80px"
-            pb={5}
+            pb={10}
           >
             <Box
               position="absolute"
-              left="20%"
+              left="10%"
               padding={3}
               sx={{ cursor: 'pointer' }}
             >
               <BackIcon onClick={() => router.back()} />
             </Box>
-            <Typography variant="h3" textAlign="center">
+            <Typography variant="h3" textAlign="center" fontFamily="Georgia">
               {title}
             </Typography>
           </Stack>

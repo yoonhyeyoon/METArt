@@ -18,7 +18,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { userInfo } from 'recoil/userInfo';
 import { updateUserAPI } from 'api/user';
 
@@ -26,6 +26,7 @@ function ProfileSettingModal() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [userAccount, setUserAccount] = useRecoilState(userInfo);
 
   const { address, profileUrl, nickname, biography } = useRecoilValue(userInfo);
   // console.log(biography);
@@ -74,6 +75,13 @@ function ProfileSettingModal() {
     // console.log(name, description, fileImg);
     const { data } = await updateUserAPI(address, formData);
     console.log(data);
+    setUserAccount({
+      address: data.address,
+      createdAt: data.createdAt,
+      nickname: data.name,
+      profileUrl: data.profileUrl,
+      biography: data.biography,
+    });
     setOpen(false);
   };
   return (

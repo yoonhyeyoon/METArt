@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   profileBox,
   profileContainer,
@@ -20,8 +20,9 @@ import { userInfo } from 'recoil/userInfo';
 
 function Profile() {
   const router = useRouter();
+
   const { galleryid } = router.query;
-  const { address } = useRecoilValue(userInfo);
+  const { address, profileUrl, nickname, biography } = useRecoilValue(userInfo);
   const { data, isLoading, isError } = getProfileAPI(galleryid);
   console.log(data);
 
@@ -40,7 +41,6 @@ function Profile() {
           <div css={profileDiv}>
             <div css={profileDescription}>
               <h1 css={profileName}>{data.name}</h1>
-              <h3>Bio.</h3>
               <p css={profileInfo}>{data.biography}</p>
               {galleryid == address ? <ProfileSettingModal /> : null}
             </div>

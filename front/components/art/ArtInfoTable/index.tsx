@@ -30,7 +30,7 @@ function ArtInfoTable() {
           alignItems: 'center',
         }}
       >
-        <TableContainer sx={{ width: '70%' }}>
+        <TableContainer sx={{ width: '30%' }}>
           <Table>
             <TableRow hover>
               <TableCell>작가</TableCell>
