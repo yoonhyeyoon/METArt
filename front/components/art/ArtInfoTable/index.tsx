@@ -35,14 +35,28 @@ function ArtInfoTable() {
             <TableRow hover>
               <TableCell>작가</TableCell>
               <TableCell>
-                <Avatar alt={data.creator.name} src={data.creator.profileUrl} />
+                <Avatar
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() =>
+                    router.push(`/galleries/${data.creator.address}`)
+                  }
+                  alt={data.creator.name}
+                  src={data.creator.profileUrl}
+                />
                 <span>{data.creator.name}</span>
               </TableCell>
             </TableRow>
             <TableRow hover>
               <TableCell>소유자</TableCell>
               <TableCell>
-                <Avatar alt={data.owner.name} src={data.owner.profileUrl} />
+                <Avatar
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() =>
+                    router.push(`/galleries/${data.owner.address}`)
+                  }
+                  alt={data.owner.name}
+                  src={data.owner.profileUrl}
+                />
                 <span>{data.owner.name}</span>
               </TableCell>
             </TableRow>

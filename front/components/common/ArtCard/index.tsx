@@ -22,7 +22,12 @@ export default function ArtCard(art: ContentType) {
       <CardHeader
         avatar={
           art.creator ? (
-            <Avatar alt="Ted talk" src={art.creator.profileUrl} />
+            <Avatar
+              sx={{ cursor: 'pointer' }}
+              alt="Ted talk"
+              src={art.creator.profileUrl}
+              onClick={() => router.push(`/galleries/${art.creator.address}`)}
+            />
           ) : (
             <Skeleton
               animation="wave"
