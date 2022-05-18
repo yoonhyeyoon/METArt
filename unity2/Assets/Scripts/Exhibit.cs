@@ -19,6 +19,8 @@ public class Exhibit : MonoBehaviour
     public string exhibitName;
     public string content;
     public string helpmessage;
+    public Material m_material;
+    public long price;
 
     public string year;
     public string producer;
@@ -60,6 +62,8 @@ public class Exhibit : MonoBehaviour
             for (int j = 0; j < materials.Length; j++)
             {
                 Material material = materials[j];
+                m_material = material;
+
                 if (m_materials.Add(material))
                 {
                     m_materials.Add(material);
@@ -131,6 +135,19 @@ public class Exhibit : MonoBehaviour
     }
     public virtual void RequestGameRank()
     {
-
+    }
+    
+    public virtual void GetInfo() {
+        StartCoroutine(Http.GetExhibitInfo(exhibitId, (exhibitInfo) => {
+            StartCoroutine(Http.GetTexture(exhibitInfo.tokenURI, (res) => {
+                Texture texture = res;
+                m_material.mainTexture = texture;
+            }));
+            content = exhibitInfo.price.ToString();
+            exhibitName = exhibitInfo.name;
+            year = exhibitInfo.createdAt;
+            producer = exhibitInfo.creatorName;
+            price = exhibitInfo.price;
+        }));
     }
 }

@@ -1,12 +1,10 @@
 public class Exhibit1 : Exhibit
 {
     void Start()
-    {
-        exhibitId = 9;
-        exhibitName = "FloppyDisk 5.2";
-        year = "1976";
-        producer = "Shugart Technology";
-        content = "1";
+    {   
+        exhibitId = 1;
+
+        GetInfo();
 
         m_MinRotate = -180;
         m_MaxRotate = 180;
