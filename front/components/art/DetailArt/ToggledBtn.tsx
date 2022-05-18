@@ -51,6 +51,7 @@ function ToggledBtn({
   // 판매하기
   const onClickSale = async () => {
     if (salePrice < 0.0001) return alert('0.0001ETH 보다 커야합니다.');
+    setSellOpen(false);
     setLoading(true);
     try {
       // SC 판매 등록하기
