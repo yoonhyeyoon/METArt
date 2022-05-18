@@ -73,7 +73,7 @@ function CreateArt() {
 
   return (
     <>
-      <Page>
+      <Page title="Upload My Art">
         <Box component="form" onSubmit={handleSubmit} mt={10} ml={10} mr={10}>
           <Stack spacing={4}>
             <Stack direction="row" alignItems="center">

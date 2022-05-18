@@ -22,7 +22,7 @@ function ArtIndex() {
   };
 
   return (
-    <Page>
+    <Page title="Arts List">
       <Box width="500px" mt={2} mb={5}>
         <SearchBar
           handleSearchChange={handleSearchChange}
