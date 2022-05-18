@@ -59,8 +59,8 @@ function GalleryArtList() {
             exclusive
             onChange={handleArtState}
           >
-            <ToggleButton value="art">Art</ToggleButton>
-            <ToggleButton value="buy">Buy</ToggleButton>
+            <ToggleButton value="art">My Art</ToggleButton>
+            <ToggleButton value="buy">Own</ToggleButton>
           </ToggleButtonGroup>
           <ImageList variant="masonry" cols={4} gap={40}>
             {artState == 'art' &&
