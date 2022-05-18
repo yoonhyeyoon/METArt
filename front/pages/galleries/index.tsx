@@ -22,12 +22,7 @@ function GalleryIndex() {
       {/* <Typography variant="h2" mt={5}>
         Gallery
       </Typography> */}
-      <Box width="500px" mt={2} mb={5}>
-        <SearchBarGallery
-          handleSearchChange={handleSearchChange}
-          handleSearchClick={handleSearchClick}
-        />
-      </Box>
+
       <GalleryList />
     </Page>
   );

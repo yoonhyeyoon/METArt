@@ -16,7 +16,7 @@ import { useRouter } from 'next/router';
 
 export default function ArtCard(art: ContentType) {
   const router = useRouter();
-  console.log(art);
+  // console.log(art);
   return (
     <Card sx={{ boxShadow: 'rgb(0 0 0 / 5%) 2px 2px 20px' }}>
       <CardHeader

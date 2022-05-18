@@ -14,6 +14,11 @@ export const getArtList = () => {
   };
 };
 
+export const getSearchArtListAPI = (search) => {
+  // console.log(search);
+  return http.get(`/art?name=${search.name}`);
+};
+
 export const imageUploadAPI = (data) => http.post('/image', data);
 
 export const createArtAPI = (data) =>

@@ -6,29 +6,8 @@ import SearchBar from 'components/common/SearchBar';
 import ArtList from 'components/arts/ArtList';
 
 function ArtIndex() {
-  const [search, setSearch] = useState<String>('');
-
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
-
-  // 검색 API 호출
-  const handleSearchClick = () => {
-    console.log(search);
-
-    if (search === '') {
-      return;
-    }
-  };
-
   return (
     <Page title="Arts List">
-      <Box width="500px" mt={2} mb={5}>
-        <SearchBar
-          handleSearchChange={handleSearchChange}
-          handleSearchClick={handleSearchClick}
-        />
-      </Box>
       <ArtList />
     </Page>
   );
