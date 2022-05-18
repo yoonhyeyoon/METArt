@@ -25,9 +25,9 @@ public class ExhibitionController {
     private final ExhibitionService exhibitionService;
 
     @GetMapping("/{exhibitionId}")
-    public ResponseEntity<SaleGetRes> getExhibition(@PathVariable Long exhibitionId) {
-        Sale sale = exhibitionService.getExhibition(exhibitionId);
-        SaleGetRes res = SaleGetRes.of(sale);
+    public ResponseEntity<ExhibitionGetRes> getExhibition(@PathVariable Long exhibitionId) {
+        Exhibition exhibition = exhibitionService.getExhibition(exhibitionId);
+        ExhibitionGetRes res = ExhibitionGetRes.of(exhibition);
         return ResponseEntity.ok(res);
     }
 
