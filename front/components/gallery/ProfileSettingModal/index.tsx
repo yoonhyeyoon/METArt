@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
@@ -22,7 +22,17 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userInfo } from 'recoil/userInfo';
 import { updateUserAPI } from 'api/user';
 
-function ProfileSettingModal() {
+type gallerInfo = {
+  name: string;
+  biography: string;
+  profileUrl: string;
+};
+
+type Props = {
+  handelProfileUpdate: (data: gallerInfo) => void;
+};
+
+function ProfileSettingModal({ handelProfileUpdate }: Props) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -81,6 +91,11 @@ function ProfileSettingModal() {
       nickname: data.name,
       profileUrl: data.profileUrl,
       biography: data.biography,
+    });
+    handelProfileUpdate({
+      name: data.name,
+      biography: data.biography,
+      profileUrl: data.profileUrl,
     });
     setOpen(false);
   };
