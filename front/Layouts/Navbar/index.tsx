@@ -22,12 +22,6 @@ import { useRecoilState } from 'recoil';
 import { userInfo } from 'recoil/userInfo';
 import { metamaskLogin } from 'utils/metamaskLogin';
 
-const pages = [
-  { name: 'Art', url: '/arts', login: false },
-  { name: 'Gallery', url: '/galleries', login: false },
-  { name: 'My Gallery', url: '/galleries/a', login: true },
-  { name: 'Add art', url: '/createart', login: true },
-];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -35,6 +29,17 @@ const ResponsiveAppBar = () => {
   const [userAccount, setUserAccount] = useRecoilState(userInfo);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+  const pages = [
+    { name: 'Art', url: '/arts', login: false },
+    { name: 'Gallery', url: '/galleries', login: false },
+    {
+      name: 'My Gallery',
+      url: `/galleries/${userAccount.address}`,
+      login: true,
+    },
+    { name: 'Add art', url: '/createart', login: true },
+  ];
 
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -217,10 +222,7 @@ const ResponsiveAppBar = () => {
             <Tooltip title="">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 {userAccount.address ? (
-                  <Avatar
-                    alt="Kemy Sharp"
-                    src="https://img.sbs.co.kr/newsnet/etv/upload/2019/01/31/30000622371_700.jpg"
-                  />
+                  <Avatar alt="Kemy Sharp" src={userAccount.profileUrl} />
                 ) : (
                   <WalletIcon />
                 )}
