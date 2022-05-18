@@ -49,7 +49,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Page>
+      <Page title="">
         <LandingVideo />
         <LandingSummary />
         <ScrollToTop />

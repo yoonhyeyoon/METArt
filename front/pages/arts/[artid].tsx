@@ -14,7 +14,7 @@ function Art() {
   if (!data) return <div>loading...</div>;
 
   return (
-    <Page>
+    <Page title="Art Detail">
       <DetailArt {...data} />
     </Page>
   );

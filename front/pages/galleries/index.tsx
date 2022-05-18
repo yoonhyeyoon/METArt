@@ -18,7 +18,7 @@ function GalleryIndex() {
   };
 
   return (
-    <Page>
+    <Page title="Artists List">
       {/* <Typography variant="h2" mt={5}>
         Gallery
       </Typography> */}

@@ -6,7 +6,7 @@ import Page from '../../Layouts/Page';
 
 function Gallery() {
   return (
-    <Page>
+    <Page title="Artist Detail">
       <Profile />
       <GalleryArtList />
     </Page>
