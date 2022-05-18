@@ -68,9 +68,9 @@ export default function ArtCard(art: ContentType) {
       )}
 
       <CardContent>
-        {art.name ? (
+        {art.sale ? (
           <span style={{ textAlign: 'center' }}>
-            {art.sale.price / 10 ** 18} ETH
+            {art.sale?.price / 10 ** 18} ETH
           </span>
         ) : (
           <React.Fragment>

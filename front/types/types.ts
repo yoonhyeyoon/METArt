@@ -24,7 +24,7 @@ export type ContentType = {
   onSaleYn: boolean;
   creator: CreatorOwnerType;
   owner: CreatorOwnerType;
-  sale: SaleType;
+  sale: SaleType | null;
 };
 
 export type CreatorOwnerType = {

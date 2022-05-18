@@ -5,6 +5,7 @@ interface UserInfo {
   createdAt: string;
   nickname: string;
   profileUrl: string;
+  biography: string;
 }
 
 export const userInfo = atom<UserInfo>({
@@ -14,5 +15,6 @@ export const userInfo = atom<UserInfo>({
     createdAt: '',
     nickname: '',
     profileUrl: '',
+    biography: '',
   },
 });

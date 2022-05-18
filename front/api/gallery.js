@@ -18,8 +18,8 @@ export const getGalleryArtAPI = (address) => {
   return {
     data: data,
     artList: data && data.content,
-    isLoading: !error && !data,
-    isError: error,
+    isLoad: !error && !data,
+    isErr: error,
   };
 };
 

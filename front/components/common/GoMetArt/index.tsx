@@ -31,7 +31,7 @@ function GoMetArt() {
   return (
     <div>
       <button
-        onClick={() => router.push(`/metart`)}
+        onClick={() => router.push(`/webgl`)}
         css={BtnStatus ? MetaArtBtnActive : MetaArtBtn}
       >
         M
