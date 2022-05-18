@@ -12,10 +12,10 @@ function CreateArt() {
   const imageSelect = useRef<HTMLInputElement>(null);
   const [userAccount, setUserAccount] = useRecoilState(userInfo);
 
-  const [name, setName] = useState<String>('');
-  const [description, setDescription] = useState<String>('');
+  const [name, setName] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
   const [image, setImage] = useState<File | ''>('');
-  const [imageName, setImageName] = useState<String>('');
+  const [imageName, setImageName] = useState<string>('');
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);

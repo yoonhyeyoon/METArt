@@ -15,10 +15,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 import ProfileSettingModal from '../ProfileSettingModal';
 import { getProfileAPI } from 'api/gallery';
 import { useRouter } from 'next/router';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from 'recoil/userInfo';
 
 function Profile() {
   const router = useRouter();
   const { galleryid } = router.query;
+  const { address } = useRecoilValue(userInfo);
   const { data, isLoading, isError } = getProfileAPI(galleryid);
   console.log(data);
 
@@ -39,7 +42,7 @@ function Profile() {
               <h1 css={profileName}>{data.name}</h1>
               <h3>Bio.</h3>
               <p css={profileInfo}>{data.biography}</p>
-              <ProfileSettingModal />
+              {galleryid == address ? <ProfileSettingModal /> : null}
             </div>
           </div>
         </div>

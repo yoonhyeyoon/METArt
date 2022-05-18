@@ -63,6 +63,7 @@ const ResponsiveAppBar = () => {
           createdAt: data.createdAt,
           nickname: data.name,
           profileUrl: data.profileUrl,
+          biography: data.biography,
         });
       } else {
         setUserAccount({
@@ -70,6 +71,7 @@ const ResponsiveAppBar = () => {
           createdAt: '',
           nickname: '',
           profileUrl: '',
+          biography: '',
         });
       }
     });
@@ -82,6 +84,7 @@ const ResponsiveAppBar = () => {
       createdAt: '',
       nickname: '',
       profileUrl: '',
+      biography: '',
     });
     setAnchorElUser(null);
   };

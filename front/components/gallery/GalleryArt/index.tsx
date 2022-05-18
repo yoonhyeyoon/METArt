@@ -47,7 +47,7 @@ function GalleryArt(art: ContentType) {
       />
       <div css={transParentBox} className="transparent-box">
         <div css={caption} className="caption">
-          {art.onSaleYn ? <p>{art.sale?.price}</p> : null}
+          <p>{art.sale ? <p>{art.sale?.price / 10 ** 18} EHT</p> : null}</p>
           <p css={artPrice}>{art.name}</p>
         </div>
       </div>
