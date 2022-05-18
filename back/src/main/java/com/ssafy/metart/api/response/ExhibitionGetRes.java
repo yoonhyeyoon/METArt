@@ -13,6 +13,7 @@ public class ExhibitionGetRes {
     private Long id;
     private Long saleId;
     private String name;
+    private String tokenURI;
     private LocalDateTime createdAt;
     private String creatorName;
 
@@ -27,6 +28,7 @@ public class ExhibitionGetRes {
             res.saleId = exhibition.getSale().getId();
             if (exhibition.getSale().getArt() != null) {
                 res.name = exhibition.getSale().getArt().getName();
+                res.tokenURI = exhibition.getSale().getArt().getTokenURI();
                 res.createdAt = exhibition.getSale().getArt().getCreatedAt();
                 res.creatorName = exhibition.getSale().getArt().getCreator().getName();
             }
