@@ -20,6 +20,7 @@ function DetailArt(art: ArtType) {
         <Typography variant="h3">{art.name}</Typography>
         <Typography variant="h6">{art.description}</Typography>
         <ToggledBtn
+          saleId={art.sale ? art.sale.id : null}
           tokenId={art.id}
           owner={art.owner.address}
           address={address}
