@@ -50,7 +50,7 @@ public class UserService {
         User user = userRepository.findByAddress(address)
             .orElseThrow(() -> new ApiException(ExceptionEnum.USER_NOT_FOUND));
 
-        String profileUrl = "";
+        String profileUrl = user.getProfileUrl();
         if (req.getProfileImgFile() != null) {
             profileUrl = amazonS3Service.uploadFile(req.getProfileImgFile());
         }
