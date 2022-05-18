@@ -10,7 +10,7 @@ import {
   Typography,
   Button,
 } from '@mui/material';
-import { createSaleAPI, cancelSaleAPI } from 'api/art';
+import { createSaleAPI, cancelSaleAPI, purchaseSaleAPI } from 'api/art';
 
 type Props = {
   owner: string;
@@ -18,16 +18,24 @@ type Props = {
   onSaleYn: boolean;
   tokenId: number;
   saleId: number | null;
+  price: number | null;
 };
 
-function ToggledBtn({ owner, address, onSaleYn, tokenId, saleId }: Props) {
+function ToggledBtn({
+  owner,
+  address,
+  onSaleYn,
+  tokenId,
+  saleId,
+  price,
+}: Props) {
   const [openSell, setSellOpen] = useState<boolean>(false);
-  const [price, setPrice] = useState<number>(0);
+  const [salePrice, setSalePrice] = useState<number>(0);
   const [tokenSaleId, setTokenSaleId] = useState<number | null>(saleId);
   const [isOnSale, setIsOnSale] = useState<boolean>(onSaleYn);
 
   const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(Number(e.target.value));
+    setSalePrice(Number(e.target.value));
   };
 
   const handleClickSellOpen = () => {
@@ -35,18 +43,18 @@ function ToggledBtn({ owner, address, onSaleYn, tokenId, saleId }: Props) {
   };
 
   const handleSellClose = () => {
-    setPrice(0);
+    setSalePrice(0);
     setSellOpen(false);
   };
 
   // 판매하기
   const onClickSale = async () => {
-    if (price < 0.0001) return alert('0.0001ETH 보다 커야합니다.');
+    if (salePrice < 0.0001) return alert('0.0001ETH 보다 커야합니다.');
     try {
       // SC 판매 등록하기
       const { auctionContract } = await import('contract/web3Config');
       auctionContract.methods
-        .createSale(tokenId, String(price * 10 ** 18))
+        .createSale(tokenId, String(salePrice * 10 ** 18))
         .send({ from: address })
         .on('transactionHash', (hash: String) => {
           // 백엔드에 판매정보 등록하기
@@ -72,6 +80,7 @@ function ToggledBtn({ owner, address, onSaleYn, tokenId, saleId }: Props) {
   const onClickCancelSale = async () => {
     const { auctionContract } = await import('contract/web3Config');
     // SC 판매 중지
+
     auctionContract.methods
       .cancelSale(tokenSaleId)
       .send({ from: address })
@@ -81,6 +90,26 @@ function ToggledBtn({ owner, address, onSaleYn, tokenId, saleId }: Props) {
           .then((res) => {
             console.log(res);
             setIsOnSale(false);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+  };
+
+  // 구매 하기
+  const onClickBuy = async () => {
+    const { auctionContract } = await import('contract/web3Config');
+    // SC 구매 하기
+    auctionContract.methods
+      .purchase(tokenSaleId)
+      .send({ from: address, value: price })
+      .on('transactionHash', (hash: string) => {
+        // 백엔드에 구매하기 요청
+        purchaseSaleAPI({ tx: hash }, tokenSaleId)
+          .then((res) => {
+            console.log(res);
+            // 라우팅 어디로???
           })
           .catch((err) => {
             console.log(err);
@@ -131,7 +160,7 @@ function ToggledBtn({ owner, address, onSaleYn, tokenId, saleId }: Props) {
               type="Number"
               fullWidth
               variant="standard"
-              value={price}
+              value={salePrice}
               onChange={onChangePrice}
             />
           </DialogContent>
@@ -146,7 +175,7 @@ function ToggledBtn({ owner, address, onSaleYn, tokenId, saleId }: Props) {
     return isOnSale ? (
       <ToggleButton
         value="buy"
-        onClick={() => {}}
+        onClick={onClickBuy}
         sx={{
           px: 15,
           '&:hover': {
@@ -159,7 +188,7 @@ function ToggledBtn({ owner, address, onSaleYn, tokenId, saleId }: Props) {
         구매 하기
       </ToggleButton>
     ) : (
-      <Box></Box>
+      <Box>구매할 수 없는 상품입니다.</Box>
     );
   }
 }

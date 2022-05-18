@@ -19,7 +19,11 @@ function DetailArt(art: ArtType) {
         </Box>
         <Typography variant="h3">{art.name}</Typography>
         <Typography variant="h6">{art.description}</Typography>
+        {art.onSaleYn && (
+          <Typography variant="h6">{art.sale.price / 10 ** 18} eth</Typography>
+        )}
         <ToggledBtn
+          price={art.sale ? art.sale.price : null}
           saleId={art.sale ? art.sale.id : null}
           tokenId={art.id}
           owner={art.owner.address}
