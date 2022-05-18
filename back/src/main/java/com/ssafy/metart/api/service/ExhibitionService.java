@@ -19,11 +19,11 @@ public class ExhibitionService {
     private final SaleRepository saleRepository;
 
     @Transactional(readOnly = true)
-    public Sale getExhibition(Long exhibitionId) {
+    public Exhibition getExhibition(Long exhibitionId) {
         Exhibition exhibition = exhibitionRepository.findById(exhibitionId)
             .orElseThrow(() -> new ApiException(ExceptionEnum.EXHIBITION_NOT_FOUND));
 
-        return exhibition.getSale();
+        return exhibition;
     }
 
     @Transactional
