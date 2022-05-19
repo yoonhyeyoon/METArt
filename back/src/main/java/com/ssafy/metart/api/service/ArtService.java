@@ -64,4 +64,10 @@ public class ArtService {
         art.updateArtDescription(req.getDescription());
         return artRepository.save(art);
     }
+
+    @Transactional(readOnly = true)
+    public List<Art> listNewArt() {
+        List<Art> newArts = artRepository.listNewArt();
+        return newArts;
+    }
 }

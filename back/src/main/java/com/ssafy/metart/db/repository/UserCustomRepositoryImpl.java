@@ -2,9 +2,12 @@ package com.ssafy.metart.db.repository;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQuery;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.metart.db.entity.User;
 import java.util.List;
 import java.util.Objects;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -15,8 +18,12 @@ import static com.ssafy.metart.db.entity.QUser.user;
 
 public class UserCustomRepositoryImpl extends QuerydslRepositorySupport implements UserCustomRepository {
 
-    public UserCustomRepositoryImpl() {
+    private final JPAQueryFactory jpaQueryFactory;
+
+    @Autowired
+    public UserCustomRepositoryImpl(JPAQueryFactory jpaQueryFactory) {
         super(User.class);
+        this.jpaQueryFactory = jpaQueryFactory;
     }
 
     @Override
@@ -26,6 +33,15 @@ public class UserCustomRepositoryImpl extends QuerydslRepositorySupport implemen
             .where(containsName(name));
 
         return PageableExecutionUtils.getPage(query.fetch(), pageable, query::fetchCount);
+    }
+
+    @Override
+    public List<User> listPopularGallery() {
+        JPAQuery<User> query = jpaQueryFactory
+            .selectFrom(user)
+            .orderBy(user.saleCount.desc())
+            .limit(4);
+        return query.fetch();
     }
 
     private BooleanExpression containsName(String name) {
