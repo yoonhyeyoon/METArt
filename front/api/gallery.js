@@ -13,7 +13,7 @@ export const getProfileAPI = (address) => {
 };
 
 export const getGalleryArtAPI = (address) => {
-  const { data, error } = useSWR(`/user/${address}/arts`, fetcher);
+  const { data, error } = useSWR(`/user/${address}/arts?size=90`, fetcher);
 
   return {
     data: data,
@@ -24,7 +24,7 @@ export const getGalleryArtAPI = (address) => {
 };
 
 export const getGalleryBuyAPI = (address) => {
-  const { data, error } = useSWR(`/user/${address}/my-arts`, fetcher);
+  const { data, error } = useSWR(`/user/${address}/my-arts?size=90`, fetcher);
 
   return {
     data: data,
