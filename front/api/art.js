@@ -36,13 +36,12 @@ export const cancelSaleAPI = (data, saleId) =>
 export const purchaseSaleAPI = (data, saleId) =>
   http.put(`/sale/${saleId}/purchase`, data);
 
-// export const getArt = (artid) => {
-//   const id = String(artid);
-//   const { data, error } = useSWR(`/art/${id}`, fetcher);
+export const getNewArtList = () => {
+  const { data, error } = useSWR(`/main/new`, fetcher);
 
-//   return {
-//     art: data,
-//     isLoading: !error && !data,
-//     isError: error,
-//   };
-// };
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
