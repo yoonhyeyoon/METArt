@@ -109,6 +109,7 @@ public class SaleService {
             throw new ApiException(ExceptionEnum.SALE_CONFLICT);
         }
 
+        sale.getSeller().plusSaleCount();
         sale.getArt().transferArt(buyer);
         sale.getArt().stopSale();
         sale.purchase(buyer);

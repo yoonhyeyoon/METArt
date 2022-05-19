@@ -31,9 +31,9 @@ public class MainController {
     }
 
     @GetMapping("/popular")
-    public ResponseEntity<List<UserGetRes>> listPopularGallery() {
+    public ResponseEntity<List<UserListRes>> listPopularGallery() {
         List<User> popularGalleries = userService.listPopularGallery();
-        List<UserGetRes> res = popularGalleries.stream().map(user -> UserGetRes.of(user)).collect(
+        List<UserListRes> res = popularGalleries.stream().map(user -> UserListRes.of(user)).collect(
             Collectors.toList());
         return ResponseEntity.ok(res);
     }

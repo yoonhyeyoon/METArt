@@ -14,7 +14,6 @@ public class UserGetRes {
     private String name;
     private String biography;
     private String profileUrl;
-    private Long saleCount;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -28,7 +27,6 @@ public class UserGetRes {
         res.name = user.getName();
         res.biography = user.getBiography();
         res.profileUrl = user.getProfileUrl();
-        res.saleCount = user.getSaleCount();
         res.createdAt = user.getCreatedAt();
         res.updatedAt = user.getUpdatedAt();
 
