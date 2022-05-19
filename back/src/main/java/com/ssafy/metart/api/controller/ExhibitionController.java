@@ -28,6 +28,14 @@ public class ExhibitionController {
 
     private final ExhibitionService exhibitionService;
 
+    @GetMapping
+    public ResponseEntity<List<ExhibitionGetRes>> listExhibition() {
+        List<Exhibition> exhibitionList = exhibitionService.listExhibition();
+        List<ExhibitionGetRes> resList = exhibitionList.stream().map(ex -> ExhibitionGetRes.of(ex)).collect(
+            Collectors.toList());
+        return ResponseEntity.ok(resList);
+    }
+
     @GetMapping("/info/{exhibitionId}")
     public ResponseEntity<ExhibitionGetRes> getExhibition(@PathVariable Long exhibitionId) {
         Exhibition exhibition = exhibitionService.getExhibition(exhibitionId);
