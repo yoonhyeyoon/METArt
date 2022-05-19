@@ -7,6 +7,8 @@ import com.ssafy.metart.db.entity.Exhibition;
 import com.ssafy.metart.db.entity.Sale;
 import com.ssafy.metart.db.repository.ExhibitionRepository;
 import com.ssafy.metart.db.repository.SaleRepository;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,4 +44,41 @@ public class ExhibitionService {
 
         return exhibitionRepository.save(exhibition);
     }
+
+    @Transactional
+    public List<Exhibition> clearExhibition() {
+        List<Exhibition> exhibitionList = new ArrayList<>();
+
+        for (long i = 1L; i <= 53; i++) {
+            Exhibition exhibition = Exhibition.builder()
+                .id(i)
+                .sale(null)
+                .build();
+            exhibitionList.add(exhibition);
+        }
+
+        return exhibitionRepository.saveAll(exhibitionList);
+    }
+
+    @Transactional
+    public List<Exhibition> setExhibition() {
+        List<Exhibition> exhibitionList = new ArrayList<>();
+        List<Sale> saleList = saleRepository.findAllBySaleYnAndIsCanceledOrderByCreatedAtDesc(false, false);
+
+        for (int i = 1; i <= 53; i++) {
+            Sale sale = null;
+            if (i <= saleList.size()) {
+                sale = saleList.get(i - 1);
+            }
+
+            Exhibition exhibition = Exhibition.builder()
+                .id((long)i)
+                .sale(sale)
+                .build();
+            exhibitionList.add(exhibition);
+        }
+
+        return exhibitionRepository.saveAll(exhibitionList);
+    }
+
 }
