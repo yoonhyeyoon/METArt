@@ -21,6 +21,12 @@ public class ExhibitionService {
     private final SaleRepository saleRepository;
 
     @Transactional(readOnly = true)
+    public List<Exhibition> listExhibition() {
+        List<Exhibition> exhibitionList = exhibitionRepository.findAllByOrderByIdAsc();
+        return exhibitionList;
+    }
+
+    @Transactional(readOnly = true)
     public Exhibition getExhibition(Long exhibitionId) {
         Exhibition exhibition = exhibitionRepository.findById(exhibitionId)
             .orElseThrow(() -> new ApiException(ExceptionEnum.EXHIBITION_NOT_FOUND));
