@@ -39,6 +39,4 @@ public class ExhibitionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 
-    @PostMapping("")
-    public ResponseEntity<List<ExhibitionGetRes>> clear
 }
