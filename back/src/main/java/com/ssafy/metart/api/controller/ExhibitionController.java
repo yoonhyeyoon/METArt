@@ -6,6 +6,7 @@ import com.ssafy.metart.api.response.SaleGetRes;
 import com.ssafy.metart.api.service.ExhibitionService;
 import com.ssafy.metart.db.entity.Exhibition;
 import com.ssafy.metart.db.entity.Sale;
+import java.util.List;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class ExhibitionController {
 
     private final ExhibitionService exhibitionService;
 
-    @GetMapping("/{exhibitionId}")
+    @GetMapping("/info/{exhibitionId}")
     public ResponseEntity<ExhibitionGetRes> getExhibition(@PathVariable Long exhibitionId) {
         Exhibition exhibition = exhibitionService.getExhibition(exhibitionId);
         ExhibitionGetRes res = ExhibitionGetRes.of(exhibition);
@@ -37,4 +38,7 @@ public class ExhibitionController {
         ExhibitionGetRes res = ExhibitionGetRes.of(exhibition);
         return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
+
+    @PostMapping("")
+    public ResponseEntity<List<ExhibitionGetRes>> clear
 }

@@ -5,12 +5,12 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 
 public class Http {
-    static string BASE_URL = "https://k6d106.p.ssafy.io/api/v1/exhibition/";
+    static string BASE_URL = "https://k6d106.p.ssafy.io/api/v1/exhibition/info";
 
     public static IEnumerator GetExhibitInfo(long exhibitId, System.Action<ExhibitInfo> callback) {
         ExhibitInfo exhibitInfo = null;
 
-        UnityWebRequest www = UnityWebRequest.Get($"{BASE_URL}{exhibitId}");
+        UnityWebRequest www = UnityWebRequest.Get($"{BASE_URL}/{exhibitId}");
         yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success) {
