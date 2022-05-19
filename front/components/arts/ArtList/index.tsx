@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import ArtCard from 'components/common/ArtCard';
-import { fetcher, getArtList, getSearchArtListAPI } from '../../../api/art';
-import { ArtListType, ContentType } from 'types/types';
+import { getArtList, getSearchArtListAPI } from 'api/art';
+import { ContentType } from 'types/types';
 import CircularProgress from '@mui/material/CircularProgress';
 import SearchBar from 'components/common/SearchBar';
-import useSWR from 'swr';
 
 function ArtList() {
   const { artList, isLoading, isError } = getArtList();
@@ -18,15 +17,10 @@ function ArtList() {
 
   // 검색 API 호출
   const handleSearchClick = () => {
-    console.log(search);
-    if (search === '') {
-      return;
-    }
-    const data = getSearchArtListAPI({
+    getSearchArtListAPI({
       name: search,
       creatorName: search,
     }).then((res) => {
-      console.log(res);
       setArtSearchList(res.data.content);
     });
   };

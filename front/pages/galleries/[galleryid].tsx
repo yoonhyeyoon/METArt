@@ -1,6 +1,6 @@
-import GalleryArtList from '../../components/gallery/GalleryArtList';
-import Profile from '../../components/gallery/Profile';
-import Page from '../../Layouts/Page';
+import GalleryArtList from 'components/gallery/GalleryArtList';
+import Profile from 'components/gallery/Profile';
+import Page from 'Layouts/Page';
 
 function Gallery() {
   return (

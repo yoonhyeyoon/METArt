@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 import Page from 'Layouts/Page';
 import { imageUploadAPI, createArtAPI } from 'api/art';
 import { userInfo } from 'recoil/userInfo';
+import LoadingBar from 'components/common/LoadingBar';
 
 function CreateArt() {
   const router = useRouter();
@@ -16,6 +17,7 @@ function CreateArt() {
   const [description, setDescription] = useState<string>('');
   const [image, setImage] = useState<File | ''>('');
   const [imageName, setImageName] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -28,6 +30,7 @@ function CreateArt() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const { metartContract } = await import('contract/web3Config');
 
       // S3에 이미지 업로드
@@ -49,8 +52,10 @@ function CreateArt() {
           router.push(`/arts/${data.id}`);
         });
     } catch (err) {
+      setLoading(false);
       console.dir(err);
     }
+    setLoading(false);
   };
 
   // 찾기 버튼 클릭 핸들링
@@ -150,6 +155,7 @@ function CreateArt() {
             </Stack>
           </Stack>
         </Box>
+        {loading && <LoadingBar />}
       </Page>
     </>
   );

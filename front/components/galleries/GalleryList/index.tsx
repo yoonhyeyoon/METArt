@@ -3,8 +3,7 @@ import ImageList from '@mui/material/ImageList';
 import CircularProgress from '@mui/material/CircularProgress';
 import GalleryCard from 'components/common/GalleryCard';
 import { getSearchUserListAPI, getUserListAPI } from 'api/user';
-import { CreatorOwnerType } from '../../../types/types';
-import SearchBar from 'components/common/SearchBar';
+import { CreatorOwnerType } from 'types/types';
 import { Box } from '@mui/material';
 import SearchBarGallery from 'components/common/SearchBarGallery';
 
@@ -19,15 +18,10 @@ function GalleryList() {
 
   // 검색 API 호출
   const handleSearchClick = () => {
-    console.log(search);
-    if (search === '') {
-      return;
-    }
-    const data = getSearchUserListAPI({
+    getSearchUserListAPI({
       name: search,
       creatorName: search,
     }).then((res) => {
-      console.log(res);
       setUserSearchList(res.data.content);
     });
   };
