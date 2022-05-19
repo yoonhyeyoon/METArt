@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import GalleryCard from 'components/common/GalleryCard';
 import { getSearchUserListAPI, getUserListAPI } from 'api/user';
