@@ -25,6 +25,9 @@ public class ExhibitionService {
         Exhibition exhibition = exhibitionRepository.findById(exhibitionId)
             .orElseThrow(() -> new ApiException(ExceptionEnum.EXHIBITION_NOT_FOUND));
 
+        if (exhibition.getSale() == null) {
+            throw new ApiException(ExceptionEnum.EXHIBITION_NOT_FOUND2);
+        }
         return exhibition;
     }
 
