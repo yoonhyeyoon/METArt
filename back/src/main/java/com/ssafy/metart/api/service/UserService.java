@@ -58,4 +58,10 @@ public class UserService {
         user.updateUser(req.getName(), req.getBiography(), profileUrl);
         return userRepository.save(user);
     }
+
+    @Transactional(readOnly = true)
+    public List<User> listPopularGallery() {
+        List<User> popularGalleries = userRepository.listPopularGallery();
+        return popularGalleries;
+    }
 }
