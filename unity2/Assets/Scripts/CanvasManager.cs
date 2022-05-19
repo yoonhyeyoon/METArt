@@ -63,7 +63,7 @@ public class CanvasManager : Singleton<CanvasManager>
     {
         ExhibitName.text = exhibit.exhibitName;
         ExhibitContent.text = exhibit.content;
-        ExhibitProducer.text = $"제작 : {exhibit.producer}\n생성일 : {exhibit.year}\n가격 : {exhibit.price}";
+        ExhibitProducer.text = $"제작 : {exhibit.producer}\n생성일 : {exhibit.year.Substring(0, 10)}\n가격 : {((double)exhibit.price)/Math.Pow(10,18)} ETH";
     }
     // 전시물 정보 열고 닫기
     public void OpenExhibitContentBoard()

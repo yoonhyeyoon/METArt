@@ -753,6 +753,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -1258,6 +1260,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -1669,6 +1673,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -1898,6 +1904,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -2348,6 +2356,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -2502,6 +2512,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -2888,6 +2900,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -3086,6 +3100,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -3594,6 +3610,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -3928,6 +3946,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -4655,6 +4675,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -4819,6 +4841,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -4974,6 +4998,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -5078,6 +5104,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -5541,6 +5569,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -5899,6 +5929,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -6201,6 +6233,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -6630,6 +6664,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -7783,6 +7819,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -8075,6 +8113,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -8179,6 +8219,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -8253,6 +8295,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -8621,6 +8665,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -9512,6 +9558,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -10355,6 +10403,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -10429,6 +10479,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -10584,6 +10636,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -10688,6 +10742,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -11460,6 +11516,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -11641,6 +11699,62 @@ PrefabInstance:
     - target: {fileID: 4207643213099508873, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643213261642742, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643213261642743, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643214569447509, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9aa4348290784b2468144a97eb15d8d7, type: 3}
+    - target: {fileID: 4207643214569447509, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643214569447509, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643214569447509, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643214569447514, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643214569447514, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643214569447514, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 625516269}
+    - target: {fileID: 4207643214569447514, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643214569447514, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseExhibitContentBoard
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643214569447514, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CanvasManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643214569447514, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643214569447515, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4207643214722621728, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
       propertyPath: m_text
@@ -11956,6 +12070,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -12229,6 +12345,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -12423,6 +12541,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -12701,6 +12821,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -13124,6 +13246,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -13198,6 +13322,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -13584,6 +13710,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -13874,6 +14002,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -13978,6 +14108,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -14052,6 +14184,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -14483,6 +14617,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -14653,6 +14789,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -15057,6 +15195,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -15925,6 +16065,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -16216,6 +16358,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -16423,6 +16567,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -16706,6 +16852,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -16932,6 +17080,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -17441,6 +17591,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -17515,6 +17667,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -18507,6 +18661,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -18701,6 +18857,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -19054,6 +19212,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0
@@ -19517,6 +19677,8 @@ MonoBehaviour:
   exhibitName: 
   content: 
   helpmessage: 
+  m_material: {fileID: 0}
+  price: 0
   year: 
   producer: 
   m_MinRotate: 0

@@ -146,7 +146,7 @@ public class Exhibit : MonoBehaviour
                     Texture texture = res;
                     m_material.mainTexture = texture;
                 }));
-                content = exhibitInfo.price.ToString();
+                content = exhibitInfo.description;
                 exhibitName = exhibitInfo.name;
                 year = exhibitInfo.createdAt;
                 producer = exhibitInfo.creatorName;
