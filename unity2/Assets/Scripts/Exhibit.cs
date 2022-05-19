@@ -16,6 +16,7 @@ public class Exhibit : MonoBehaviour
     public Color32 m_Color;
 
     public int exhibitId;
+    public ExhibitInfo exhibitInfo;
     public string exhibitName;
     public string content;
     public string helpmessage;
@@ -140,30 +141,6 @@ public class Exhibit : MonoBehaviour
     public virtual void GetInfo(int _exhibitId) {
         exhibitId = _exhibitId;
         
-        StartCoroutine(Http.GetExhibitInfo(exhibitId, (exhibitInfo) => {
-            if (exhibitInfo != null) {
-                StartCoroutine(Http.GetTexture(exhibitInfo.tokenURI, (res) => {
-                    Texture texture = res;
-                    m_material.mainTexture = texture;
-                }));
-                content = exhibitInfo.description;
-                exhibitName = exhibitInfo.name;
-                year = exhibitInfo.createdAt;
-                producer = exhibitInfo.creatorName;
-                price = exhibitInfo.price;
-            } else {
-                StartCoroutine(Http.GetTexture("https://kgw012-metart-bucket.s3.ap-northeast-2.amazonaws.com/amugeona.png", (res) => {
-                    Texture texture = res;
-                    m_material.mainTexture = texture;
-                }));
-                content = "등록된 작품이 없습니다.";
-                exhibitName = exhibitId.ToString();
-                year = "";
-                producer = "";
-                price = 0;
-            }
-        }));
-        
         m_MinRotate = -180;
         m_MaxRotate = 180;
 
@@ -172,5 +149,40 @@ public class Exhibit : MonoBehaviour
 
         m_minFOV = 5;
         m_maxFOV = 20;
+
+        StartCoroutine(GetTexture());
+    }
+
+    IEnumerator GetTexture()
+    {   
+        while (GameManager.exhibitInfos == null) {
+            yield return new WaitForSeconds(1);
+        }
+
+        exhibitInfo = GameManager.exhibitInfos[exhibitId - 1];
+        
+        if (exhibitInfo.saleId > 0) {
+            StartCoroutine(Http.GetTexture(exhibitId, exhibitInfo.tokenURI, (res) => {
+                Texture2D texture = res;
+                m_material.mainTexture = texture;
+                GameManager.loadCount++;
+            }));
+            content = exhibitInfo.description;
+            exhibitName = exhibitInfo.name;
+            year = exhibitInfo.createdAt;
+            producer = exhibitInfo.creatorName;
+            price = exhibitInfo.price;
+        } else {
+            StartCoroutine(Http.GetTexture(exhibitId, "https://kgw012-metart-bucket.s3.ap-northeast-2.amazonaws.com/amugeona.png", (res) => {
+                Texture2D texture = res;
+                m_material.mainTexture = texture;
+                GameManager.loadCount++;
+            }));
+            content = "등록된 작품이 없습니다.";
+            exhibitName = exhibitId.ToString();
+            year = "";
+            producer = "";
+            price = 0;
+        }
     }
 }

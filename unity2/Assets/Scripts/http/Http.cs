@@ -5,12 +5,12 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 
 public class Http {
-    static string BASE_URL = "https://k6d106.p.ssafy.io/api/v1/exhibition/info";
+    static string BASE_URL = "https://k6d106.p.ssafy.io/api/v1";
 
-    public static IEnumerator GetExhibitInfo(long exhibitId, System.Action<ExhibitInfo> callback) {
-        ExhibitInfo exhibitInfo = null;
+    public static IEnumerator GetExhibitInfos(System.Action<List<ExhibitInfo>> callback) {
+        List<ExhibitInfo> exhibitInfos = null;
 
-        UnityWebRequest www = UnityWebRequest.Get($"{BASE_URL}/{exhibitId}");
+        UnityWebRequest www = UnityWebRequest.Get($"{BASE_URL}/exhibition");
         yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success) {
@@ -18,16 +18,26 @@ public class Http {
         }
         else {
             string res = www.downloadHandler.text;
-            exhibitInfo = JsonConvert.DeserializeObject<ExhibitInfo>(res);
+            var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+            exhibitInfos = JsonConvert.DeserializeObject<List<ExhibitInfo>>(res, settings);
         }
-        callback(exhibitInfo);
+        callback(exhibitInfos);
     }
 
-    public static IEnumerator GetTexture(string tokenURI, System.Action<Texture> callback) {
+    public static IEnumerator GetTexture(int exhibitId, string tokenURI, System.Action<Texture2D> callback) {
+        yield return new WaitUntil(() => GameManager.loadCount >= exhibitId);
+
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(tokenURI);
         yield return www.SendWebRequest();
 
-        Texture myTexture = DownloadHandlerTexture.GetContent(www);
+        Texture2D myTexture = DownloadHandlerTexture.GetContent(www);
+        www.Dispose();
+        www = null;
+        myTexture.Compress(false);
         callback(myTexture);
     }
 }
