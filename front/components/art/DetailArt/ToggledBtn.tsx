@@ -144,8 +144,10 @@ function ToggledBtn({
           value="stopSale"
           sx={{
             px: 15,
+            bgcolor: 'black',
+            color: 'white',
             '&:hover': {
-              bgcolor: 'black',
+              bgcolor: '#424242',
               color: 'white',
               transition: 'background 0.3s ease-in-out',
             },
@@ -163,8 +165,10 @@ function ToggledBtn({
           value="onSale"
           sx={{
             px: 15,
+            bgcolor: 'black',
+            color: 'white',
             '&:hover': {
-              bgcolor: 'black',
+              bgcolor: '#424242',
               color: 'white',
               transition: 'background 0.3s ease-in-out',
             },
@@ -203,8 +207,10 @@ function ToggledBtn({
           onClick={onClickBuy}
           sx={{
             px: 15,
+            bgcolor: 'black',
+            color: 'white',
             '&:hover': {
-              bgcolor: 'black',
+              bgcolor: '#424242',
               color: 'white',
               transition: 'background 0.3s ease-in-out',
             },

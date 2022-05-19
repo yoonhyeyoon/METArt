@@ -23,3 +23,10 @@ export const artPrice = css`
   opacity: 0.5;
   font-size: 0.8em;
 `;
+
+export const artPriceUp = css`
+  position: relative;
+  /* opacity: 0.5; */
+  font-size: 0.8em;
+  padding-bottom: 2rem;
+`;
