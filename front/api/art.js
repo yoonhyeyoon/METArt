@@ -3,8 +3,8 @@ import http from './http';
 
 export const fetcher = (url) => http.get(url).then((res) => res.data);
 
-export const getArtList = () => {
-  const { data, error } = useSWR(`/art?size=90`, fetcher);
+export const getArtList = (pageIndex) => {
+  const { data, error } = useSWR(`/art?page=${pageIndex}`, fetcher);
 
   return {
     data: data,

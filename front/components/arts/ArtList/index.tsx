@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Box, Grid } from '@mui/material';
+import { Container, Box, Grid } from '@mui/material';
 import ArtCard from 'components/common/ArtCard';
 import { getArtList, getSearchArtListAPI } from 'api/art';
 import { ContentType } from 'types/types';
 import CircularProgress from '@mui/material/CircularProgress';
 import SearchBar from 'components/common/SearchBar';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 function ArtList() {
-  const { artList, isLoading, isError } = getArtList();
+  const [page, setPage] = useState(1);
+  const { data, artList, isLoading, isError } = getArtList(page);
   const [search, setSearch] = useState<String>('');
   const [artSearchList, setArtSearchList] = useState(artList);
 
@@ -23,6 +26,11 @@ function ArtList() {
     }).then((res) => {
       setArtSearchList(res.data.content);
     });
+  };
+
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+    console.log(value);
   };
 
   useEffect(() => {
@@ -52,6 +60,23 @@ function ArtList() {
           ))
         )}
       </Grid>
+      <Container
+        sx={{
+          paddingTop: 10,
+          paddingBottom: 6,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Stack spacing={2}>
+          <Pagination
+            count={data.totalPages}
+            page={page}
+            onChange={handleChange}
+          />
+        </Stack>
+      </Container>
     </>
   );
 }
