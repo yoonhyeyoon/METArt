@@ -163,7 +163,7 @@ public class Exhibit : MonoBehaviour
         
         if (exhibitInfo.saleId > 0) {
             StartCoroutine(Http.GetTexture(exhibitId, exhibitInfo.tokenURI, (res) => {
-                Texture texture = res;
+                Texture2D texture = res;
                 m_material.mainTexture = texture;
                 GameManager.loadCount++;
             }));
@@ -174,7 +174,7 @@ public class Exhibit : MonoBehaviour
             price = exhibitInfo.price;
         } else {
             StartCoroutine(Http.GetTexture(exhibitId, "https://kgw012-metart-bucket.s3.ap-northeast-2.amazonaws.com/amugeona.png", (res) => {
-                Texture texture = res;
+                Texture2D texture = res;
                 m_material.mainTexture = texture;
                 GameManager.loadCount++;
             }));
