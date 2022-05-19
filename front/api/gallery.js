@@ -33,3 +33,13 @@ export const getGalleryBuyAPI = (address) => {
     isError: error,
   };
 };
+
+export const getPopularGalleryListAPI = () => {
+  const { data, error } = useSWR(`/main/popular`, fetcher);
+
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};

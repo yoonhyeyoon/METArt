@@ -3,44 +3,33 @@ import { Box, Typography, Grid } from '@mui/material';
 import PopularGalleryList from './PopularGalleryList';
 import ToggleButton from '@mui/material/ToggleButton';
 import ArtCard from 'components/common/ArtCard';
+import NewArtList from './NewArtList';
 
 function LandingSummary() {
   return (
-    <Box mt="100vh">
+    <Box mt="105vh">
       <Box mb={18}>
         <Typography variant="h3" mb={4} fontFamily="inherit">
-          New Art
+          Popular Gallery
         </Typography>
-        <Grid container spacing={4}>
-          {/* <Grid item xs={12} sm={6} md={6} lg={3}>
-            <ArtCard />
-          </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={3}>
-            <ArtCard />
-          </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={3}>
-            <ArtCard />
-          </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={3}>
-            <ArtCard />
-          </Grid> */}
-        </Grid>
+        <PopularGalleryList />
         <Box sx={{ textAlign: 'center', mt: 5 }}>
-          <Link href="/arts">
+          <Link href="/galleries">
             <ToggleButton value="more" sx={{ px: 15 }}>
               <a style={{ color: 'black' }}>More</a>
             </ToggleButton>
           </Link>
         </Box>
       </Box>
-
-      <Box mb={10}>
+      <Box mb={18}>
         <Typography variant="h3" mb={4} fontFamily="inherit">
-          Popular Gallery
+          New Art
         </Typography>
-        {/* <PopularGalleryList /> */}
+        <Grid container spacing={4}>
+          <NewArtList />
+        </Grid>
         <Box sx={{ textAlign: 'center', mt: 5 }}>
-          <Link href="/galleries">
+          <Link href="/arts">
             <ToggleButton value="more" sx={{ px: 15 }}>
               <a style={{ color: 'black' }}>More</a>
             </ToggleButton>
