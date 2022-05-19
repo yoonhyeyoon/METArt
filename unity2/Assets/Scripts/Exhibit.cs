@@ -137,17 +137,40 @@ public class Exhibit : MonoBehaviour
     {
     }
     
-    public virtual void GetInfo() {
+    public virtual void GetInfo(int _exhibitId) {
+        exhibitId = _exhibitId;
+        
         StartCoroutine(Http.GetExhibitInfo(exhibitId, (exhibitInfo) => {
-            StartCoroutine(Http.GetTexture(exhibitInfo.tokenURI, (res) => {
-                Texture texture = res;
-                m_material.mainTexture = texture;
-            }));
-            content = exhibitInfo.price.ToString();
-            exhibitName = exhibitInfo.name;
-            year = exhibitInfo.createdAt;
-            producer = exhibitInfo.creatorName;
-            price = exhibitInfo.price;
+            if (exhibitInfo != null) {
+                StartCoroutine(Http.GetTexture(exhibitInfo.tokenURI, (res) => {
+                    Texture texture = res;
+                    m_material.mainTexture = texture;
+                }));
+                content = exhibitInfo.price.ToString();
+                exhibitName = exhibitInfo.name;
+                year = exhibitInfo.createdAt;
+                producer = exhibitInfo.creatorName;
+                price = exhibitInfo.price;
+            } else {
+                StartCoroutine(Http.GetTexture("https://kgw012-metart-bucket.s3.ap-northeast-2.amazonaws.com/amugeona.png", (res) => {
+                    Texture texture = res;
+                    m_material.mainTexture = texture;
+                }));
+                content = "등록된 작품이 없습니다.";
+                exhibitName = exhibitId.ToString();
+                year = "";
+                producer = "";
+                price = 0;
+            }
         }));
+        
+        m_MinRotate = -180;
+        m_MaxRotate = 180;
+
+        m_TopRigHeight = 15f;
+        m_MidRigHeight = 5f;
+
+        m_minFOV = 5;
+        m_maxFOV = 20;
     }
 }
