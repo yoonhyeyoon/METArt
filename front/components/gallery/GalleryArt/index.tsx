@@ -3,6 +3,7 @@ import { ContentType } from 'types/types';
 import { galleryArtItem } from './styles';
 import {
   artPrice,
+  artPriceUp,
   caption,
   transParentBox,
 } from 'components/common/GalleryCard/styled';
@@ -47,7 +48,9 @@ function GalleryArt(art: ContentType) {
       />
       <div css={transParentBox} className="transparent-box">
         <div css={caption} className="caption">
-          <p>{art.sale ? <p>{art.sale?.price / 10 ** 18} EHT</p> : null}</p>
+          <p css={artPriceUp}>
+            {art.sale ? <p>{art.sale?.price / 10 ** 18} EHT</p> : null}
+          </p>
           <p css={artPrice}>{art.name}</p>
         </div>
       </div>
