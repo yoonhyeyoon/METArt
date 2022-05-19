@@ -31,12 +31,12 @@ function ToggledBtn({
 }: Props) {
   const [openSell, setSellOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [salePrice, setSalePrice] = useState<number>(0);
+  const [salePrice, setSalePrice] = useState<string>('0');
   const [tokenSaleId, setTokenSaleId] = useState<number | null>(saleId);
   const [isOnSale, setIsOnSale] = useState<boolean>(onSaleYn);
 
   const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSalePrice(Number(e.target.value));
+    setSalePrice(String(e.target.value));
   };
 
   const handleClickSellOpen = () => {
@@ -44,20 +44,20 @@ function ToggledBtn({
   };
 
   const handleSellClose = () => {
-    setSalePrice(0);
+    setSalePrice('0');
     setSellOpen(false);
   };
 
   // 판매하기
   const onClickSale = async () => {
-    if (salePrice < 0.0001) return alert('0.0001ETH 보다 커야합니다.');
+    if (Number(salePrice) < 0.0001) return alert('0.0001ETH 보다 커야합니다.');
     setSellOpen(false);
     setLoading(true);
     try {
       // SC 판매 등록하기
       const { auctionContract } = await import('contract/web3Config');
       await auctionContract.methods
-        .createSale(tokenId, String(salePrice * 10 ** 18))
+        .createSale(tokenId, String(Number(salePrice) * 10 ** 18))
         .send({ from: address })
         .on('transactionHash', (hash: String) => {
           // 백엔드에 판매정보 등록하기
@@ -188,6 +188,10 @@ function ToggledBtn({
               fullWidth
               variant="standard"
               value={salePrice}
+              inputProps={{
+                maxLength: 13,
+                step: '0.001',
+              }}
               onChange={onChangePrice}
             />
           </DialogContent>
