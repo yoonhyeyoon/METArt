@@ -7,8 +7,6 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import { styledInput, styledModal } from './styles';
 import ProfileSetting from '../ProfileSetting';
-
-// import { pictureButton, styledInput, styledInputBio } from './styled';
 import Grid from '@mui/material/Grid';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';

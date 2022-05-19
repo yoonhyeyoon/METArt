@@ -25,8 +25,8 @@ export default function ArtCard(art: ContentType) {
             <Avatar
               sx={{ cursor: 'pointer' }}
               alt="Ted talk"
-              src={art.creator.profileUrl}
-              onClick={() => router.push(`/galleries/${art.creator.address}`)}
+              src={art.owner.profileUrl}
+              onClick={() => router.push(`/galleries/${art.owner.address}`)}
             />
           ) : (
             <Skeleton
@@ -38,8 +38,8 @@ export default function ArtCard(art: ContentType) {
           )
         }
         title={
-          art.creator ? (
-            art.creator.name
+          art.owner ? (
+            art.owner.name
           ) : (
             <Skeleton
               animation="wave"
