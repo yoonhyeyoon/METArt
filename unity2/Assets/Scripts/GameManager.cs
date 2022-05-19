@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private static GameManager m_instance;
 
+    public static List<ExhibitInfo> exhibitInfos;
+
+    public static int loadCount = 1;
+
     public GameObject playerPrefab;
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
@@ -43,6 +47,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         // 네트워크 상의 모든 클라이언트들에서 생성 실행
         // 단, 해당 게임 오브젝트의 주도권은, 생성 메서드를 직접 실행한 클라이언트에게 있음
         PhotonNetwork.Instantiate(playerPrefab.name, randomSpawnPos, Quaternion.identity);
+
+        StartCoroutine(Http.GetExhibitInfos((_exhibitInfos) => {
+            exhibitInfos = _exhibitInfos;
+        }));
     }
 
     // Update is called once per frame
