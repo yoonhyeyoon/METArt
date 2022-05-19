@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, useRef, FormEvent } from 'react';
 import { useRouter } from 'next/router';
-import { Box, TextField, Button, Stack } from '@mui/material';
+import { Box, TextField, ToggleButton, Stack } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import Page from 'Layouts/Page';
 import { imageUploadAPI, createArtAPI } from 'api/art';
@@ -91,44 +91,62 @@ function CreateArt() {
                 value={imageName}
                 disabled
               />
-              <Button
+              <ToggleButton
                 sx={{
                   ml: 3,
                   fontSize: 16,
                   height: '56px',
                   width: '15%',
                   padding: '8px 0',
+                  bgcolor: 'black',
+                  color: 'white',
+                  '&:hover': {
+                    bgcolor: '#424242',
+                    color: 'white',
+                    transition: 'background 0.3s ease-in-out',
+                  },
                 }}
-                variant="contained"
-                size="large"
+                value="upload"
+                // variant="contained"
+                // size="large"
                 onClick={handleImageClick}
               >
                 Upload
-              </Button>
+              </ToggleButton>
             </Stack>
             <TextField
               type="text"
-              label="이름"
+              label="작품 이름"
               value={name}
               onChange={handleNameChange}
             />
             <TextField
               type="text"
-              label="설명"
+              label="작품 설명"
               multiline
               rows={5}
               value={description}
               onChange={handleDescriptionChange}
             />
             <Stack alignItems="center">
-              <Button
+              <ToggleButton
+                value="create"
                 size="large"
                 type="submit"
-                variant="contained"
-                sx={{ width: '40%' }}
+                // variant="contained"
+                sx={{
+                  width: '40%',
+                  bgcolor: 'black',
+                  color: 'white',
+                  '&:hover': {
+                    bgcolor: '#424242',
+                    color: 'white',
+                    transition: 'background 0.3s ease-in-out',
+                  },
+                }}
               >
                 Create
-              </Button>
+              </ToggleButton>
             </Stack>
           </Stack>
         </Box>
