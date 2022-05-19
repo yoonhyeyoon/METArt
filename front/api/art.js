@@ -4,7 +4,7 @@ import http from './http';
 export const fetcher = (url) => http.get(url).then((res) => res.data);
 
 export const getArtList = () => {
-  const { data, error } = useSWR(`/art`, fetcher);
+  const { data, error } = useSWR(`/art?size=90`, fetcher);
 
   return {
     data: data,
@@ -16,7 +16,7 @@ export const getArtList = () => {
 
 export const getSearchArtListAPI = (search) => {
   // console.log(search);
-  return http.get(`/art?name=${search.name}`);
+  return http.get(`/art?name=${search.name}&?size=90`);
 };
 
 export const imageUploadAPI = (data) => http.post('/image', data);

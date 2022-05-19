@@ -12,7 +12,7 @@ export const updateUserAPI = (address, data) => {
 };
 
 export const getUserListAPI = () => {
-  const { data, error } = useSWR(`/user`, fetcher);
+  const { data, error } = useSWR(`/user?size=90`, fetcher);
 
   return {
     data: data,
@@ -24,5 +24,5 @@ export const getUserListAPI = () => {
 
 export const getSearchUserListAPI = (search) => {
   // console.log(search);
-  return http.get(`/user?name=${search.name}`);
+  return http.get(`/user?name=${search.name}&size=90`);
 };
