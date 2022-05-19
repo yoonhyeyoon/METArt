@@ -47,6 +47,7 @@ public class ExhibitInfo
     public long id { get; set; }
     public long saleId { get; set; }
     public long price { get; set; }
+    public long artId { get; set; }
     public string name { get; set; }
     public string tokenURI { get; set; }
     public string description { get; set; }
