@@ -11835,6 +11835,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4207643213236386446, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -225.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207643213236386446, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 24.749996
+      objectReference: {fileID: 0}
     - target: {fileID: 4207643213261642742, guid: c5fd3d4caba726545913dddeadffac08, type: 3}
       propertyPath: m_SizeDelta.y
       value: 550
@@ -14307,7 +14315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.2, y: -181.2}
+  m_AnchoredPosition: {x: -148.6, y: -242.4}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1543420827
