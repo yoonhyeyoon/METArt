@@ -37,6 +37,7 @@ public class CanvasManager : Singleton<CanvasManager>
     public TMP_Text GameInfoName;
     public TMP_Text GameInfoContent;
     public TMP_Text GameInfoHelpMessage;
+    public long artId;
 
     void Start()
     {
@@ -60,7 +61,8 @@ public class CanvasManager : Singleton<CanvasManager>
     }
     // 전시물 정보 설정
     public void SetExhibitInfo(Exhibit exhibit)
-    {
+    {   
+        artId = exhibit.exhibitInfo.artId;
         ExhibitName.text = exhibit.exhibitName;
         ExhibitContent.text = exhibit.content;
         if (exhibit.year.Length < 10) {
@@ -68,7 +70,9 @@ public class CanvasManager : Singleton<CanvasManager>
         } else {
             ExhibitProducer.text = $"제작 : {exhibit.producer}\n생성일 : {exhibit.year.Substring(0, 10)}\n가격 : {((double)exhibit.price)/Math.Pow(10,18)} ETH";
         }
-        
+    }
+    public void OpenPurchasePage() {
+        Application.OpenURL($"https://k6d106.p.ssafy.io/arts/{artId.ToString()}");
     }
     // 전시물 정보 열고 닫기
     public void OpenExhibitContentBoard()
