@@ -20,6 +20,9 @@ Notion: [link](https://dev-junyong.notion.site/METArt-42be9a8ca55f41a1b15365b2d5
 
 * React.js 18.1.0
 * next.js 21.1.5 
+* recoil 0.7.3
+* swr 1.3.0
+* emotion 11.9.0
 * Material-UI 
 * Web3.js 1.7.3
 * Metamask 
@@ -86,21 +89,21 @@ Notion: [link](https://dev-junyong.notion.site/METArt-42be9a8ca55f41a1b15365b2d5
 
 1. Main
 
-![image-20220520094738479](README.assets/image-20220520094738479.png)
+![image-20220520094738479](https://user-images.githubusercontent.com/87461728/171786660-b3a6ccba-ba60-46b9-a2fb-0ffecf701a38.png)
 
-![image-20220520094810622](README.assets/image-20220520094810622.png)
+![image-20220520094810622](https://user-images.githubusercontent.com/87461728/171786712-be6e0d12-2bcf-4725-bda1-fbabd26cfa91.png)
 
 2. Art
 
-![image-20220520095004572](README.assets/image-20220520095004572.png)
+![image-20220520095004572](https://user-images.githubusercontent.com/87461728/171787143-4918f6a7-8ee1-47f0-aabd-18c951471ba2.png)
 
-![image-20220520095415292](README.assets/image-20220520095415292.png)
+![image-20220520095415292](https://user-images.githubusercontent.com/87461728/171787179-e212e2f2-74f2-4224-8953-bc53fb674faf.png)
 
-![image-20220520095909179](README.assets/image-20220520095909179.png)
+![image-20220520095909179](https://user-images.githubusercontent.com/87461728/171787204-d5aaa9ce-954b-43f7-9ae8-7363881c474e.png)
 
 3. Gallery
 
-![image-20220520095043387](README.assets/image-20220520095043387.png)
+![image-20220520095043387](https://user-images.githubusercontent.com/87461728/171787226-5c841830-ef5e-4b64-ba9a-bbba6a29dcdb.png)
 
 
 
@@ -108,11 +111,9 @@ Notion: [link](https://dev-junyong.notion.site/METArt-42be9a8ca55f41a1b15365b2d5
 
 4. Gallery
 
-![image-20220520095223971](README.assets/image-20220520095223971.png)
+![image-20220520095223971](https://user-images.githubusercontent.com/87461728/171787244-18140598-5de2-4d81-86c9-c1a5d545a2fd.png)
 
-
-
-![image-20220520095159748](README.assets/image-20220520095159748.png)
+![image-20220520095159748](https://user-images.githubusercontent.com/87461728/171787278-55a7a2ce-e180-45f8-8e9b-56002c703201.png)
 
 
 
@@ -120,18 +121,18 @@ Notion: [link](https://dev-junyong.notion.site/METArt-42be9a8ca55f41a1b15365b2d5
 
 5. Add Art
 
-![image-20220520095304851](README.assets/image-20220520095304851.png)
+![image-20220520095304851](https://user-images.githubusercontent.com/87461728/171787301-8ce8dd6c-b497-4d6c-936f-b4924349293b.png)
 
 
 
-5. Meta art
+6. Metart
 
-![image-20220520100250720](README.assets/image-20220520100250720.png)
+![image-20220520100250720](https://user-images.githubusercontent.com/87461728/171787318-c94d770b-1ec6-46d0-92e4-5cb43e079acb.png)
 
-![image-20220520100702582](README.assets/image-20220520100702582.png)
+![image-20220520100702582](https://user-images.githubusercontent.com/87461728/171787328-cd2c9d98-b7f0-4f40-8ce0-7511df097ada.png)
 
-![image-20220520100739286](README.assets/image-20220520100739286.png)
+![image-20220520100739286](https://user-images.githubusercontent.com/87461728/171787353-ec1efcde-1cda-413b-a1a5-f981e8cfbfe0.png)
 
-![image-20220520100752105](README.assets/image-20220520100752105.png)
+![image-20220520100752105](https://user-images.githubusercontent.com/87461728/171787370-4cf0991e-53e7-476b-b707-481c04f096a5.png)
 
-![image-20220520100810486](README.assets/image-20220520100810486.png)
+![image-20220520100810486](https://user-images.githubusercontent.com/87461728/171787392-aaa9b812-fc58-4745-bfc0-26e66de3f53f.png)
